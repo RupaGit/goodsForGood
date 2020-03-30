@@ -1,0 +1,33 @@
+{
+  "name": "goodsforgood",
+  "version": "1.0.0",
+  "description": "This is an application which will help communities with finding all essentials during an epidemic",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "server": "nodemon server.js",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RupaGit/goodsForGood.git"
+  },
+  "author": "Swarupa Popuri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RupaGit/goodsForGood/issues"
+  },
+  "homepage": "https://github.com/RupaGit/goodsForGood#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
