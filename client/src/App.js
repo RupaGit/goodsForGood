@@ -11,9 +11,6 @@ function App() {
       <Myform/>
       <Myform/>
     </div>
-  
-
-  );
-}
+  )};
 
 export default App;
