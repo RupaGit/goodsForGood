@@ -9,4 +9,8 @@ export default {
   signIn: function() {
     return axios.post("/api/signIn", userData);
   }
+  emailuser: function(userid){
+        return axios.post("/api/emailUser" + userid);
+    }
 };
+r
