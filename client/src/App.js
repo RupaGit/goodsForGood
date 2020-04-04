@@ -8,7 +8,7 @@ import MyCard from './components/MyCard';
 import Textbox from './components/Textbox';
 // import Navigation from './components/Navigation';
 import Home from './pages/Home';
-import LoginForm from './pages/loginPage';
+import LoginForm from './pages/Login';
 import Navigation,{ Component } from './components/Navigation';
 
 function App() {
