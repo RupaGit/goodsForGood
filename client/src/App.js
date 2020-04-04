@@ -1,31 +1,25 @@
 import React from 'react';
 import './App.css';
-import { Button } from 'semantic-ui-react';
+// import { Button } from 'semantic-ui-react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Myform from './components/Myform';
 import Mybutton from './components/Mybutton';
 import MyCard from './components/MyCard';
 import Textbox from './components/Textbox';
-import Navigation from './components/Navigation';
+// import Navigation from './components/Navigation';
 import Home from './pages/Home';
-
-
-
+import LoginForm from './pages/Login';
+import Navigation,{ Component } from './components/Navigation';
 
 function App() {
   return (
     <BrowserRouter>
     <div>
-       <Navigation />
+          <Navigation/>
             <Switch>
              <Route path="/" component={Home} exact/>
+             <Route path="/login" component={LoginForm} exact/>
              </Switch>
-      <Textbox>Hello world</Textbox>
-      <MyCard>JAVIS</MyCard>
-      <Mybutton>Javits Test Button</Mybutton>
-      <Mybutton>Guy Button</Mybutton>
-      <Myform/>
-      <Myform/>
     </div>
     </BrowserRouter>
   )};
