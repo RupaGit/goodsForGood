@@ -8,9 +8,9 @@ export default {
   // Sign in a user
   signIn: function() {
     return axios.post("/api/signIn", userData);
+  },
+  emailuser: function(userid) {
+    return axios.post("/api/emailUser" + userid);
   }
-  emailuser: function(userid){
-        return axios.post("/api/emailUser" + userid);
-    }
 };
-r
+r;
