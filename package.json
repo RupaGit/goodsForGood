@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/RupaGit/goodsForGood#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "concurrently": "^5.1.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -32,6 +33,7 @@
     "mongoose": "^5.9.7",
     "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react-router-dom": "^5.1.2",
     "semantic-ui-react": "^0.88.2"
   },
