@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
-import { Form, Container } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
+import GFGContainer from "../components/GFGContainer";
 
 class Login extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
   };
   render() {
     return (
-      <Container>
+      <GFGContainer>
         <Form>
           <Form.Field>
             <GFGLabel>Email address</GFGLabel>
@@ -47,7 +48,7 @@ class Login extends Component {
             Register
           </GFGButton>
         </Form>
-      </Container>
+      </GFGContainer>
     );
   }
 }

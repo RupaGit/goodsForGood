@@ -10,6 +10,7 @@ import Textbox from "./components/Textbox";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Navigation, { Component } from "./components/Navigation";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/login" component={Login} exact />
+          <Route path="/signUp" component={SignUp} exact />
         </Switch>
       </div>
     </BrowserRouter>
