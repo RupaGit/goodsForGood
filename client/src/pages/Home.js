@@ -16,7 +16,7 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import MyModal from '../components/MyModal'
+import MyModal from '../components/GFGModal/index'
 
 
 
