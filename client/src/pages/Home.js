@@ -16,6 +16,7 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import MyModal from '../components/MyModal'
 
 
 
@@ -50,10 +51,16 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
-      Start Trading
+    <MyModal
+      modalDescription1={'Are you sure you want to trade?'}
+      modalDescription2={"You're all set! Enjoy your goods!"}
+      buttonMessage={'Confirm Trade'}
+    >
+      <Button primary size='huge'>
+        Start Trading
       <Icon name='right arrow' />
-    </Button>
+      </Button>
+    </MyModal>
   </Container>
 )
 
@@ -69,14 +76,14 @@ class DesktopContainer extends Component {
 
   render() {
     return (
-          <Segment
-            inverted
-            textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
-            vertical
-          >
-            <HomepageHeading />
-         </Segment>
+      <Segment
+        inverted
+        textAlign='center'
+        style={{ minHeight: 700, padding: '1em 0em' }}
+        vertical
+      >
+        <HomepageHeading />
+      </Segment>
     )
   }
 }
