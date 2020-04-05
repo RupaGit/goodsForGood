@@ -33,10 +33,10 @@ app.use(passport.initialize());
 
 app.use(passport.session());
 require("./routes/apiRoutes.js")(app);
-// require("./routes/loginRoute.js")(app);
+
 // require("./routes/htmlRoutes.js")(app);
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
