@@ -31,7 +31,6 @@ const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
-      image='/images/GoodsforGoodLogo.png'
       content='Goods for Good'
       inverted
       style={{

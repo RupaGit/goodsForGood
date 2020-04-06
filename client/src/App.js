@@ -12,19 +12,26 @@ import Login from "./pages/Login";
 import Navigation, { Component } from "./components/Navigation";
 import SignUp from "./pages/SignUp";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div>
-        <Navigation />
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/login" component={Login} exact />
-          <Route path="/signUp" component={SignUp} exact />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+class App extends React.Component {
+  state = {
+    isLoggedIn: false,
+  }
+
+  render() {
+    const {isLoggedIn}=this.state;
+    return (
+      <BrowserRouter>
+        <div>
+          <Navigation isLoggedIn={isLoggedIn}/>
+          <Switch>
+            <Route path="/" component={Home} exact />
+            <Route path="/login" component={Login} exact />
+            <Route path="/signUp" component={SignUp} exact />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
