@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Input, Button, Label } from "semantic-ui-react";
 
 export function GFGButton(props) {

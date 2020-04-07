@@ -2,13 +2,13 @@ import React from "react";
 import "./App.css";
 // import { Button } from 'semantic-ui-react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Myform from "./components/Myform";
-import Mybutton from "./components/Mybutton";
-import Textbox from "./components/Textbox";
+// import Myform from "./components/Myform";
+// import Mybutton from "./components/Mybutton";
+// import Textbox from "./components/Textbox";
 // import Navigation from './components/Navigation';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Navigation, { Component } from "./components/Navigation";
+import Navigation from "./components/Navigation";
 import SignUp from "./pages/SignUp";
 
 class App extends React.Component {
