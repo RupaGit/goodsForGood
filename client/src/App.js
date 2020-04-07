@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Navigation, { Component } from "./components/Navigation";
 import SignUp from "./pages/SignUp";
-
+import userDashborad from "./pages/userDashboard"
 class App extends React.Component {
   state = {
     isLoggedIn: false,
@@ -26,6 +26,7 @@ class App extends React.Component {
             <Route path="/" component={Home} exact />
             <Route path="/login" component={Login} exact />
             <Route path="/signUp" component={SignUp} exact />
+            <Route path="/userDashborad" component={userDashborad} exact />
           </Switch>
         </div>
       </BrowserRouter>

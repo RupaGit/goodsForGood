@@ -22,11 +22,11 @@ export default class Navigation extends Component {
     const { fixed } = this.state;
     return (
       <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-        <Visibility
+        {/* <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
-        >
+        > */}
           <Menu
             fixed={fixed ? "top" : null}
             pointing={!fixed}
@@ -77,7 +77,7 @@ export default class Navigation extends Component {
               </Menu.Item>
             </Container>
           </Menu>
-        </Visibility>
+        {/* </Visibility> */}
         {children}
       </Responsive>
     );
