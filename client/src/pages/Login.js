@@ -9,8 +9,14 @@ class Login extends Component {
     password: "",
   };
 
+  handleChange = (event) => {
+    this.setState({
+        [event.target.name]: event.target.value,
+    });
+}
+
   handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value,} = event.target;
     this.setState({
       [name]: value,
     });
@@ -18,6 +24,7 @@ class Login extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+  /*** this is the place where we  */
   };
   render() {
     return (

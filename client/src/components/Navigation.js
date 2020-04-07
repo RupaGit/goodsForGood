@@ -8,7 +8,7 @@ import {
   Visibility
 } from "semantic-ui-react";
 export default class Navigation extends Component {
-  state = {};
+  state = {}
   hideFixedMenu = () => this.setState({ fixed: false });
   showFixedMenu = () => this.setState({ fixed: true });
   handleSidebarHide = () => this.setState({ sidebarOpened: false });
@@ -18,7 +18,6 @@ export default class Navigation extends Component {
       const isSSR = typeof window === "undefined";
       return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth;
     };
-   
     const { children } = this.props;
     const { fixed } = this.state;
     return (
@@ -64,7 +63,7 @@ export default class Navigation extends Component {
                   primary={fixed}
                   style={{ marginLeft: "0.5em" }}
                 >
-                  Login
+                  {this.props.isLoggedIn ? "Log Out" : "Log In" }
                 </Menu.Item>
                 <Menu.Item
                   as={Link}
