@@ -22,9 +22,9 @@ module.exports = function (app) {
   //To register a new user, user signUp call. In this method, we will check if the user is inputting the email and password.
   //If the email or password are null, we throw validation. Also, there is password validation and if its less than 6 char long, we throw validation.
   app.post("/api/signUp", function (req, res) {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     let errors = [];
-    if (!email || !password) {
+    if (!name || !email || !password) {
       errors.push({ msg: "Please enter all fields" });
     }
     if (password.length < 6) {
@@ -39,6 +39,7 @@ module.exports = function (app) {
           res.json("User already exists");
         } else {
           const newUser = new db.User({
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password
           });
@@ -73,6 +74,7 @@ module.exports = function (app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
+        name: req.user.name,
         email: req.user.email,
         id: req.user.id
       });

@@ -4,6 +4,7 @@ const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const env = require("dotenv");
+const cors = require('cors');
 
 // const routes = require("./routes");
 const app = express();
@@ -18,6 +19,8 @@ mongoose.connect("mongodb://localhost/goodsForGood", {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
