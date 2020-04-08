@@ -8,6 +8,7 @@ import Textbox from "./components/Textbox";
 // import Navigation from './components/Navigation';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import API from "./utils/API";
 import Navigation, { Component } from "./components/Navigation";
 import SignUp from "./pages/SignUp";
 
@@ -16,12 +17,23 @@ class App extends React.Component {
     isLoggedIn: false,
   }
 
+  componentDidMount() {
+    API.getUserData()
+      .then(res => {
+        console.log(res)
+        if (res) { this.setState({ isLoggedIn: true }); }
+        else this.setState({ isLoggedIn: false });
+      }
+      )
+
+  }
+
   render() {
-    const {isLoggedIn}=this.state;
+    const { isLoggedIn } = this.state;
     return (
       <BrowserRouter>
         <div>
-          <Navigation isLoggedIn={isLoggedIn}/>
+          <Navigation isLoggedIn={isLoggedIn} />
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/login" component={Login} exact />
