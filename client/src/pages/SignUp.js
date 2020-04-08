@@ -1,40 +1,85 @@
 import React, { Component } from "react";
-import {
-  GFGCardHeader,
-  GFGCardMeta,
-  GFGCardDes,
-  GFGImage,
-} from "../components/GFGCard";
-import { Card } from "semantic-ui-react";
+import { Redirect } from 'react-router-dom';
+import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
+import { Form } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
+import API from "../utils/API";
+import Login from "./Login";
+
+
 
 class SignUp extends Component {
-  //   state = {
-  //     email: "",
-  //     password: ""
-  //   };
+  state = {
+    name: "",
+    email: "",
+    password: "",
+    userCreated: false
+  };
 
-  //   handleInputChange = event => {
-  //     const { name, value } = event.target;
-  //     this.setState({
-  //       [name]: value
-  //     });
-  //   };
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
 
-  //   handleFormSubmit = event => {
-  //     event.preventDefault();
-  //   };
+  handleInputChange = (event) => {
+    const { name, value, } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    var userData = { name: this.state.name, email: this.state.email, password: this.state.password }
+    console.log(userData);
+    API.signUp(userData)
+      .then(res => {
+        this.setState({ userCreated: true });
+      })
+      .catch(err => console.log(err));
+  };
   render() {
+    if (this.state.userCreated) {
+      return <Redirect to="./Login" />
+    }
     return (
       <GFGContainer>
-        <Card>
-          <GFGImage src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/019tha_ons_crd_03.jpg" />
-          <Card.Content>
-            <GFGCardHeader> I am a card header </GFGCardHeader>
-            <GFGCardMeta> I am the meta of the card </GFGCardMeta>
-            <GFGCardDes> This is the description</GFGCardDes>
-          </Card.Content>
-        </Card>
+        <Form>
+          <Form.Field>
+            <GFGLabel>Name</GFGLabel>
+            <GFGInput
+              value={this.state.name}
+              onChange={this.handleInputChange}
+              name="name"
+              placeholder="Enter your full name"
+            />
+          </Form.Field>
+          <Form.Field>
+            <GFGLabel>Email address</GFGLabel>
+            <GFGInput
+              value={this.state.email}
+              onChange={this.handleInputChange}
+              name="email"
+              placeholder="Enter your email"
+            />
+          </Form.Field>
+          <Form.Field>
+            <GFGLabel>Password</GFGLabel>
+            <GFGInput
+              value={this.state.password}
+              onChange={this.handleInputChange}
+              name="password"
+              placeholder="Enter your password"
+            />
+          </Form.Field>
+          <GFGButton
+            disabled={!(this.state.email && this.state.password)}
+            onClick={this.handleFormSubmit}
+          >
+            Register
+        </GFGButton>
+        </Form>
       </GFGContainer>
     );
   }

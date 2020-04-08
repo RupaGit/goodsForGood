@@ -1,22 +1,26 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
-import { Form } from "semantic-ui-react";
+import { Form, Divider } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
+import API from "../utils/API";
+import userDashboard from "./userDashboard";
 
 class Login extends Component {
   state = {
     email: "",
     password: "",
+    userId: ""
   };
 
   handleChange = (event) => {
     this.setState({
-        [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
     });
-}
+  }
 
   handleInputChange = (event) => {
-    const { name, value,} = event.target;
+    const { name, value, } = event.target;
     this.setState({
       [name]: value,
     });
@@ -24,9 +28,19 @@ class Login extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-  /*** this is the place where we  */
+    var credentials = { email: this.state.email, password: this.state.password }
+    console.log(credentials);
+    API.logIn(credentials)
+      .then(res => {
+        this.setState({ userId: res.data });
+      })
+      .catch(err => console.log(err));
+    console.log(this.state.userId);
   };
   render() {
+    if (this.state.userId) {
+      return <Redirect to="./userDashboard" />
+    }
     return (
       <GFGContainer>
         <Form>
@@ -49,10 +63,19 @@ class Login extends Component {
             />
           </Form.Field>
           <GFGButton
+            color="teal"
             disabled={!(this.state.email && this.state.password)}
             onClick={this.handleFormSubmit}
           >
-            Register
+            Login
+          </GFGButton>
+          <Divider horizontal>New to Goods for Good?</Divider>
+
+          <GFGButton
+            color="grey"
+            onClick={this.handleClick}
+          >
+            Sign Up to Goods For Good
           </GFGButton>
         </Form>
       </GFGContainer>
@@ -61,44 +84,3 @@ class Login extends Component {
 }
 
 export default Login;
-// import React from "react";
-// import {
-//   Button,
-//   Form,
-//   Grid,
-//   Header,
-//   Image,
-//   Message,
-//   Segment
-// } from "semantic-ui-react";
-// import { Navigation } from 'react';
-
-// const LoginForm = () => (
-//   <Grid textAlign='center'  style={{ height: '100vh'}} verticalAlign='middle'>
-//     <Grid.Column style={{ maxWidth: 450 }}>
-//       <Header as='h2' color='#1b1c1d' textAlign='center'>
-//         <Image src='/images/GoodsforGoodLogo.png'/> Log-in to your account
-//       </Header>
-//       <Form size='large'>
-//         <Segment stacked>
-//           <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-//           <Form.Input
-//             fluid
-//             icon='lock'
-//             iconPosition='left'
-//             placeholder='Password'
-//             type='password'
-//           />
-
-//           <Button color='#1b1c1d' fluid size='large'>
-//             Login
-//           </Button>
-//         </Segment>
-//       </Form>
-//       <Message>
-//         New to us? <a href='#'>Sign Up</a>
-//       </Message>
-//     </Grid.Column>
-//   </Grid>
-// )
-// export default LoginForm
