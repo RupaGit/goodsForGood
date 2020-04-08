@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Card, Image, Icon } from "semantic-ui-react";
+import React from "react";
+import { Card, Image } from "semantic-ui-react";
 
 export function GFGCardHeader(props) {
   return <Card.Header {...props}> {props.children}</Card.Header>;
