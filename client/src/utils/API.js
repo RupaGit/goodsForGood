@@ -2,15 +2,16 @@ import axios from "axios";
 
 export default {
   // Sign up a user
-  signUp: function() {
+  signUp: function (userData) {
     return axios.post("/api/signUp", userData);
   },
   // Sign in a user
-  signIn: function() {
-    return axios.post("/api/signIn", userData);
+  logIn: function (userData) {
+    console.log("User data is ", userData);
+    return axios.post("/api/login", userData);
   },
-  emailuser: function(userid) {
+  emailuser: function (userid) {
     return axios.post("/api/emailUser" + userid);
   }
 };
-r;
+
