@@ -13,10 +13,8 @@ import {
   Responsive,
   Segment,
   Sidebar,
-  Visibility,
 } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
-import MyModal from '../components/GFGModal/index'
+import MyTradeModal from '../components/GFGTradeModal/index'
 
 
 
@@ -50,16 +48,12 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <MyModal
-      modalDescription1={'Are you sure you want to trade?'}
-      modalDescription2={"You're all set! Enjoy your goods!"}
-      buttonMessage={'Confirm Trade'}
-    >
+    <MyTradeModal>
       <Button primary size='huge'>
-        Start Trading
+        Create Trade
       <Icon name='right arrow' />
       </Button>
-    </MyModal>
+    </MyTradeModal>
   </Container>
 )
 
@@ -248,7 +242,7 @@ const HomepageLayout = () => (
           horizontal
           style={{ margin: '3em 0em', textTransform: 'uppercase' }}
         >
-          <a href='#'>Case Studies</a>
+          <a href='/'>Case Studies</a>
         </Divider>
 
         <Header as='h3' style={{ fontSize: '2em' }}>

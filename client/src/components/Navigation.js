@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {
-  Button,
-  Container,
-  Menu,
-  Responsive,
-  Visibility
+   Container,
+   Menu,
+   Responsive,
+   Visibility
 } from "semantic-ui-react";
 export default class Navigation extends Component {
   state = {}
@@ -44,26 +43,35 @@ export default class Navigation extends Component {
                 >
                   Home
                 </Menu.Item>
-                <Menu.Item
-                  as={Link}
-                  to="/trades"
-                  content="login"
-                  primary={fixed}
-                  style={{ marginLeft: "0.5em" }}
-                >
-                  Trades
+                        <Menu.Item
+                           as={Link}
+                           to="/trades"
+                           content="login"
+                           primary={fixed}
+                           style={{ marginLeft: "0.5em" }}
+                        >
+                           Trades
                 </Menu.Item>
-              </Menu.Item>
-              <Menu.Item position="right">
-                {/* Example for Guy: {this.props.path} */}
-                <Menu.Item
-                  as={Link}
-                  to="/login"
-                  content="login"
-                  primary={fixed}
-                  style={{ marginLeft: "0.5em" }}
-                >
-                  {this.props.isLoggedIn ? "Log Out" : "Log In" }
+                     </Menu.Item>
+                     <Menu.Item position="right">
+                        {/* Example for Guy: {this.props.path} */}
+                        <Menu.Item
+                           as={Link}
+                           to="/login"
+                           content="login"
+                           primary={fixed}
+                           style={{ marginLeft: "0.5em" }}
+                        >
+                           {this.props.isLoggedIn ? "Log Out" : "Log In"}
+                        </Menu.Item>
+                        <Menu.Item
+                           as={Link}
+                           to="/Sign up"
+                           content="Sign up"
+                           primary={fixed}
+                           style={{ marginLeft: "0.5em" }}
+                        >
+                           Sign up
                 </Menu.Item>
                 <Menu.Item
                   as={Link}

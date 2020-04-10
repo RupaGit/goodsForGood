@@ -3,6 +3,7 @@ var bcrypt = require("bcrypt");
 var passport = require("../config/passport");
 var path = require("path");
 var nodemailer = require('nodemailer');
+
 const systemEmail='goodforgooods@gmail.com'; 	
 const systemPassword='RupaGuyJavis123';	
 
