@@ -67,8 +67,8 @@ export default class Navigation extends Component {
                 </Menu.Item>
                 <Menu.Item
                   as={Link}
-                  to="/Sign up"
-                  content="Sign up"
+                  to="/SignUp"
+                  content="SignUp"
                   primary={fixed}
                   style={{ marginLeft: "0.5em" }}
                 >
