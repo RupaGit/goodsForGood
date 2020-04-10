@@ -13,6 +13,9 @@ export default {
   getUserData: function () {
     return axios.get("api/user_data");
   },
+  logout: function () {
+    return axios.get("api/logout");
+  },
   emailuser: function (userid) {
     return axios.post("/api/emailUser" + userid);
   }

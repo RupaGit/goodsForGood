@@ -57,7 +57,7 @@ export default class Navigation extends Component {
                         {/* Example for Guy: {this.props.path} */}
                         <Menu.Item
                            as={Link}
-                           to="/login"
+                           to={this.props.isLoggedIn ? "/logout" : "/login"}
                            content="login"
                            primary={fixed}
                            style={{ marginLeft: "0.5em" }}
@@ -66,7 +66,7 @@ export default class Navigation extends Component {
                         </Menu.Item>
                         <Menu.Item
                            as={Link}
-                           to="/Sign up"
+                           to="/signUp"
                            content="Sign up"
                            primary={fixed}
                            style={{ marginLeft: "0.5em" }}

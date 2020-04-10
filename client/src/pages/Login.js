@@ -7,17 +7,23 @@ import API from "../utils/API";
 import userDashboard from "./userDashboard";
 
 class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-    userId: ""
-  };
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+  constructor(props) {
+    super(props);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.state = {
+      email: "",
+      password: "",
+      userId: ""
+    }
   }
+
+
+
+  // handleChange = (event) => {
+  //   this.setState({
+  //     [event.target.name]: event.target.value,
+  //   });
+  // }
 
   handleInputChange = (event) => {
     const { name, value, } = event.target;
@@ -28,13 +34,21 @@ class Login extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+    const { onUserLogin } = this.props;
+    var userLoggedIn
     var credentials = { email: this.state.email, password: this.state.password }
     console.log(credentials);
     API.logIn(credentials)
       .then(res => {
         this.setState({ userId: res.data });
+        userLoggedIn = true;
+        onUserLogin(userLoggedIn);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        userLoggedIn = false;
+        onUserLogin(userLoggedIn)
+        console.log(err)
+      });
     console.log(this.state.userId);
   };
   render() {
