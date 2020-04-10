@@ -10,6 +10,12 @@ export default {
     console.log("User data is ", userData);
     return axios.post("/api/login", userData);
   },
+  getUserData: function () {
+    return axios.get("api/user_data");
+  },
+  logout: function () {
+    return axios.get("api/logout");
+  },
   // Create a trade
   createTrade: function (tradeData) {
     console.log("The created trade data is ", tradeData);
@@ -19,7 +25,7 @@ export default {
     return axios.post("/api/emailUser" + userid);
   },
   noderMailer: function (userData) {
-    return axios.post("/api/send",userData);
+    return axios.post("/api/send", userData);
   }
 };
 

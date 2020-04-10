@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 import {
   Button,
   Container,
@@ -26,6 +27,7 @@ const getWidth = () => {
 
 
 const HomepageHeading = ({ mobile }) => (
+
   <Container text>
     <Header
       as='h1'
@@ -50,12 +52,13 @@ const HomepageHeading = ({ mobile }) => (
     />
     <MyTradeModal>
       <Button primary size='huge'>
-        Create Trade
+        Start Trading
       <Icon name='right arrow' />
       </Button>
     </MyTradeModal>
   </Container>
 )
+
 
 HomepageHeading.propTypes = {
   mobile: PropTypes.bool,
@@ -63,6 +66,8 @@ HomepageHeading.propTypes = {
 
 class DesktopContainer extends Component {
   state = {}
+
+
 
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
