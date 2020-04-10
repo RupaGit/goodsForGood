@@ -1,29 +1,69 @@
-const nodemailer = require("../config/nodemailer");
 var db = require("../models");
 var bcrypt = require("bcrypt");
 var passport = require("../config/passport");
 var path = require("path");
+var nodemailer = require('nodemailer');
+
+const systemEmail='goodforgooods@gmail.com'; 	
+const systemPassword='RupaGuyJavis123';	
+
+var transport = {	
+  host: 'smtp.gmail.com',	
+  auth: {	
+    user: systemEmail,	
+    pass: systemPassword	
+  }	
+}
+
+var transporter = nodemailer.createTransport(transport)
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Server is ready to take messages');
+  }
+});
 
 module.exports = function (app) {
-  app.post("/api/emailUser", (req, res, next) => {
-    var name = req.body.name;
-    var email = req.body.email;
-    var message = req.body.message;
-    var content = `name: ${name} \n email: ${email} \n message: ${content} `;
-  });
-
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
     res.json(req.user.id);
   });
+  
+  app.post('/api/send', (req, res, next) => {
+    var name = req.body.name
+    var email = req.body.email
+    // var message = req.body.message
+    var content = "HI GUY WE GOT THIS STUPID THING WORKING"//`name: ${name} \n email: ${email} \n message: ${content} `
+    var mail = {
+      from: systemEmail,
+      to: email,  //Change to email address that you want to receive messages on
+      subject: 'New Message from Contact Form',
+      text: content
+    }
+  
+    transporter.sendMail(mail, (err, data) => {
+      if (err) {
+        res.json({
+          msg: 'fail'
+        })
+      } else {
+        res.json({
+          msg: 'success'
+        })
+      }
+    })
+  })
 
   //To register a new user, user signUp call. In this method, we will check if the user is inputting the email and password.
   //If the email or password are null, we throw validation. Also, there is password validation and if its less than 6 char long, we throw validation.
   app.post("/api/signUp", function (req, res) {
     const { name, email, password } = req.body;
     let errors = [];
+    console.log("i am her in singin",req.body)
     if (!name || !email || !password) {
       errors.push({ msg: "Please enter all fields" });
     }
@@ -50,15 +90,12 @@ module.exports = function (app) {
       });
     }
   });
-
-  module.exports = function (app) {
     app.post("/api/emailUser", (req, res, next) => {
       var name = req.body.name
       var email = req.body.email
       var message = req.body.message
       var content = `name: ${name} \n email: ${email} \n message: ${content} `
     })
-  }
   // Route for logging user out
   app.get("/api/logout", function (req, res) {
     req.logout();
@@ -88,5 +125,4 @@ module.exports = function (app) {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })
-
 };

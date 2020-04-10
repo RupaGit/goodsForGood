@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
 import SignUp from "./pages/SignUp";
+import userDashborad from "./pages/userDashboard"
 import Trades from "./pages/Trades";
 
 class App extends React.Component {
@@ -23,25 +24,6 @@ class App extends React.Component {
 
   }
 
-  // onTradeSubmit = (event) => {
-  //   event.preventDefault();
-
-
-  //   if (user.data.username) {
-  //     this.setState({
-  //       userId: user.data.id,
-  //       username: user.data.username,
-  //       email: user.data.email,
-  //       balance: user.data.balance,
-  //       isLoggedIn: true,
-  //       activeItem: 'portfolio'
-  //     })
-  //   } else {
-  //     this.handleOpen()
-  //   }
-
-  // }
-
   render() {
     const { isLoggedIn, username, itemToTrade, itemTradingFor, quantity1, quantity2 } = this.state;
     return (
@@ -52,6 +34,7 @@ class App extends React.Component {
             <Route path="/" component={Home} exact />
             <Route path="/login" component={Login} exact />
             <Route path="/signUp" component={SignUp} exact />
+            <Route path="/userDashborad" component={userDashborad} exact />
             <Route
               path='/trades'
               render={() =>

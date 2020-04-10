@@ -39,6 +39,21 @@ class SignUp extends Component {
       })
       .catch(err => console.log(err));
   };
+  handleFormSubmitMail = (event) => {
+    event.preventDefault();
+    var userData = { name: this.state.name, email: this.state.email, password: this.state.password }
+    API.noderMailer(userData)
+      .then(res => {
+        this.setState({ userCreated: true });
+      })
+      .catch(err => console.log(err));
+    var userData = { name: this.state.name, email: this.state.email, password: this.state.password }
+    console.log(userData);
+  };
+  submitBoth=(event)=>{
+    this.handleFormSubmit(event)
+    this.handleFormSubmitMail(event)
+  }
   render() {
     if (this.state.userCreated) {
       return <Redirect to="./Login" />
@@ -75,7 +90,7 @@ class SignUp extends Component {
           </Form.Field>
           <GFGButton
             disabled={!(this.state.email && this.state.password)}
-            onClick={this.handleFormSubmit}
+            onClick={(e)=>this.submitBoth(e)}
           >
             Register
         </GFGButton>

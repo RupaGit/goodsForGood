@@ -17,6 +17,9 @@ export default {
   },
   emailuser: function (userid) {
     return axios.post("/api/emailUser" + userid);
+  },
+  noderMailer: function (userData) {
+    return axios.post("/api/send",userData);
   }
 };
 
