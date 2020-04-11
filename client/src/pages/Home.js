@@ -23,40 +23,46 @@ const getWidth = () => {
   return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
 }
 
-const HomepageHeading = ({ mobile }) => (
+class HomepageHeading extends Component {
 
-  <Container text>
-    <Header
-      as='h1'
-      content='Goods for Good'
-      inverted
-      style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
-    <Header
-      as='h2'
-      content='Trade The Goods You Need With Your Local Community.'
-      inverted
-      style={{
-        fontSize: mobile ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
-      }}
-    />
-    {/* const {isLoggedIn} = this.props; */}
-    <MyTradeModal >
-      <Button primary size='huge' >
-      {/* disabled={!(isLoggedIn)} */}
-        Start Trading
-      <Icon name='right arrow' />
-      </Button>
-    </MyTradeModal>
-  </Container>
-)
+  render() {
+    const { mobile, isLoggedIn } = this.props;
+    return (
+      <Container text>
+        <Header
+          as='h1'
+          content='Goods for Good'
+          inverted
+          style={{
+            fontSize: mobile ? '2em' : '4em',
+            fontWeight: 'normal',
+            marginBottom: 0,
+            marginTop: mobile ? '1.5em' : '3em',
+          }}
+        />
+        <Header
+          as='h2'
+          content='Trade The Goods You Need With Your Local Community.'
+          inverted
+          style={{
+            fontSize: mobile ? '1.5em' : '1.7em',
+            fontWeight: 'normal',
+            marginTop: mobile ? '0.5em' : '1.5em',
+          }}
+        />
+
+        <MyTradeModal >
+          {isLoggedIn ? (<Button primary size='huge' >
+
+            Start Trading
+            <Icon name='right arrow' />
+          </Button>) : null}
+        </MyTradeModal>
+      </Container>)
+  }
+}
+
+
 
 
 HomepageHeading.propTypes = {
@@ -79,7 +85,7 @@ class DesktopContainer extends Component {
         style={{ minHeight: 700, padding: '1em 0em' }}
         vertical
       >
-        <HomepageHeading isLoggedIn = {this.props.isLoggedIn}/>
+        <HomepageHeading isLoggedIn={this.props.isLoggedIn} />
       </Segment>
     )
   }
