@@ -51,7 +51,6 @@ class UserDashboard extends Component {
                             </p>
                         </Grid.Column>
                     </Grid>
-                    <Divider vertical>And</Divider>
                     <Grid columns={2}>
                         <Grid.Row>
                             <Grid.Column>
