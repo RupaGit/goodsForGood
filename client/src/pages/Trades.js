@@ -14,7 +14,6 @@ export default class Trades extends Component {
             { myname: 'guy', item1: 'toast', qty1: 5, item2: 'spoons', qty2: 12 },
             { myname: 'anna', item1: 'pickles', qty1: 5, item2: 'spoons', qty2: 12 }
         ]
-
         return (
             <Container style={{ marginTop: '25px' }}>
                 <Card.Group centered>
