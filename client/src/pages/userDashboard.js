@@ -72,6 +72,7 @@ class UserDashboard extends Component {
                     </Grid>
                 </MyTradeModal>
                 <GFGContainer>
+
                     <Grid columns={2}>
                         <Grid.Row>
                             <Grid.Column>
