@@ -13,7 +13,6 @@ import {
   Segment,
   Sidebar,
 } from 'semantic-ui-react'
-import MyTradeModal from '../GFGModal/index'
 
 class HomepageHeading extends Component {
 
@@ -42,14 +41,6 @@ class HomepageHeading extends Component {
               marginTop: mobile ? '0.5em' : '1.5em',
             }}
           />
-  
-          <MyTradeModal >
-            {isLoggedIn ? (<Button primary size='huge' >
-  
-              Start Trading
-              <Icon name='right arrow' />
-            </Button>) : null}
-          </MyTradeModal>
         </Container>)
     }
   }

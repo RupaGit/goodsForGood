@@ -5,7 +5,7 @@ import { Form, Divider } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import userDashboard from "./userDashboard";
+import userDashboard from "./UserDashboard";
 
 class Login extends Component {
   constructor(props) {
@@ -17,14 +17,6 @@ class Login extends Component {
       userId: ""
     }
   }
-
-
-
-  // handleChange = (event) => {
-  //   this.setState({
-  //     [event.target.name]: event.target.value,
-  //   });
-  // }
 
   handleInputChange = (event) => {
     const { name, value, } = event.target;
