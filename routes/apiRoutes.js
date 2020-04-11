@@ -126,19 +126,12 @@ module.exports = function (app) {
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  })
-  
+  });
+
   app.get("/api/getTrades/:userId", function (req, res) {
     console.log(req.params.userId)
-      db.Trade.find({userId:req.params.userId }).
-        then(tradeData => {
-          res.json({
-            reqItem: tradeData.reqItem,
-            reqItemQty: tradeData.reqItemQty,
-            availItem:tradeData.availItem,
-            availItemQty:tradeData.availItemQty,
-            userId:tradeData.userId
-          });
-        });
+    db.Trade.find({ userId: req.params.userId })
+      .then(tradeData => res.json(tradeData))
+      .catch(err => res.status(422).json(err));
   });
 };

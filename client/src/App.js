@@ -9,7 +9,7 @@ import API from "./utils/API";
 import Navigation from "./components/Navigation";
 import SignUp from "./pages/SignUp";
 import Logout from "./pages/Logout";
-import UserDashboard from "./pages/userDashboard";
+import UserDashboard from "./pages/UserDashboard";
 import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
 import AddFeed from "./pages/AddFeed";
