@@ -5,7 +5,7 @@ class MyTradeCard extends React.Component {
     render() {
         const { username, itemToTrade, itemTradingFor, quantity1, quantity2 } = this.props;
         return (
-            <Card>
+            <Card  href='/userDashborad'>
                 <Card.Content header={username} />
                 <Card.Content description={itemToTrade} />
                 <Card.Content description>

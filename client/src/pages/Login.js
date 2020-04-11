@@ -43,7 +43,6 @@ class Login extends Component {
         this.setState({ userId: res.data });
         userLoggedIn = true;
         onUserLogin(userLoggedIn);
-        console.log("response from login", res);
       })
       .catch(err => {
         userLoggedIn = false;

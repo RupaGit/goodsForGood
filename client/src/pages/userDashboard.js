@@ -8,12 +8,35 @@ import {
 import { Card } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import { GFGButton } from "../components/GFGForm";
-import { Grid, Row, Header } from 'semantic-ui-react'
+import { Row, Header } from 'semantic-ui-react'
+import { Divider, Grid, Image } from 'semantic-ui-react'
 
 class UserDashboard extends Component {
     render() {
         return (
             <GFGContainer>
+                <Grid columns={2} relaxed='very'>
+                    <Grid.Column>
+                        <p>
+                            <Image src='/images/wireframe/short-paragraph.png' />
+          Add what ever we want
+        </p>
+                        <p>
+                            Add what ever we want
+        </p>
+                        <p>
+                            Add what ever we want
+        </p>
+                        <p>
+                        </p>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <p>
+                            <Image src='/images/wireframe/short-paragraph.png' />
+                        </p>
+                    </Grid.Column>
+                </Grid>
+                <Divider vertical>And</Divider>
                 <Grid columns={2}>
                     <Grid.Row>
                         <Grid.Column>
