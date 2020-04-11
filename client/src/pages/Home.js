@@ -17,14 +17,11 @@ import {
 } from 'semantic-ui-react'
 import MyTradeModal from '../components/GFGTradeModal/index'
 
-
-
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
 
   return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
 }
-
 
 const HomepageHeading = ({ mobile }) => (
 
@@ -50,8 +47,10 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <MyTradeModal>
-      <Button primary size='huge'>
+    {/* const {isLoggedIn} = this.props; */}
+    <MyTradeModal >
+      <Button primary size='huge' >
+      {/* disabled={!(isLoggedIn)} */}
         Start Trading
       <Icon name='right arrow' />
       </Button>
@@ -80,7 +79,7 @@ class DesktopContainer extends Component {
         style={{ minHeight: 700, padding: '1em 0em' }}
         vertical
       >
-        <HomepageHeading />
+        <HomepageHeading isLoggedIn = {this.props.isLoggedIn}/>
       </Segment>
     )
   }
@@ -301,4 +300,4 @@ const HomepageLayout = () => (
   </ResponsiveContainer>
 )
 
-export default HomepageLayout
+export default DesktopContainer;

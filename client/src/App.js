@@ -37,7 +37,6 @@ class App extends React.Component {
   //     }
   //     )
   // }
-
   onUserLogin = (data) => {
     this.setState({ isLoggedIn: data });
   }
@@ -53,8 +52,8 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />          <Switch>
-            <Route path="/" component={Home} exact />
+          <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} /><Switch>
+            <Route path="/" component={Home} isLoggedIn={isLoggedIn} exact />
             <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
             <Route path="/signUp" component={SignUp} exact />
             <Route path="/logout" component={() => <Logout isAuthed={false} onUserLogout={this.onUserLogout} />} />
