@@ -16,7 +16,7 @@ class DesktopContainer extends Component {
         textAlign='center'
         style={{ minHeight: 700, padding: '1em 0em' }}
         vertical>
-        <HomepageHeading isLoggedIn={this.props.isLoggedIn} />
+      <HomepageHeading isLoggedIn={this.props.isLoggedIn}/>
         <Footer></Footer>
       </Segment>
     )
