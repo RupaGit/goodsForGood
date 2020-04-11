@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MyTradeCard from "../components/GFGTradeCard/index"
 import { Card, Container } from "semantic-ui-react";
 
+
 export default class Trades extends Component {
     render() {
         const { username, itemToTrade, quantity1, itemTradingFor, quantity2 } = this.props;
