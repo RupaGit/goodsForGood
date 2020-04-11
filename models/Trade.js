@@ -4,15 +4,23 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var TradeSchema = new Schema({
-  tradeName: {
+  reqItem: {
     type: String,
     required: true
   },
-  itemsTrading: {
+  reqItemQty: {
+    type: Number,
+    required: true
+  },
+  availItem: {
     type: String,
     required: true
   },
-  owner: {
+  availItemQty: {
+    type: Number,
+    required: true
+  },
+  userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true

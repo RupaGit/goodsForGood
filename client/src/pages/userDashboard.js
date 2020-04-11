@@ -16,10 +16,10 @@ import MyTradeModal from '../components/GFGTradeModal/index'
 class UserDashboard extends Component {
 
     render() {
-        const { isLoggedIn } = this.props;
+        const { isLoggedIn, userId, email } = this.props;
         return (
             <Container>
-                <MyTradeModal>
+                <MyTradeModal userId={userId} email={email} >
                     <Grid>
                         <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
                             {isLoggedIn ? (<Button primary size='huge'>
