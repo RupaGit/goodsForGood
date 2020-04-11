@@ -11,9 +11,32 @@ import { GFGButton } from "../components/GFGForm";
 import { Row, Header, Button, Icon } from 'semantic-ui-react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
 import MyTradeModal from '../components/GFGTradeModal/index'
+import API from "../utils/API";
 
 
 class UserDashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            trades: []
+        }
+    }
+
+    componentDidMount() {
+        console.log("Props from component mount", this.props);
+        this.loadUserTrades(this.props.userId);
+    }
+
+    loadUserTrades = (user) => {
+        console.log("UserID IS", user)
+        API.getTradesByUserId(this.props.userId)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
 
     render() {
         const { isLoggedIn, userId, email } = this.props;
