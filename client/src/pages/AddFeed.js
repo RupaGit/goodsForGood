@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { GFGButton, GFGInput, GFGLabel, GFGTextArea, GFGDropdown } from "../components/GFGForm";
-import { Form, Divider, Grid, Header } from "semantic-ui-react";
+import { Form, Divider, Grid, Header, Checkbox } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 
@@ -14,7 +14,7 @@ class AddFeed extends Component {
             storeName: "",
             description: "",
             redirect: null,
-            fullStock: ""
+            fullStock: false
         }
     }
 
@@ -35,6 +35,7 @@ class AddFeed extends Component {
         console.log(this.state);
     };
 
+    handleSelectChange = (e, { value }) => this.setState({ fullStock: value })
 
 
     render() {
@@ -68,13 +69,17 @@ class AddFeed extends Component {
                     </Form.Field>
                     <Form.Field>
                         <GFGLabel>Fully stocked shelves?</GFGLabel>
+                        {/* <Checkbox toggle /> */}
+
                         <GFGDropdown
                             value={this.state.fullStock}
-                            onChange={this.handleInputChange}
                             selection
+                            closeOnChange
                             name="fullStock"
-                            text="Select One"
+                            placeholder="Select One"
                             options={options}
+                            onChange={this.handleInputChange}
+
                         />
                     </Form.Field>
 

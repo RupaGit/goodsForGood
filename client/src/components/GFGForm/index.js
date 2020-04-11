@@ -14,7 +14,7 @@ export function GFGLabel(props) {
 }
 
 export function GFGDropdown(props) {
-  return <Dropdown text={props.text} options={props.options} simple item />;
+  return <Dropdown placeholder={props.placeholder} options={props.options} />;
 }
 
 

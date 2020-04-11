@@ -5,7 +5,7 @@ import { Form, Divider } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import userDashboard from "./userDashboard";
+import UserDashboard from "./UserDashboard";
 
 class Login extends Component {
   constructor(props) {
