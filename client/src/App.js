@@ -9,11 +9,10 @@ import API from "./utils/API";
 import Navigation from "./components/Navigation";
 import SignUp from "./pages/SignUp";
 import Logout from "./pages/Logout";
-import UserDashboard from "./pages/UserDashboard"
+import UserDashboard from "./pages/userDashboard"
 import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
 import AddFeed from "./pages/AddFeed";
-
 
 
 
@@ -28,8 +27,6 @@ class App extends React.Component {
 
   }
 
-
-
   onUserLogin = (data) => {
     this.setState({ isLoggedIn: data });
     console.log("userLogged in", this.state.isLoggedIn);
@@ -38,8 +35,6 @@ class App extends React.Component {
   onUserLogout = (data) => {
     this.setState({ isLoggedIn: data });
   }
-
-
 
   render() {
     const { isLoggedIn, username, itemToTrade, itemTradingFor, quantity1, quantity2 } = this.state;

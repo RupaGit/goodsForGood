@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import PropTypes from 'prop-types'
 import {
   Container,
   Divider,
@@ -10,9 +11,10 @@ import {
   Menu,
   Segment,
 } from 'semantic-ui-react'
+const color ='white'
+
 
 class Footer extends Component {
-
   render() {
     const { mobile, isLoggedIn } = this.props;
     return (
@@ -23,7 +25,7 @@ class Footer extends Component {
       horizontal
       style={{ margin: '3em 0em', textTransform: 'uppercase' }}
     >
-      <a href='#'>Case Studies</a>
+      <a href='#' >Case Studies</a>
     </Divider>
         <Container>
           <Grid divided inverted stackable>
@@ -31,7 +33,7 @@ class Footer extends Component {
               <Grid.Column width={3}>
                 <Header inverted as='h4' content='About' />
                 <List link inverted>
-                  <List.Item as='a'>Sitemap</List.Item>
+                  <List.Item  as='a'>Sitemap</List.Item>
                   <List.Item as='a'>Contact Us</List.Item>
                   <List.Item as='a'>Religious Ceremonies</List.Item>
                   <List.Item as='a'>Gazebo Plans</List.Item>

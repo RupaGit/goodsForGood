@@ -4,7 +4,8 @@ import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
 import { Form, Divider } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
-import userDashboard from "./UserDashboard";
+import { Link } from "react-router-dom";
+import userDashboard from "./userDashboard";
 
 class Login extends Component {
   constructor(props) {
@@ -88,6 +89,8 @@ class Login extends Component {
           <GFGButton
             color="grey"
             onClick={this.handleClick}
+            as={Link}
+            to="/SignUp"
           >
             Sign Up to Goods For Good
           </GFGButton>

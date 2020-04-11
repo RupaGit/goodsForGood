@@ -128,4 +128,10 @@ module.exports = function (app) {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })
+  // app.post("/api/createTrade", (req, res, next) => {
+  //   db.Trade
+  //     .create(req.body)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // })
 };

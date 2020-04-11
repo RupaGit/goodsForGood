@@ -26,6 +26,9 @@ export default {
   },
   noderMailer: function (userData) {
     return axios.post("/api/send", userData);
+  },
+  Trades: function (tradeData) {
+    return axios.post("/api/trade", tradeData);
   }
 };
 

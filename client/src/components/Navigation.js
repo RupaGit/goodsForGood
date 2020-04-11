@@ -8,10 +8,10 @@ import {
 } from "semantic-ui-react";
 export default class Navigation extends Component {
    state = {}
-   hideFixedMenu = () => this.setState({ fixed: false });
-   showFixedMenu = () => this.setState({ fixed: true });
-   handleSidebarHide = () => this.setState({ sidebarOpened: false });
-   handleToggle = () => this.setState({ sidebarOpened: true });
+   // hideFixedMenu = () => this.setState({ fixed: false });
+   // showFixedMenu = () => this.setState({ fixed: true });
+   // handleSidebarHide = () => this.setState({ sidebarOpened: false });
+   // handleToggle = () => this.setState({ sidebarOpened: true });
    render() {
       const getWidth = () => {
          const isSSR = typeof window === "undefined";
@@ -60,8 +60,7 @@ export default class Navigation extends Component {
                         to={this.props.isLoggedIn ? "/logout" : "/login"}
                         content="login"
                         primary={fixed}
-                        style={{ marginLeft: "0.5em" }}
-                     >
+                        style={{ marginLeft: "0.5em" }}>
                         {this.props.isLoggedIn ? "Log Out" : "Log In / Sign up"}
                      </Menu.Item>
                      {this.props.isLoggedIn ? (<Menu.Item
