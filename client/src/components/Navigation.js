@@ -45,12 +45,12 @@ export default class Navigation extends Component {
                 </Menu.Item>
                      <Menu.Item
                         as={Link}
-                        to="/trades"
-                        content="login"
+                        to="/communityFeed"
+                        content="communityFeed"
                         primary={fixed}
                         style={{ marginLeft: "0.5em" }}
                      >
-                        Trades
+                        Community Feed
                 </Menu.Item>
                   </Menu.Item>
                   <Menu.Item position="right">
