@@ -4,7 +4,7 @@ import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
 import { Form, Divider } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
-import userDashboard from "./userDashboard";
+import userDashboard from "./UserDashboard";
 
 class Login extends Component {
   constructor(props) {
@@ -43,6 +43,7 @@ class Login extends Component {
         this.setState({ userId: res.data });
         userLoggedIn = true;
         onUserLogin(userLoggedIn);
+        console.log("response from login", res);
       })
       .catch(err => {
         userLoggedIn = false;

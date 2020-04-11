@@ -4,15 +4,15 @@ var passport = require("../config/passport");
 var path = require("path");
 var nodemailer = require('nodemailer');
 
-const systemEmail='goodforgooods@gmail.com'; 	
-const systemPassword='RupaGuyJavis123';	
+const systemEmail = 'goodforgooods@gmail.com';
+const systemPassword = 'RupaGuyJavis123';
 
-var transport = {	
-  host: 'smtp.gmail.com',	
-  auth: {	
-    user: systemEmail,	
-    pass: systemPassword	
-  }	
+var transport = {
+  host: 'smtp.gmail.com',
+  auth: {
+    user: systemEmail,
+    pass: systemPassword
+  }
 }
 
 var transporter = nodemailer.createTransport(transport)
@@ -32,7 +32,7 @@ module.exports = function (app) {
     // They won't get this or even be able to access this page if they aren't authed
     res.json(req.user.id);
   });
-  
+
   app.post('/api/send', (req, res, next) => {
     var name = req.body.name
     var email = req.body.email
@@ -44,7 +44,7 @@ module.exports = function (app) {
       subject: 'New Message from Contact Form',
       text: content
     }
-  
+
     transporter.sendMail(mail, (err, data) => {
       if (err) {
         res.json({
@@ -63,7 +63,7 @@ module.exports = function (app) {
   app.post("/api/signUp", function (req, res) {
     const { name, email, password } = req.body;
     let errors = [];
-    console.log("i am her in singin",req.body)
+    console.log("i am her in singin", req.body)
     if (!name || !email || !password) {
       errors.push({ msg: "Please enter all fields" });
     }
@@ -90,12 +90,12 @@ module.exports = function (app) {
       });
     }
   });
-    app.post("/api/emailUser", (req, res, next) => {
-      var name = req.body.name
-      var email = req.body.email
-      var message = req.body.message
-      var content = `name: ${name} \n email: ${email} \n message: ${content} `
-    })
+  app.post("/api/emailUser", (req, res, next) => {
+    var name = req.body.name
+    var email = req.body.email
+    var message = req.body.message
+    var content = `name: ${name} \n email: ${email} \n message: ${content} `
+  })
   // Route for logging user out
   app.get("/api/logout", function (req, res) {
     req.logout();
@@ -110,11 +110,14 @@ module.exports = function (app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        name: req.user.name,
-        email: req.user.email,
-        id: req.user.id
-      });
+      db.User.findOne({ email: req.user.email }).
+        then(user => {
+          res.json({
+            name: user.name,
+            email: user.email,
+            id: user._id
+          });
+        });
     }
   });
 
