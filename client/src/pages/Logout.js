@@ -35,7 +35,7 @@ class Logout extends Component {
     };
     render() {
         if (!this.state.isLoggedIn) {
-            return <Redirect to="./Home" />
+            return <Redirect to="./" />
         }
         return (null);
     }

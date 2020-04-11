@@ -11,7 +11,7 @@ import { GFGButton } from "../components/GFGForm";
 import { Row, Header } from 'semantic-ui-react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
 
-class userDashboard extends Component {
+class UserDashboard extends Component {
     render() {
         return (
             <GFGContainer>
@@ -70,4 +70,4 @@ class userDashboard extends Component {
     }
 }
 
-export default userDashboard;
+export default UserDashboard;
