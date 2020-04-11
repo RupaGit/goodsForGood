@@ -12,6 +12,8 @@ import Logout from "./pages/Logout";
 import UserDashboard from "./pages/UserDashboard"
 import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
+import AddFeed from "./pages/AddFeed";
+
 
 
 
@@ -51,6 +53,8 @@ class App extends React.Component {
             <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
             <Route path="/userDashboard" component={UserDashboard} exact />
             <Route path="/communityFeed" component={CommunityFeed} exact />
+            <Route path="/addNewFeed" component={AddFeed} exact />
+
 
             <Route
               path='/trades'
