@@ -47,7 +47,7 @@ class App extends React.Component {
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
             <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
             <Route path="/signUp" component={SignUp} exact />
-            <Route path="/logout" component={() => <Logout isAuthed={false} onUserLogout={this.onUserLogout} />} />
+            <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
             <Route path="/userDashboard" component={UserDashboard} exact />
             <Route
               path='/trades'
