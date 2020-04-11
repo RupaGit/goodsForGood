@@ -21,7 +21,6 @@ class SignUp extends Component {
       [event.target.name]: event.target.value,
     });
   }
-
   handleInputChange = (event) => {
     const { name, value, } = event.target;
     this.setState({
