@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Image } from "semantic-ui-react";
 
 export function GFGCardHeader(props) {
-  return <Card.Header {...props}> {props.children}</Card.Header>;
+  return <Card.Content {...props}> {props.children}</Card.Content>;
 }
 
 export function GFGCardMeta(props) {
