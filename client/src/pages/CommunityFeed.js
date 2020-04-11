@@ -1,27 +1,30 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
-import { Form, Divider } from "semantic-ui-react";
+import { Form, Divider, Grid, Header } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
-import userDashboard from "./UserDashboard";
+import AddFeed from "./AddFeed";
 
 class CommunityFeed extends Component {
     constructor(props) {
         super(props);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.state = {
-            zipCode: ""
+            zipCode: "",
+            userId: "",
+            redirect: null,
+            feeds: []
         }
     }
 
 
+    componentDidMount() {
+        API.getUserData()
+            .then(res => this.setState({ userId: res.data.id }))
+            .catch(err => console.log(err))
+    }
 
-    // handleChange = (event) => {
-    //   this.setState({
-    //     [event.target.name]: event.target.value,
-    //   });
-    // }
 
     handleInputChange = (event) => {
         const { name, value, } = event.target;
@@ -34,10 +37,21 @@ class CommunityFeed extends Component {
         event.preventDefault();
         console.log(this.state);
     };
-    render() {
 
+    addNewFeed = (event) => {
+        event.preventDefault();
+        this.setState({ redirect: "/addNewFeed" })
+
+    }
+
+    render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} userId={this.state.userId} zipCode={this.state.zipCode} />
+        }
         return (
             <GFGContainer>
+                {this.state.userId ? (<div><GFGButton color="teal" onClick={this.addNewFeed}> Add a new Feed </GFGButton>  <Divider horizontal>Or search for Feeds in your area </Divider> </div>) : (null)}
+
                 <Form>
                     <Form.Field>
                         <GFGLabel>Zip Code</GFGLabel>
@@ -54,8 +68,9 @@ class CommunityFeed extends Component {
                         onClick={this.handleFormSubmit}
                     >
                         Search
-                    </GFGButton>
+                                </GFGButton>
                 </Form>
+
             </GFGContainer>
         );
     }

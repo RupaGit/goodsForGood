@@ -16,7 +16,7 @@ class MyTradeModal extends React.Component {
         // console.log(this.state);
     };
     onClick = (event) => {
-        API.createTrade({ reqItem: this.state.reqItem, reqItemQty: this.state.reqItemQty, availItem: this.state.availItem, availItemQty: this.state.availItemQty, userID: this.props.userId })
+        API.createTrade({ reqItem: this.state.reqItem, reqItemQty: this.state.reqItemQty, availItem: this.state.availItem, availItemQty: this.state.availItemQty, userId: this.props.userId })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
     }
@@ -40,7 +40,7 @@ class MyTradeModal extends React.Component {
                             <Form.Input onChange={this.handleInputChange} value={this.state.availItem} name="availItem" fluid label='Enter the item you are trading for' placeholder='Item you want' />
                             <Form.Input onChange={this.handleInputChange} value={this.state.availItemQty} name="availItemQty" fluid label='Quantity of the item you are trading for' />
                         </Form.Group>
-                        <Button  type='submit' onClick={this.onClick}>Create Trade</Button>
+                        <Button type='submit' onClick={this.onClick}>Create Trade</Button>
                         {/* onClick={this.close} */}
                     </Form>
                 </Modal.Content>

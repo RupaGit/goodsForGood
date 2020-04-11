@@ -9,33 +9,40 @@ import API from "./utils/API";
 import Navigation from "./components/Navigation";
 import SignUp from "./pages/SignUp";
 import Logout from "./pages/Logout";
-import UserDashboard from "./pages/UserDashboard"
+import UserDashboard from "./pages/UserDashboard";
 import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
+import AddFeed from "./pages/AddFeed";
+
 
 
 class App extends React.Component {
   state = {
     isLoggedIn: false,
-    username: 'currentUser',
-    itemToTrade: 'name of item to trade',
-    quantity1: '5',
-    itemTradingFor: 'name of item user is trading for',
-    quantity2: '21'
+    username: "",
+    email: "",
+    userId: ""
+    // itemToTrade: 'name of item to trade',
+    // quantity1: '5',
+    // itemTradingFor: 'name of item user is trading for',
+    // quantity2: '21'
 
   }
 
   onUserLogin = (data) => {
-    this.setState({ isLoggedIn: data });
-    console.log("userLogged in", this.state.isLoggedIn);
+    // this.setState({ isLoggedIn: data });
+    API.getUserData()
+      .then(res => this.setState({ isLoggedIn: data, email: res.data.email, username: res.data.name, userId: res.data.id }))
+      .catch(err => console.log(err))
   }
+
 
   onUserLogout = (data) => {
     this.setState({ isLoggedIn: data });
   }
 
   render() {
-    const { isLoggedIn, username, itemToTrade, itemTradingFor, quantity1, quantity2 } = this.state;
+    const { isLoggedIn, username, userId, email, itemToTrade, itemTradingFor, quantity1, quantity2 } = this.state;
     return (
       <BrowserRouter>
         <div>
@@ -44,8 +51,10 @@ class App extends React.Component {
             <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
             <Route path="/signUp" component={SignUp} exact />
             <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
-            <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} />} exact />
+            <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
             <Route path="/communityFeed" component={CommunityFeed} exact />
+            <Route path="/addNewFeed" component={AddFeed} exact />
+
 
             <Route
               path='/trades'
