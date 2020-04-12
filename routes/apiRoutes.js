@@ -61,10 +61,10 @@ module.exports = function (app) {
   //To register a new user, user signUp call. In this method, we will check if the user is inputting the email and password.
   //If the email or password are null, we throw validation. Also, there is password validation and if its less than 6 char long, we throw validation.
   app.post("/api/signUp", function (req, res) {
-    const { name, email, password } = req.body;
+    console.log("user data passed to api routes", req.body);
+    const { name, email, password, zipCode } = req.body;
     let errors = [];
-    console.log("i am her in singin", req.body)
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !zipCode) {
       errors.push({ msg: "Please enter all fields" });
     }
     if (password.length < 6) {
@@ -81,7 +81,8 @@ module.exports = function (app) {
           const newUser = new db.User({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            zipCode: req.body.zipCode
           });
           newUser.save().then(dbUser => {
             res.json("User Created");

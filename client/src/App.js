@@ -13,18 +13,19 @@ import UserDashboard from "./pages/userDashboard";
 import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
 import AddFeed from "./pages/AddFeed";
+import ViewTrades from "./pages/ViewTrades";
 
 
 
 class App extends React.Component {
-  
+
   // this.getZipCode = this.getZipCode.bind(this)
-  state = {    
+  state = {
     isLoggedIn: false,
     username: "",
     email: "",
     userId: "",
-    zipCode: 0
+    zipCode: ""
     // itemToTrade: 'name of item to trade',
     // quantity1: '5',
     // itemTradingFor: 'name of item user is trading for',
@@ -33,7 +34,27 @@ class App extends React.Component {
   }
 
 
- 
+  componentDidMount() {
+    this.getZipCode();
+  }
+
+  getZipCode = () => {
+    var lat, lng;
+    let currentComponent = this;
+    navigator.geolocation.getCurrentPosition(function (position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      var coords = { lat: lat, lng: lng };
+      console.log("coordinates are ", coords);
+      API.zipLocation(coords)
+        .then(res => {
+          currentComponent.setState({ zipCode: res.data.results[0].components.postcode });
+          console.log(res.data.results[0].components.postcode);
+        })
+        .catch(err => console.log(err))
+    });
+  }
+
   onUserLogin = (data) => {
     // this.setState({ isLoggedIn: data });
     API.getUserData()
@@ -46,21 +67,22 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, username, userId, email, itemToTrade, itemTradingFor, quantity1, quantity2 } = this.state;
+    const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
       <BrowserRouter>
         <div>
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} /><Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
             <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
-            <Route path="/signUp" component={SignUp} exact />
+            <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
             <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
-            <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
-            <Route path="/communityFeed" component={CommunityFeed} exact />
-            <Route path="/addNewFeed" component={AddFeed} exact />
+            <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
 
 
-            <Route
+            {/* <Route
               path='/trades'
               render={() =>
                 <Trades
@@ -71,7 +93,7 @@ class App extends React.Component {
                   quantity2={quantity2}
                 />}
               exact
-            />
+            /> */}
           </Switch>
         </div>
       </BrowserRouter>

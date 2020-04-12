@@ -11,6 +11,8 @@ class CommunityFeed extends Component {
         super(props);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.loadUserData = this.loadUserData.bind(this);
+        // this.getZipCode = this.getZipCode.bind(this);
+
         this.state = {
             zipCode: "",
             userId: "",
@@ -21,30 +23,34 @@ class CommunityFeed extends Component {
 
     componentDidMount() {
         this.loadUserData();
-        }
-
-        loadUserData = ()=>{
-            API.getUserData()
-            .then(res =>{
-                this.setState({ userId: res.data.id });
-                this.getZipCode();
-            })            
-            .catch(err => console.log(err))
-        }
-
-    getZipCode = ()=> {
-        var lat, lng;
-        navigator.geolocation.getCurrentPosition(function (position) {
-            lat = position.coords.latitude;
-            lng = position.coords.longitude; 
-            var coords = {lat: lat, lng:lng};
-            console.log("coordinates are ", coords);
-            API.zipLocation(coords)
-                .then(res => { console.log( res.data.results[0].components.postcode);
-                    this.setState({ zipCode: res.data.results[0].components.postcode })})
-                .catch(err => console.log(err))          
-        });  
     }
+
+    loadUserData = () => {
+        API.getUserData()
+            .then(res => {
+                this.setState({ userId: res.data.id });
+                // this.getZipCode();
+            })
+            .catch(err => console.log(err))
+    }
+
+    // getZipCode = () => {
+    //     var lat, lng;
+    //     let currentComponent = this;
+    //     navigator.geolocation.getCurrentPosition(function (position) {
+    //         lat = position.coords.latitude;
+    //         lng = position.coords.longitude;
+    //         var coords = { lat: lat, lng: lng };
+    //         console.log("coordinates are ", coords);
+    //         API.zipLocation(coords)
+    //             .then(res => {
+    //                 currentComponent.setState({ zipCode: res.data.results[0].components.postcode });
+    //                 console.log(res.data.results[0].components.postcode);
+
+    //             })
+    //             .catch(err => console.log(err))
+    //     });
+    // }
 
 
 
