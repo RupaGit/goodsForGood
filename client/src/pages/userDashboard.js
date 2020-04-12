@@ -13,52 +13,11 @@ import { Divider, Grid, Image } from 'semantic-ui-react'
 import MyTradeModal from '../components/GFGTradeModal/index'
 import API from "../utils/API";
 
-const trades = [{
-    "reqItem": "Milk",
-    "reqItemQty": "3",
-    "availItem": "Chocolate",
-    "availItemQty": "11",
-    "userId": "5e8885fed9e9ab44c005f637"
-},
-{
-    "reqItem": "Cheese",
-    "reqItemQty": "1",
-    "availItem": "Hand Sanitizer",
-    "availItemQty": "5",
-    "userId": "5e8885fed9e9ab44c005f637"
-},
-{
-    "reqItem": "Ketchup",
-    "reqItemQty": "1",
-    "availItem": "Mayonnaise",
-    "availItemQty": "1",
-    "userId": "5e8885fed9e9ab44c005f637"
-},
-{
-    "reqItem": "Milk",
-    "reqItemQty": "3",
-    "availItem": "Chocolate",
-    "availItemQty": "11",
-    "userId": "5e8885fed9e9ab44c005f637"
-},
-{
-    "reqItem": "Cheese",
-    "reqItemQty": "1",
-    "availItem": "Hand Sanitizer",
-    "availItemQty": "5",
-    "userId": "5e8885fed9e9ab44c005f637"
-},
-{
-    "reqItem": "Ketchup",
-    "reqItemQty": "1",
-    "availItem": "Mayonnaise",
-    "availItemQty": "1",
-    "userId": "5e8885fed9e9ab44c005f637"
-}]
 
 class UserDashboard extends Component {
     constructor(props) {
         super(props);
+        this.loadUserTrades = this.loadUserTrades.bind(this);
         this.state = {
             trades: []
         }
@@ -66,14 +25,14 @@ class UserDashboard extends Component {
 
     componentDidMount() {
         console.log("Props from component mount", this.props);
-        this.loadUserTrades(this.props.userId);
+        this.loadUserTrades();
     }
 
-    loadUserTrades = (user) => {
-        console.log("UserID IS", user)
+    loadUserTrades = () => {
+        console.log("UserID IS", this.props.userId);
         API.getTradesByUserId(this.props.userId)
             .then(res => {
-                console.log(res.data)
+                this.setState({ trades: res.data });
             })
             .catch(err => {
                 console.log(err)
@@ -87,10 +46,13 @@ class UserDashboard extends Component {
                 <MyTradeModal userId={userId} email={email} >
                     <Grid>
                         <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
-                            {isLoggedIn ? (<Button primary size='huge'>
-                                Start Trading
-                                <Icon name='right arrow' />
-                            </Button>) : null}
+                            {isLoggedIn ? (<div><Button primary size='huge'>
+                                Add Trade
+                                <Icon name='add square' />
+                            </Button> <Button primary size='huge'>
+                                    View Trades
+                                <Icon name='search' />
+                                </Button> </div>) : null}
                         </Grid.Column>
                     </Grid>
                 </MyTradeModal>
@@ -99,11 +61,10 @@ class UserDashboard extends Component {
                     <Grid columns={2}>
                         <Grid.Row>
                             <Grid.Column>
-                                <Card centered>
-                                    <Header size='huge'>My Trades</Header>
-                                </Card>
-                                {trades.map((newTrade) =>
-                                    <Card fluid centered>
+                                <Header textAlign="center" color="teal" size='huge'>My Trades</Header>
+
+                                {this.state.trades.map(newTrade =>
+                                    <Card fluid centered key={newTrade._id}>
                                         <Card.Content>
                                             <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
                                             <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
@@ -116,11 +77,10 @@ class UserDashboard extends Component {
                                 )}
                             </Grid.Column>
                             <Grid.Column>
-                                <Card centered>
-                                    <Header size='huge'>Pending Trades</Header>
-                                </Card>
-                                {trades.map((newTrade) =>
-                                    <Card fluid centered>
+                                <Header textAlign="center" color="teal" size='huge'>Pending Trades</Header>
+
+                                {this.state.trades.map(newTrade =>
+                                    <Card fluid centered key={newTrade._id}>
                                         <Card.Content>
                                             <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
                                             <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
