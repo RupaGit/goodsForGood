@@ -39,6 +39,7 @@ class UserDashboard extends Component {
             });
     }
 
+
     render() {
         const { isLoggedIn, userId, email } = this.props;
         return (
@@ -46,13 +47,10 @@ class UserDashboard extends Component {
                 <MyTradeModal userId={userId} email={email} >
                     <Grid>
                         <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
-                            {isLoggedIn ? (<div><Button primary size='huge'>
+                            {isLoggedIn ? (<Button primary size='huge'>
                                 Add Trade
                                 <Icon name='add square' />
-                            </Button> <Button primary size='huge'>
-                                    View Trades
-                                <Icon name='search' />
-                                </Button> </div>) : null}
+                            </Button>) : null}
                         </Grid.Column>
                     </Grid>
                 </MyTradeModal>

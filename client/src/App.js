@@ -13,6 +13,7 @@ import UserDashboard from "./pages/userDashboard";
 import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
 import AddFeed from "./pages/AddFeed";
+import ViewTrades from "./pages/ViewTrades";
 
 
 
@@ -54,6 +55,7 @@ class App extends React.Component {
             <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
             <Route path="/communityFeed" component={CommunityFeed} exact />
             <Route path="/addNewFeed" component={AddFeed} exact />
+            <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
 
 
             <Route
