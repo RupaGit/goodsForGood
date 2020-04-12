@@ -28,12 +28,16 @@ export default {
     return axios.post("/api/send", userData);
   },
   createTrade: function (tradeData) {
-    console.log("this is the TradeData",tradeData);
+    console.log("this is the TradeData", tradeData);
     return axios.post("/api/createTrade", tradeData);
   },
   zipLocation: function (coords) {
     console.log("this is the Lat and long in api.js",coords);
     return axios.get("https://api.opencagedata.com/geocode/v1/json?key=283cd48cf9414122b30fa8584eb872ee&q="+coords.lat+"+"+coords.lng);
+  },
+  getTradesByUserId: function (userId) {
+    console.log(userId);
+    return axios.get("/api/getTrades/" + userId);
   }
 };
 

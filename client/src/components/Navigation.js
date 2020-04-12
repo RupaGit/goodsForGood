@@ -54,15 +54,6 @@ export default class Navigation extends Component {
                 </Menu.Item>
                   </Menu.Item>
                   <Menu.Item position="right">
-                     {/* Example for Guy: {this.props.path} */}
-                     <Menu.Item
-                        as={Link}
-                        to={this.props.isLoggedIn ? "/logout" : "/login"}
-                        content="login"
-                        primary={fixed}
-                        style={{ marginLeft: "0.5em" }}>
-                        {this.props.isLoggedIn ? "Log Out" : "Log In / Sign up"}
-                     </Menu.Item>
                      {this.props.isLoggedIn ? (<Menu.Item
                         as={Link}
                         to={this.props.isLoggedIn ? "/userDashboard" : ""}
@@ -72,6 +63,25 @@ export default class Navigation extends Component {
                      >
                         Dashboard
                      </Menu.Item>) : null}
+                     <Menu.Item
+                        as={Link}
+                        to={"/viewTrades"}
+                        content="viewTrades"
+                        primary={fixed}
+                        style={{ marginLeft: "0.5em" }}>
+                        View Trades
+                     </Menu.Item>
+
+                     {/* Example for Guy: {this.props.path} */}
+                     <Menu.Item
+                        as={Link}
+                        to={this.props.isLoggedIn ? "/logout" : "/login"}
+                        content="login"
+                        primary={fixed}
+                        style={{ marginLeft: "0.5em" }}>
+                        {this.props.isLoggedIn ? "Log Out" : "Log In / Sign up"}
+                     </Menu.Item>
+
 
                   </Menu.Item>
                </Container>

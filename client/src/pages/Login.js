@@ -46,7 +46,7 @@ class Login extends Component {
   };
   render() {
     if (this.state.userId) {
-      return <Redirect to="./userDashboard" />
+      return <Redirect to="./" />
     }
     return (
       <GFGContainer>

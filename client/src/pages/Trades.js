@@ -5,7 +5,6 @@ import { Card, Container } from "semantic-ui-react";
 
 export default class Trades extends Component {
     render() {
-        const { username, itemToTrade, quantity1, itemTradingFor, quantity2 } = this.props;
         const testTrades = [
             { myname: 'javits', item1: 'toilet paper', qty1: 5, item2: 'spoons', qty2: 12 },
             { myname: 'jimbo', item1: 'sugar', qty1: 5, item2: 'spoons', qty2: 12 },
