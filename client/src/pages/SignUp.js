@@ -13,14 +13,11 @@ class SignUp extends Component {
     name: "",
     email: "",
     password: "",
+    zipCode: this.props.zipCode,
     userCreated: false
   };
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
+
   handleInputChange = (event) => {
     const { name, value, } = event.target;
     this.setState({
@@ -30,30 +27,29 @@ class SignUp extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    var userData = { name: this.state.name, email: this.state.email, password: this.state.password }
+    var userData = { name: this.state.name, email: this.state.email, password: this.state.password, zipCode: this.state.zipCode }
+    console.log("userData is ", userData)
     console.log(userData);
     API.signUp(userData)
       .then(res => {
         this.setState({ userCreated: true });
+        this.submitMail();
       })
       .catch(err => console.log(err));
   };
-  handleFormSubmitMail = (event) => {
-    event.preventDefault();
-    var userData = { name: this.state.name, email: this.state.email, password: this.state.password }
+
+  //This function will only be invoked if the user creation is successful.
+  submitMail = () => {
+    var userData = { name: this.state.name, email: this.state.email, password: this.state.password, zipCode: this.state.zipCode }
     API.noderMailer(userData)
       .then(res => {
         this.setState({ userCreated: true });
       })
       .catch(err => console.log(err));
-    var userData = { name: this.state.name, email: this.state.email, password: this.state.password }
-    console.log(userData);
   };
-  submitBoth=(event)=>{
-    this.handleFormSubmit(event)
-    this.handleFormSubmitMail(event)
-  }
+
   render() {
+    const { zipCode } = this.props;
     if (this.state.userCreated) {
       return <Redirect to="./Login" />
     }
@@ -86,10 +82,24 @@ class SignUp extends Component {
               name="password"
               placeholder="Enter your password"
             />
+            {zipCode ? (<Form.Field>
+              <GFGLabel>Password</GFGLabel>
+              <GFGInput
+                value={zipCode}
+                disabled
+                name="zipCode"
+                placeholder="Enter your password"></GFGInput> </Form.Field>
+            ) : (<Form.Field>
+              <GFGLabel>Zip Code</GFGLabel>
+              <GFGInput
+                value={this.state.zipCode}
+                onChange={this.handleInputChange}
+                name="zipCode"
+                placeholder="Enter your Zip Code"></GFGInput> </Form.Field>)}
           </Form.Field>
           <GFGButton
             disabled={!(this.state.email && this.state.password)}
-            onClick={(e)=>this.submitBoth(e)}
+            onClick={this.handleFormSubmit}
           >
             Register
         </GFGButton>

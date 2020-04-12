@@ -67,22 +67,22 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, username, userId, email, itemToTrade, itemTradingFor, quantity1, quantity2 } = this.state;
+    const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
       <BrowserRouter>
         <div>
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} /><Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
             <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
-            <Route path="/signUp" component={SignUp} exact />
+            <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
             <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
-            <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
-            <Route path="/communityFeed" component={CommunityFeed} exact />
-            <Route path="/addNewFeed" component={AddFeed} exact />
+            <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
 
 
-            <Route
+            {/* <Route
               path='/trades'
               render={() =>
                 <Trades
@@ -93,7 +93,7 @@ class App extends React.Component {
                   quantity2={quantity2}
                 />}
               exact
-            />
+            /> */}
           </Switch>
         </div>
       </BrowserRouter>
