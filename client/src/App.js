@@ -18,14 +18,14 @@ import ViewTrades from "./pages/ViewTrades";
 
 
 class App extends React.Component {
-  
+
   // this.getZipCode = this.getZipCode.bind(this)
-  state = {    
+  state = {
     isLoggedIn: false,
     username: "",
     email: "",
     userId: "",
-    zipCode: 0
+    zipCode: ""
     // itemToTrade: 'name of item to trade',
     // quantity1: '5',
     // itemTradingFor: 'name of item user is trading for',
@@ -34,7 +34,27 @@ class App extends React.Component {
   }
 
 
- 
+  componentDidMount() {
+    this.getZipCode();
+  }
+
+  getZipCode = () => {
+    var lat, lng;
+    let currentComponent = this;
+    navigator.geolocation.getCurrentPosition(function (position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      var coords = { lat: lat, lng: lng };
+      console.log("coordinates are ", coords);
+      API.zipLocation(coords)
+        .then(res => {
+          currentComponent.setState({ zipCode: res.data.results[0].components.postcode });
+          console.log(res.data.results[0].components.postcode);
+        })
+        .catch(err => console.log(err))
+    });
+  }
+
   onUserLogin = (data) => {
     // this.setState({ isLoggedIn: data });
     API.getUserData()
