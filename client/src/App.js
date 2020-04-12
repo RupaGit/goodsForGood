@@ -17,11 +17,14 @@ import AddFeed from "./pages/AddFeed";
 
 
 class App extends React.Component {
-  state = {
+  
+  // this.getZipCode = this.getZipCode.bind(this)
+  state = {    
     isLoggedIn: false,
     username: "",
     email: "",
-    userId: ""
+    userId: "",
+    zipCode: 0
     // itemToTrade: 'name of item to trade',
     // quantity1: '5',
     // itemTradingFor: 'name of item user is trading for',
@@ -29,13 +32,14 @@ class App extends React.Component {
 
   }
 
+
+ 
   onUserLogin = (data) => {
     // this.setState({ isLoggedIn: data });
     API.getUserData()
       .then(res => this.setState({ isLoggedIn: data, email: res.data.email, username: res.data.name, userId: res.data.id }))
       .catch(err => console.log(err))
   }
-
 
   onUserLogout = (data) => {
     this.setState({ isLoggedIn: data });
