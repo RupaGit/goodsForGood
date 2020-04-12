@@ -28,8 +28,12 @@ export default {
     return axios.post("/api/send", userData);
   },
   createTrade: function (tradeData) {
-    console.log("this is the TradeData",tradeData);
+    console.log("this is the TradeData", tradeData);
     return axios.post("/api/createTrade", tradeData);
+  },
+  getTradesByUserId: function (userId) {
+    console.log(userId);
+    return axios.get("/api/getTrades/" + userId);
   }
 };
 

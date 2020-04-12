@@ -5,7 +5,7 @@ import { Form, Divider } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import UserDashboard from "./UserDashboard";
+import UserDashboard from "./userDashboard";
 
 class Login extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class Login extends Component {
   };
   render() {
     if (this.state.userId) {
-      return <Redirect to="./userDashboard" />
+      return <Redirect to="./" />
     }
     return (
       <GFGContainer>
