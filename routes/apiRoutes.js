@@ -3,6 +3,9 @@ var bcrypt = require("bcrypt");
 var passport = require("../config/passport");
 var path = require("path");
 var nodemailer = require('nodemailer');
+const mongoose = require("mongoose");
+
+
 
 const systemEmail = 'goodforgooods@gmail.com';
 const systemPassword = 'RupaGuyJavis123';
@@ -137,10 +140,31 @@ module.exports = function (app) {
       .catch(err => res.status(422).json(err));
   });
 
-  app.get("/api/getTradesByLoc/:zipCode", function (req, res) {
-    console.log("Zip code ins api routes", req.params.zipCode)
+
+  //API call to get all trades matching the browser's location
+  app.get("/api/getTradesByLoc/zipcode=:zipCode", function (req, res) {
     db.Trade.find({ zipCode: req.params.zipCode })
       .then(tradeData => res.json(tradeData))
       .catch(err => res.status(422).json(err));
   });
+
+
+  //API call to get Filtered trades when a user is logged in
+  app.get("/api/getFilteredTrades/zipcode=:zipCode&id=:userId", function (req, res) {
+    console.log("Zip code ins api routes", req.params.zipCode)
+    db.Trade.find({ zipCode: req.params.zipCode, userId: { $ne: mongoose.Types.ObjectId(req.params.userId) } })
+      .then(tradeData => res.json(tradeData))
+      .catch(err => res.status(422).json(err));
+  });
+
+  //Route to mark a trade as favorite
+  app.put("/api/addToFavorites", (req, res) => {
+    console.log("request data in api routes", req.body);
+    db.User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $push: { favoriteTrades: req.body.tradeId } },
+      { new: true })
+      .then(userData => res.json(userData))
+      .catch(err => res.status(422).json(err));
+  })
 };
