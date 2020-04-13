@@ -41,9 +41,18 @@ class UserDashboard extends Component {
             });
     }
 
+    EditUserTradeByID = () => {
+        console.log("UserID IS", this.props.userId);
+        API.EditTradeById(this.props.userId)
+        .then((res) => {
+            console.log('Student successfully edit!')
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
     deleteUserTradeByID = () => {
         console.log("UserID IS", this.props.userId);
-        API.deleteTrade(this.props.userId)
+        API.deleteTradeByID(this.props.userId)
         .then((res) => {
             console.log('Student successfully deleted!')
         }).catch((error) => {
@@ -84,7 +93,7 @@ class UserDashboard extends Component {
                                             <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
                                             <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
                                             <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
-                                            <GFGButton color='teal'>Edit</GFGButton>
+                                            <GFGButton color='teal'onClick={this.EditUserTradeByID}>Edit</GFGButton>
                                             <GFGButton color='red' onClick={this.deleteUserTradeByID}>Delete</GFGButton>
                                         </Card.Content>
                                     </Card>
