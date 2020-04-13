@@ -40,9 +40,19 @@ export default {
     console.log(userId);
     return axios.get("/api/getTrades/" + userId);
   },
-  getTradesByLocation: function (zipCode) {
+  getAllTradesByLoc: function (zipCode) {
     console.log("Zip code in utils", zipCode);
-    return axios.get("/api/getTradesByLoc/" + zipCode);
+    console.log("query url", "/api/getTradesByLoc/zipcode=" + zipCode);
+    return axios.get("/api/getTradesByLoc/zipcode=" + zipCode);
+  },
+  getFilteredTrades: function (zipCode, userId) {
+    console.log("Zip code in utils", zipCode);
+    console.log("query url", "/api/getTradesByLoc/zipcode=" + zipCode + "&id=" + userId);
+    return axios.get("/api/getTradesByLoc/zipcode=" + zipCode + "&id=" + userId);
+  },
+  addToFavorites: function (data) {
+    console.log(data);
+    return axios.put("/api/addToFavorites", data);
   }
 };
 
