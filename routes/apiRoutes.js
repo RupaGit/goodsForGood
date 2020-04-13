@@ -144,6 +144,13 @@ module.exports = function (app) {
     .then(tradeData => res.json(tradeData))
     .catch(err => res.status(422).json(err));
   });
+// making a edit api
+  // app.put("/api/updateTrades/:userId",function (req, res) {
+  //   console.log(req.params.userId)
+  //   db.Trade.update({ userId: req.params.userId })
+  //   .then(tradeData => res.json(tradeData))
+  //   .catch(err => res.status(422).json(err));
+  // })
 
   app.get("/api/getTradesByLoc/:zipCode", function (req, res) {
     console.log("Zip code ins api routes", req.params.zipCode)
