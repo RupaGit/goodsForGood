@@ -53,8 +53,8 @@ export default {
   },
   getFilteredTrades: function (zipCode, userId) {
     console.log("Zip code in utils", zipCode);
-    console.log("query url", "/api/getTradesByLoc/zipcode=" + zipCode + "&id=" + userId);
-    return axios.get("/api/getTradesByLoc/zipcode=" + zipCode + "&id=" + userId);
+    console.log("query url", "/api/getFilteredTrades/zipcode=" + zipCode + "&id=" + userId);
+    return axios.get("/api/getFilteredTrades/zipcode=" + zipCode + "&id=" + userId);
   },
   addToFavorites: function (data) {
     console.log(data);
