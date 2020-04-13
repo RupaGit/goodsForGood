@@ -58,7 +58,7 @@ class App extends React.Component {
   onUserLogin = (data) => {
     // this.setState({ isLoggedIn: data });
     API.getUserData()
-      .then(res => this.setState({ isLoggedIn: data, email: res.data.email, username: res.data.name, userId: res.data.id }))
+      .then(res => this.setState({ isLoggedIn: data, email: res.data.email, username: res.data.name, userId: res.data.id, zipCode: res.data.zipCode }))
       .catch(err => console.log(err))
   }
 
@@ -67,6 +67,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log("State of app js", this.state);
     const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
       <BrowserRouter>
@@ -79,7 +80,7 @@ class App extends React.Component {
             <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} userId={userId} email={email} />} exact />
+            <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
 
 
             {/* <Route

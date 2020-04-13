@@ -16,12 +16,21 @@ class MyTradeModal extends React.Component {
         // console.log(this.state);
     };
     onClick = (event) => {
-        API.createTrade({ reqItem: this.state.reqItem, reqItemQty: this.state.reqItemQty, availItem: this.state.availItem, availItemQty: this.state.availItemQty, userId: this.props.userId })
+        const trade = {
+            reqItem: this.state.reqItem,
+            reqItemQty: this.state.reqItemQty,
+            availItem: this.state.availItem,
+            availItemQty: this.state.availItemQty,
+            zipCode: this.props.zipCode,
+            userId: this.props.userId
+        }
+        API.createTrade(trade)
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
     }
     render() {
         const { open } = this.state
+        console.log("Zip code of user ", this.props.zipCode)
         return (
             <Modal
                 open={open}

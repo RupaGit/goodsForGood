@@ -39,6 +39,10 @@ export default {
   getTradesByUserId: function (userId) {
     console.log(userId);
     return axios.get("/api/getTrades/" + userId);
+  },
+  getTradesByLocation: function (zipCode) {
+    console.log("Zip code in utils", zipCode);
+    return axios.get("/api/getTradesByLoc/" + zipCode);
   }
 };
 
