@@ -15,6 +15,7 @@ class MyTradeModal extends React.Component {
         });
         // console.log(this.state);
     };
+    
     onClick = (event) => {
         const trade = {
             reqItem: this.state.reqItem,
