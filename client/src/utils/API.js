@@ -47,7 +47,6 @@ export default {
   },
 
   getAllTradesByLoc: function (zipCode) {
-
     console.log("Zip code in utils", zipCode);
     console.log("query url", "/api/getTradesByLoc/zipcode=" + zipCode);
     return axios.get("/api/getTradesByLoc/zipcode=" + zipCode);
