@@ -116,6 +116,7 @@ module.exports = function (app) {
           res.json({
             name: user.name,
             email: user.email,
+            zipCode: user.zipCode,
             id: user._id
           });
         });
@@ -132,6 +133,13 @@ module.exports = function (app) {
   app.get("/api/getTrades/:userId", function (req, res) {
     console.log(req.params.userId)
     db.Trade.find({ userId: req.params.userId })
+      .then(tradeData => res.json(tradeData))
+      .catch(err => res.status(422).json(err));
+  });
+
+  app.get("/api/getTradesByLoc/:zipCode", function (req, res) {
+    console.log("Zip code ins api routes", req.params.zipCode)
+    db.Trade.find({ zipCode: req.params.zipCode })
       .then(tradeData => res.json(tradeData))
       .catch(err => res.status(422).json(err));
   });

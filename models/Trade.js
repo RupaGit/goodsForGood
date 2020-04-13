@@ -20,6 +20,10 @@ var TradeSchema = new Schema({
     type: Number,
     required: true
   },
+  zipCode: {
+    type: String,
+    required: true
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
