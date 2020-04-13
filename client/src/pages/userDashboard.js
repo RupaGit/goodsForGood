@@ -39,6 +39,16 @@ class UserDashboard extends Component {
             });
     }
 
+    deleteUserTradeByID = () => {
+        console.log("UserID IS", this.props.userId);
+        API.deleteTrade(this.props.userId)
+        .then((res) => {
+            console.log('Student successfully deleted!')
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
 
     render() {
         const { isLoggedIn, userId, email } = this.props;
@@ -69,7 +79,7 @@ class UserDashboard extends Component {
                                             <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
                                             <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
                                             <GFGButton color='teal'>Edit</GFGButton>
-                                            <GFGButton color='red'>Delete</GFGButton>
+                                            <GFGButton color='red' onClick={this.deleteUserTradeByID}>Delete</GFGButton>
                                         </Card.Content>
                                     </Card>
                                 )}

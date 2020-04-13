@@ -39,6 +39,10 @@ export default {
   getTradesByUserId: function (userId) {
     console.log(userId);
     return axios.get("/api/getTrades/" + userId);
-  }
+  },
+  deleteTrade: function (userid) {
+    console.log("this is the  Delet userid", userid);
+    return axios.delete("/api/deletTrades/:userid", userid);
+  },
 };
 

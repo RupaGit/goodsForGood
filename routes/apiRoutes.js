@@ -135,4 +135,12 @@ module.exports = function (app) {
       .then(tradeData => res.json(tradeData))
       .catch(err => res.status(422).json(err));
   });
+
+
+  app.delete("/api/deletTrades/:userId", function (req, res) {
+    console.log(req.params.userId)
+    db.Trade.deleteOne({ userId: req.params.userId })
+      .then(tradeData => res.json(tradeData))
+      .catch(err => res.status(422).json(err));
+  });
 };
