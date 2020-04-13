@@ -30,7 +30,7 @@ class ViewTrades extends Component {
 
     loadUserTrades = () => {
         console.log("UserID IS", this.props.userId);
-        API.getTradesByUserId(this.props.userId)
+        API.getTradesByLocation(this.props.zipCode)
             .then(res => {
                 this.setState({ trades: res.data });
             })
@@ -41,44 +41,32 @@ class ViewTrades extends Component {
 
 
     render() {
-        const { isLoggedIn, userId, email } = this.props;
+        const { isLoggedIn, userId, email, zipCode } = this.props;
+        console.log(this.props);
         return (
             <GFGContainer>
+                <Grid >
+                    {/* ui centered grid */}
+                    <Header textAlign='center' color="teal" size='huge'>All Trades in my neighborhood</Header>
 
-                <Grid columns={2}>
                     <Grid.Row>
-                        <Grid.Column>
-                            <Header textAlign="center" color="teal" size='huge'>My Trades</Header>
 
-                            {this.state.trades.map(newTrade =>
-                                <Card fluid centered key={newTrade._id}>
-                                    <Card.Content>
-                                        <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
-                                        <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
-                                        <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
-                                        <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
-                                        <GFGButton color='teal'>Edit</GFGButton>
-                                        <GFGButton color='red'>Delete</GFGButton>
-                                    </Card.Content>
-                                </Card>
-                            )}
-                        </Grid.Column>
-                        <Grid.Column>
-                            <Header textAlign="center" color="teal" size='huge'>Pending Trades</Header>
+                        {this.state.trades.map(newTrade =>
+                            <Card fluid key={newTrade._id}>
+                                <Card.Content>
+                                    <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
+                                    <GFGCardHeader> Requested Item Qty: {newTrade.reqItemQty} </GFGCardHeader>
+                                    <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
+                                    <GFGCardHeader> Available Item Qty: {newTrade.availItemQty} </GFGCardHeader>
+                                </Card.Content>
+                                {(isLoggedIn) ? (<Card.Content extra>
 
-                            {this.state.trades.map(newTrade =>
-                                <Card fluid centered key={newTrade._id}>
-                                    <Card.Content>
-                                        <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
-                                        <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
-                                        <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
-                                        <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
-                                        <GFGButton color='teal'>Edit</GFGButton>
-                                        <GFGButton color='red'>Delete</GFGButton>
-                                    </Card.Content>
-                                </Card>
-                            )}
-                        </Grid.Column>
+                                    <GFGButton color='teal'>Contact Trade Owner</GFGButton>
+                                    <GFGButton color='red'>Add to Favorites </GFGButton>
+
+                                </Card.Content>) : null}
+                            </Card>
+                        )}
                     </Grid.Row>
                 </Grid>
             </GFGContainer>

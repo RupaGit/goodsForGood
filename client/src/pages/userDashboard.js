@@ -6,12 +6,14 @@ import {
     GFGImage,
 } from "../components/GFGCard";
 import { Card, Segment, Container } from "semantic-ui-react";
+import { Redirect } from 'react-router-dom';
 import GFGContainer from "../components/GFGContainer";
 import { GFGButton } from "../components/GFGForm";
 import { Row, Header, Button, Icon } from 'semantic-ui-react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
 import MyTradeModal from '../components/GFGTradeModal/index'
 import API from "../utils/API";
+import Login from "./Login";
 
 
 class UserDashboard extends Component {
@@ -51,10 +53,14 @@ class UserDashboard extends Component {
 
 
     render() {
-        const { isLoggedIn, userId, email } = this.props;
+        const { isLoggedIn, userId, email, zipCode } = this.props;
+        console.log("props in user dashboard", this.props);
+        if (!isLoggedIn) {
+            return <Redirect to="./Login" />
+        }
         return (
             <Container>
-                <MyTradeModal userId={userId} email={email} >
+                <MyTradeModal userId={userId} email={email} zipCode={zipCode}>
                     <Grid>
                         <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
                             {isLoggedIn ? (<Button primary size='huge'>

@@ -42,7 +42,11 @@ export default {
   },
   deleteTrade: function (userid) {
     console.log("this is the  Delet userid", userid);
-    return axios.delete("/api/deletTrades/:userid", userid);
+    return axios.delete("/api/deletTrades/", userid);
   },
+  getTradesByLocation: function (zipCode) {
+    console.log("Zip code in utils", zipCode);
+    return axios.get("/api/getTradesByLoc/" + zipCode);
+  }
 };
 
