@@ -30,15 +30,38 @@ class ViewTrades extends Component {
 
     loadUserTrades = () => {
         console.log("UserID IS", this.props.userId);
-        API.getTradesByLocation(this.props.zipCode)
-            .then(res => {
-                this.setState({ trades: res.data });
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        if (!this.props.userId) {
+            API.getAllTradesByLoc(this.props.zipCode)
+                .then(res => {
+                    this.setState({ trades: res.data });
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        }
+        else {
+            API.getFilteredTrades(this.props.zipCode, this.props.userId)
+                .then(res => {
+                    this.setState({ trades: res.data });
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        }
     }
 
+    addFav = (tradeId) => {
+        console.log("Trade ID", tradeId);
+        console.log("User ID is", this.props.userId);
+        var data = {
+            userId: this.props.userId,
+            tradeId: tradeId
+        }
+        console.log("Data passed to API is ", data);
+        API.addToFavorites(data)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
 
     render() {
         const { isLoggedIn, userId, email, zipCode } = this.props;
@@ -52,7 +75,7 @@ class ViewTrades extends Component {
                     <Grid.Row>
 
                         {this.state.trades.map(newTrade =>
-                            <Card fluid key={newTrade._id}>
+                            <Card fluid key={newTrade._id} >
                                 <Card.Content>
                                     <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
                                     <GFGCardHeader> Requested Item Qty: {newTrade.reqItemQty} </GFGCardHeader>
@@ -60,9 +83,9 @@ class ViewTrades extends Component {
                                     <GFGCardHeader> Available Item Qty: {newTrade.availItemQty} </GFGCardHeader>
                                 </Card.Content>
                                 {(isLoggedIn) ? (<Card.Content extra>
-
+                                    {/* //We have to implement socket.io for contact trade owner button */}
                                     <GFGButton color='teal'>Contact Trade Owner</GFGButton>
-                                    <GFGButton color='red'>Add to Favorites </GFGButton>
+                                    <GFGButton color='green' onClick={() => this.addFav(newTrade._id)}>Add to Favorites </GFGButton>
 
                                 </Card.Content>) : null}
                             </Card>
