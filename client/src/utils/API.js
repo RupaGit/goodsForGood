@@ -17,12 +17,7 @@ export default {
   logout: function () {
     return axios.get("api/logout");
   },
-  // Create a trade
-  createTrade: function (tradeData) {
-    console.log("The created trade data is ", tradeData);
-    return axios.post("/api/login", tradeData);
-  },
-  emailuser: function (userid) {
+    emailuser: function (userid) {
     return axios.post("/api/emailUser" + userid);
   },
   noderMailer: function (userData) {
@@ -40,7 +35,19 @@ export default {
     console.log(userId);
     return axios.get("/api/getTrades/" + userId);
   },
+  
+  deleteTradeByID: function (userid) {
+    console.log("this is the  Delet userid", userid);
+    return axios.delete("/api/deletTrades/" + userid);
+  },
+  
+  EditTradeById: function (userid) {
+    console.log("this is the  Delet userid", userid);
+    return axios.put("/api/updateTrades/" + userid);
+  },
+
   getAllTradesByLoc: function (zipCode) {
+
     console.log("Zip code in utils", zipCode);
     console.log("query url", "/api/getTradesByLoc/zipcode=" + zipCode);
     return axios.get("/api/getTradesByLoc/zipcode=" + zipCode);
