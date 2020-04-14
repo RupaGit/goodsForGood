@@ -11,9 +11,12 @@ import GFGContainer from "../components/GFGContainer";
 import { GFGButton } from "../components/GFGForm";
 import { Row, Header, Button, Icon } from 'semantic-ui-react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
-import MyTradeModal from '../components/GFGTradeModal/index'
+import MyTradeModal from '../components/GFGTradeModal'
 import API from "../utils/API";
 import Login from "./Login";
+import  GFGEditTradeModal  from "../components/GFGEditTradeModal";
+
+
 
 
 class UserDashboard extends Component {
@@ -40,19 +43,9 @@ class UserDashboard extends Component {
                 console.log(err)
             });
     }
-
-    EditUserTradeByID = () => {
-        console.log("UserID IS", this.props.userId);
-        API.EditTradeById(this.props.userId)
-        .then((res) => {
-            console.log('Student successfully edit!')
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
-    deleteUserTradeByID = () => {
-        console.log("UserID IS", this.props.userId);
-        API.deleteTradeByID(this.props.userId)
+    deleteUserTradeByID = (tradeId) => {
+        console.log("tradeId IS", tradeId);
+        API.deleteTradeByID(tradeId)
         .then((res) => {
             console.log('Student successfully deleted!')
         }).catch((error) => {
@@ -85,7 +78,6 @@ class UserDashboard extends Component {
                         <Grid.Row>
                             <Grid.Column>
                                 <Header textAlign="center" color="teal" size='huge'>My Trades</Header>
-
                                 {this.state.trades.map(newTrade =>
                                     <Card fluid centered key={newTrade._id}>
                                         <Card.Content>
@@ -93,8 +85,8 @@ class UserDashboard extends Component {
                                             <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
                                             <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
                                             <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
-                                            <GFGButton color='teal'onClick={this.EditUserTradeByID}>Edit</GFGButton>
-                                            <GFGButton color='red' onClick={this.deleteUserTradeByID}>Delete</GFGButton>
+                                           <GFGEditTradeModal tradeToEdit={newTrade}><GFGButton color='teal'>Edit</GFGButton></GFGEditTradeModal>
+                                            <GFGButton color='red' onClick={() => this.deleteUserTradeByID(newTrade._id)}>Delete</GFGButton>
                                         </Card.Content>
                                     </Card>
                                 )}

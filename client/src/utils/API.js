@@ -36,14 +36,14 @@ export default {
     return axios.get("/api/getTrades/" + userId);
   },
   
-  deleteTradeByID: function (userid) {
-    console.log("this is the  Delet userid", userid);
-    return axios.delete("/api/deletTrades/" + userid);
+  deleteTradeByID: function (tradeID) {
+    console.log("this is the  Delet userid", tradeID);
+    return axios.put("/api/deleteTrades/" + tradeID);
   },
   
-  EditTradeById: function (userid) {
-    console.log("this is the  Delet userid", userid);
-    return axios.put("/api/updateTrades/" + userid);
+  editUserTradeByID: function ( tradeData, tradeID) {
+    console.log("this is the  Delet tradeID", tradeID);
+    return axios.put("/api/editTrades/" + tradeID, tradeData);
   },
 
   getAllTradesByLoc: function (zipCode) {

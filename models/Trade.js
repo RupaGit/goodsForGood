@@ -24,6 +24,11 @@ var TradeSchema = new Schema({
     type: String,
     required: true
   },
+  isDeleted: {
+    type: Boolean,
+    required: false,
+    default : false,
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
