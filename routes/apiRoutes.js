@@ -142,19 +142,24 @@ module.exports = function (app) {
 
 
 
-  app.delete("/api/deletTrades/:userId", function (req, res) {
-    console.log(req.params.userId)
-    db.Trade.remove({ userId: req.params.userId })
+  app.put("/api/deleteTrades/:tradeId", function (req, res) {
+    db.Trade.findOneAndUpdate({ _id: req.params.tradeId },{ isDeleted: true })
       .then(tradeData => res.json(tradeData))
       .catch(err => res.status(422).json(err));
   });
+  
   // making a edit api
-  // app.put("/api/updateTrades/:userId",function (req, res) {
-  //   console.log(req.params.userId)
-  //   db.Trade.update({ userId: req.params.userId })
-  //   .then(tradeData => res.json(tradeData))
-  //   .catch(err => res.status(422).json(err));
-  // })
+  app.put("/api/editTrades/:newTradeId",function (req, res) {
+    // console.log(newTrade,req.params.userId)
+    db.Trade.findOneAndUpdate({ _id: req.params.newTradeId},{
+      reqItem: req.body.reqItem,
+      reqItemQty: req.body.reqItemQty,
+      availItem: req.body.availItem,
+      availItemQty: req.body.availItemQty
+    })
+    .then(tradeData => {console.log("Trade data is ", tradeData); res.json(tradeData)})
+    .catch(err => res.status(422).json(err));
+  })
 
   //API call to get all trades matching the browser's location
   app.get("/api/getTradesByLoc/zipcode=:zipCode", function (req, res) {
