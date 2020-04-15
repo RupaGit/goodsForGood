@@ -2,5 +2,6 @@
 
 module.exports = {
   User: require("./User"),
-  Trade: require("./Trade")
+  Trade: require("./Trade"),
+  Messages: require("./Messages")
 };

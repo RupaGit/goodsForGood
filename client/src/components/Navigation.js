@@ -6,8 +6,18 @@ import {
    Responsive,
    Visibility
 } from "semantic-ui-react";
-export default class Navigation extends Component {
-   state = {}
+import socketIOClient from "socket.io-client";
+
+var socket;
+
+class Navigation extends Component {
+   constructor() {
+      super();
+      this.state = {
+         endpoint: ''
+      }
+      socket = socketIOClient("http://localhost:4000/", { transports: ['polling', 'websocket'] });
+   }
    // hideFixedMenu = () => this.setState({ fixed: false });
    // showFixedMenu = () => this.setState({ fixed: true });
    // handleSidebarHide = () => this.setState({ sidebarOpened: false });
@@ -92,3 +102,5 @@ export default class Navigation extends Component {
       );
    }
 }
+
+export { Navigation, socket };

@@ -1,14 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const http = require('http');
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const env = require("dotenv");
 const cors = require('cors');
+var db = require("./models");
+const socketIO = require("socket.io");
+
+
 
 // const routes = require("./routes");
 const app = express();
 var PORT = process.env.PORT || 4000;
+const server = http.createServer(app);
+const io = socketIO(server, { transports: ['polling', 'websocket'] });
 
 var db = require("./models");
 // Connect to the Mongo DB
@@ -19,7 +26,7 @@ mongoose.connect("mongodb://localhost/goodsForGood", {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -35,11 +42,20 @@ app.use(
 app.use(passport.initialize());
 
 app.use(passport.session());
-require("./routes/apiRoutes.js")(app);
+require("./routes/apiRoutes.js")(app, db);
+
+io.on("connection", socket => {
+  socket.on("new message", data => {
+    console.log(db);
+    db.Messages.create(data)
+      .then(dbMessage => console.log(dbMessage))
+      .catch(err => console.log(err));
+  })
+});
 
 // require("./routes/htmlRoutes.js")(app);
 
 // Start the API server
-app.listen(PORT, function () {
+server.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });

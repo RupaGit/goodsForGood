@@ -6,14 +6,19 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import API from "./utils/API";
-import Navigation from "./components/Navigation";
+import { Navigation } from "./components/Navigation";
 import SignUp from "./pages/SignUp";
 import Logout from "./pages/Logout";
 import UserDashboard from "./pages/userDashboard";
+import Dashboard from "./pages/Dashboard";
 import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
 import AddFeed from "./pages/AddFeed";
 import ViewTrades from "./pages/ViewTrades";
+import MyTrades from "./pages/MyTrades";
+import PendingTrades from "./pages/PendingTrades"
+import FavoriteTrades from "./pages/FavoriteTrades";
+import Messages from "./pages/Messages";
 
 
 
@@ -77,10 +82,14 @@ class App extends React.Component {
             <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
             <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
             <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
-            <Route path="/userDashboard" render={() => <UserDashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/userDashboard" render={() => <Dashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/myTrades" render={() => <MyTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route exact path="/pendingTrades" component={PendingTrades} />
+            <Route exact path="/favoriteTrades" component={FavoriteTrades} />
+            <Route exact path="/messages" component={Messages} />
 
 
             {/* <Route

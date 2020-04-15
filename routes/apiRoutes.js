@@ -1,4 +1,4 @@
-var db = require("../models");
+// var db = require("../models");
 var bcrypt = require("bcrypt");
 var passport = require("../config/passport");
 var path = require("path");
@@ -28,7 +28,7 @@ transporter.verify((error, success) => {
   }
 });
 
-module.exports = function (app) {
+module.exports = function (app, db) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
@@ -143,22 +143,22 @@ module.exports = function (app) {
 
 
   app.put("/api/deleteTrades/:tradeId", function (req, res) {
-    db.Trade.findOneAndUpdate({ _id: req.params.tradeId },{ isDeleted: true })
+    db.Trade.findOneAndUpdate({ _id: req.params.tradeId }, { isDeleted: true })
       .then(tradeData => res.json(tradeData))
       .catch(err => res.status(422).json(err));
   });
-  
+
   // making a edit api
-  app.put("/api/editTrades/:newTradeId",function (req, res) {
+  app.put("/api/editTrades/:newTradeId", function (req, res) {
     // console.log(newTrade,req.params.userId)
-    db.Trade.findOneAndUpdate({ _id: req.params.newTradeId},{
+    db.Trade.findOneAndUpdate({ _id: req.params.newTradeId }, {
       reqItem: req.body.reqItem,
       reqItemQty: req.body.reqItemQty,
       availItem: req.body.availItem,
       availItemQty: req.body.availItemQty
     })
-    .then(tradeData => {console.log("Trade data is ", tradeData); res.json(tradeData)})
-    .catch(err => res.status(422).json(err));
+      .then(tradeData => { console.log("Trade data is ", tradeData); res.json(tradeData) })
+      .catch(err => res.status(422).json(err));
   })
 
   //API call to get all trades matching the browser's location

@@ -18,9 +18,7 @@ import GFGMenu from "../components/GFGMenu"
 import GFGEditTradeModal from "../components/GFGEditTradeModal";
 
 
-
-
-class UserDashboard extends Component {
+class MyTrades extends Component {
     constructor(props) {
         super(props);
         this.loadUserTrades = this.loadUserTrades.bind(this);
@@ -54,7 +52,6 @@ class UserDashboard extends Component {
             })
     }
 
-
     render() {
         const { isLoggedIn, userId, email, zipCode } = this.props;
         console.log("props in user dashboard", this.props);
@@ -63,23 +60,27 @@ class UserDashboard extends Component {
         }
         return (
             <GFGContainer>
-
-                <MyTradeModal userId={userId} email={email} zipCode={zipCode}>
-                    <Grid>
-                        <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
-                            {isLoggedIn ? (<Button primary size='huge'>
-                                Add Trade
-                                <Icon name='add square' />
-                            </Button>) : null}
+                <Grid columns={3}>
+                    <Grid.Row>
+                        <Grid.Column width={3}>
+                            <GFGMenu />
                         </Grid.Column>
-                    </Grid>
-                </MyTradeModal>
-                <GFGMenu />
-                <GFGContainer>
+                        <Grid.Column width={1}>
 
-                    <Grid columns={2}>
-                        <Grid.Row>
-                            <Grid.Column>
+                        </Grid.Column>
+                        <Grid.Column width={10}>
+                            <Grid.Row>
+                                <MyTradeModal userId={userId} email={email} zipCode={zipCode}>
+                                    <Grid>
+                                        <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
+                                            {isLoggedIn ? (<Button color="teal" size='huge'>
+                                                Add Trade
+                                            </Button>) : null}
+                                        </Grid.Column>
+                                    </Grid>
+                                </MyTradeModal>
+                            </Grid.Row>
+                            <Grid.Row>
                                 <Header textAlign="center" color="teal" size='huge'>My Trades</Header>
                                 {this.state.trades.map(newTrade =>
                                     <Card fluid centered key={newTrade._id}>
@@ -93,30 +94,14 @@ class UserDashboard extends Component {
                                         </Card.Content>
                                     </Card>
                                 )}
-                            </Grid.Column>
-                            <Grid.Column>
-                                <Header textAlign="center" color="teal" size='huge'>Pending Trades</Header>
-
-                                {this.state.trades.map(newTrade =>
-                                    <Card fluid centered key={newTrade._id}>
-                                        <Card.Content>
-                                            <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
-                                            <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
-                                            <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
-                                            <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
-                                            <GFGButton color='teal'>Edit</GFGButton>
-                                            <GFGButton color='red'>Delete</GFGButton>
-                                        </Card.Content>
-                                    </Card>
-                                )}
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </GFGContainer>
+                            </Grid.Row>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </GFGContainer>
 
         );
     }
 }
 
-export default UserDashboard;
+export default MyTrades;
