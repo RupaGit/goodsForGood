@@ -40,7 +40,7 @@ class HomepageHeading extends Component {
               fontWeight: 'normal',
               marginTop: mobile ? '0.5em' : '1.5em',
             }}
-          />
+            link rel="stylesheet" href="animate.min.css"/>
         </Container>)
     }
   }

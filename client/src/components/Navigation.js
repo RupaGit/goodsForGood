@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import {
    Container,
    Menu,
+   Button,
+   Icon,
+   Transition,
    Responsive,
    Visibility
 } from "semantic-ui-react";
 export default class Navigation extends Component {
    state = {}
-   // hideFixedMenu = () => this.setState({ fixed: false });
-   // showFixedMenu = () => this.setState({ fixed: true });
-   // handleSidebarHide = () => this.setState({ sidebarOpened: false });
-   // handleToggle = () => this.setState({ sidebarOpened: true });
+   handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  toggleVisibility = () =>
+    this.setState((prevState) => ({ visible: !prevState.visible }))
+
    render() {
       const getWidth = () => {
          const isSSR = typeof window === "undefined";
@@ -21,12 +24,7 @@ export default class Navigation extends Component {
       const { fixed } = this.state;
       return (
          <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-            {/* <Visibility
-          once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
-        > */}
-            <Menu
+                   <Menu
                fixed={fixed ? "top" : null}
                pointing={!fixed}
                secondary={!fixed}
@@ -40,15 +38,16 @@ export default class Navigation extends Component {
                         content="Home"
                         primary={fixed}
                         style={{ marginLeft: "0.5em" }}
-                     >
-                        Home
-                </Menu.Item>
+                        visible
+                        >
+                </Menu.Item >
                      <Menu.Item
                         as={Link}
                         to="/communityFeed"
                         content="communityFeed"
                         primary={fixed}
                         style={{ marginLeft: "0.5em" }}
+                        onClick={this.toggleVisibility}
                      >
                         Community Feed
                 </Menu.Item>
@@ -60,6 +59,7 @@ export default class Navigation extends Component {
                         content="userDashboard"
                         primary={fixed}
                         style={{ marginLeft: "0.5em" }}
+                        onClick={this.toggleVisibility}
                      >
                         Dashboard
                      </Menu.Item>) : null}
@@ -68,6 +68,7 @@ export default class Navigation extends Component {
                         to={"/viewTrades"}
                         content="viewTrades"
                         primary={fixed}
+                        onClick={this.toggleVisibility}
                         style={{ marginLeft: "0.5em" }}>
                         View Trades
                      </Menu.Item>
@@ -75,6 +76,7 @@ export default class Navigation extends Component {
                      {/* Example for Guy: {this.props.path} */}
                      <Menu.Item
                         as={Link}
+                        onClick={this.toggleVisibility}
                         to={this.props.isLoggedIn ? "/logout" : "/login"}
                         content="login"
                         primary={fixed}
@@ -86,7 +88,6 @@ export default class Navigation extends Component {
                   </Menu.Item>
                </Container>
             </Menu>
-            {/* </Visibility> */}
             {children}
          </Responsive>
       );
