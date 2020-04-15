@@ -77,7 +77,8 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} /><Switch>
+          <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
+          <Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
             <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
             <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
@@ -87,23 +88,9 @@ class App extends React.Component {
             <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/myTrades" render={() => <MyTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route exact path="/pendingTrades" component={PendingTrades} />
-            <Route exact path="/favoriteTrades" component={FavoriteTrades} />
+            <Route exact path="/pendingTrades" render={() => <PendingTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route exact path="/favoriteTrades" render={() => <FavoriteTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route exact path="/messages" component={Messages} />
-
-
-            {/* <Route
-              path='/trades'
-              render={() =>
-                <Trades
-                  username={username}
-                  itemToTrade={itemToTrade}
-                  quantity1={quantity1}
-                  itemTradingFor={itemTradingFor}
-                  quantity2={quantity2}
-                />}
-              exact
-            /> */}
           </Switch>
         </div>
       </BrowserRouter>

@@ -60,44 +60,31 @@ class MyTrades extends Component {
         }
         return (
             <GFGContainer>
-                <Grid columns={3}>
-                    <Grid.Row>
-                        <Grid.Column width={3}>
-                            <GFGMenu />
-                        </Grid.Column>
-                        <Grid.Column width={1}>
 
+                <MyTradeModal userId={userId} email={email} zipCode={zipCode}>
+                    <Grid>
+                        <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
+                            {isLoggedIn ? (<Button color="teal" size='huge'>
+                                Add Trade
+                            </Button>) : null}
                         </Grid.Column>
-                        <Grid.Column width={10}>
-                            <Grid.Row>
-                                <MyTradeModal userId={userId} email={email} zipCode={zipCode}>
-                                    <Grid>
-                                        <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
-                                            {isLoggedIn ? (<Button color="teal" size='huge'>
-                                                Add Trade
-                                            </Button>) : null}
-                                        </Grid.Column>
-                                    </Grid>
-                                </MyTradeModal>
-                            </Grid.Row>
-                            <Grid.Row>
-                                <Header textAlign="center" color="teal" size='huge'>My Trades</Header>
-                                {this.state.trades.map(newTrade =>
-                                    <Card fluid centered key={newTrade._id}>
-                                        <Card.Content>
-                                            <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
-                                            <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
-                                            <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
-                                            <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
-                                            <GFGEditTradeModal tradeToEdit={newTrade}><GFGButton color='teal'>Edit</GFGButton></GFGEditTradeModal>
-                                            <GFGButton color='red' onClick={() => this.deleteUserTradeByID(newTrade._id)}>Delete</GFGButton>
-                                        </Card.Content>
-                                    </Card>
-                                )}
-                            </Grid.Row>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+                    </Grid>
+                </MyTradeModal>
+
+                <Header textAlign="center" color="teal" size='huge'>My Trades</Header>
+                {this.state.trades.map(newTrade =>
+                    <Card fluid centered key={newTrade._id}>
+                        <Card.Content>
+                            <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
+                            <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
+                            <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
+                            <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
+                            <GFGEditTradeModal tradeToEdit={newTrade}><GFGButton color='teal'>Edit</GFGButton></GFGEditTradeModal>
+                            <GFGButton color='red' onClick={() => this.deleteUserTradeByID(newTrade._id)}>Delete</GFGButton>
+                        </Card.Content>
+                    </Card>
+                )}
+
             </GFGContainer>
 
         );

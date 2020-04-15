@@ -4,9 +4,11 @@ import {
    Container,
    Menu,
    Responsive,
-   Visibility
+   Visibility,
+   Dropdown
 } from "semantic-ui-react";
 import socketIOClient from "socket.io-client";
+import GFGMenu from "./GFGMenu";
 
 var socket;
 
@@ -64,15 +66,31 @@ class Navigation extends Component {
                 </Menu.Item>
                   </Menu.Item>
                   <Menu.Item position="right">
-                     {this.props.isLoggedIn ? (<Menu.Item
-                        as={Link}
-                        to={this.props.isLoggedIn ? "/userDashboard" : ""}
-                        content="userDashboard"
-                        primary={fixed}
-                        style={{ marginLeft: "0.5em" }}
-                     >
-                        Dashboard
-                     </Menu.Item>) : null}
+                     {this.props.isLoggedIn ? (
+                        // <Dropdown.Item
+                        //    as={Link}
+                        //    to={this.props.isLoggedIn ? "/userDashboard" : ""}
+                        //    content="userDashboard"
+                        //    primary={fixed}
+                        //    style={{ marginLeft: "0.5em" }}
+                        //    item
+                        // >
+                        //    Dashboard
+                        //    <Dropdown.Menu>
+                        //       <Dropdown.Item>Electronics</Dropdown.Item>
+                        //       <Dropdown.Item>Automotive</Dropdown.Item>
+                        //       <Dropdown.Item>Home</Dropdown.Item>
+                        //    </Dropdown.Menu>
+                        // </Dropdown.Item>
+                        <Dropdown item text="Dashboard">
+                           <Dropdown.Menu>
+                              <Dropdown.Item as={Link} to={"/myTrades"}> My Trades </Dropdown.Item>
+                              <Dropdown.Item as={Link} to={"/pendingTrades"}> Pending Trades </Dropdown.Item>
+                              <Dropdown.Item as={Link} to={"/favoriteTrades"}> Favorite Trades </Dropdown.Item>
+                              <Dropdown.Item as={Link} to={"/messages"}> Messages </Dropdown.Item>
+                           </Dropdown.Menu>
+                        </Dropdown>
+                     ) : null}
                      <Menu.Item
                         as={Link}
                         to={"/viewTrades"}

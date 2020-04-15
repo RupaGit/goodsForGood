@@ -84,7 +84,7 @@ class ViewTrades extends Component {
     //     })
     // }
 
-    sendMessage = (messageReceiverId) => {
+    sendMessage = (messageReceiverId, tradeId) => {
         console.log(this.state.message);
         const messageSenderId = this.props.userId;
         console.log("Receiver id", messageReceiverId, "Sender id is", messageSenderId);
@@ -95,7 +95,8 @@ class ViewTrades extends Component {
         socket.emit("new message", {
             message: this.state.message,
             sender: messageSenderId,
-            receiver: messageReceiverId
+            receiver: messageReceiverId,
+            tradeId: tradeId
         })
         this.handleClose();
         // })
@@ -143,7 +144,7 @@ class ViewTrades extends Component {
                                                         placeholder="Enter your message to the owner"
                                                     />
                                                 </Form.Field>
-                                                <GFGButton color='teal' onClick={() => this.sendMessage(newTrade.userId)}>Send Message</GFGButton>
+                                                <GFGButton color='teal' onClick={() => this.sendMessage(newTrade.userId, newTrade._id)}>Send Message</GFGButton>
                                             </Form>
                                         </GFGModalContent>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 import { Redirect, Link } from 'react-router-dom';
 
 const menuItems = [
@@ -24,12 +24,16 @@ export default class GFGMenu extends Component {
         // }
         // const { items } = this.props;
         return (
-            <Menu inverted pointing vertical >
-                {menuItems.map(({ label, name, ...rest }) => (
-                    <Menu.Item name={name} as={Link} to={`/${name}`} active={activeItem === name} onClick={this.handleItemClick} {...rest}>
-                    </Menu.Item>))}
+            <Dropdown.Menu >
+                <Dropdown.Item as={Link} to={"/myTrades"}> My Trades </Dropdown.Item>
+                <Dropdown.Item as={Link} to={"/pendingTrades"}> Pending Trades </Dropdown.Item>
+                <Dropdown.Item as={Link} to={"/favoriteTrades"}> Favorite Trades </Dropdown.Item>
+                <Dropdown.Item as={Link} to={"/messages"}> Messages </Dropdown.Item>
+                {/* {menuItems.map(({ label, name, ...rest }) => (
+                    <Dropdown.Item name={name} as={Link} to={`/${name}`} active={activeItem === name} onClick={this.handleItemClick} {...rest}>
+                    </Dropdown.Item>))} */}
 
-            </Menu>
+            </Dropdown.Menu>
         )
     }
 }
