@@ -187,5 +187,55 @@ module.exports = function (app, db) {
       { new: true })
       .then(userData => res.json(userData))
       .catch(err => res.status(422).json(err));
-  })
+  });
+
+  //Route to get pending trades by user id
+  app.get("/api/getPendingTrades/:userId", (req, res) => {
+    console.log()
+    db.User.findOne({ _id: mongoose.Types.ObjectId(req.params.userId) })
+      .populate("pendingTrades")
+      .then(userData => {
+        console.log("user data is ", userData.pendingTrades);
+        res.json(userData.pendingTrades)
+      })
+      .catch(err => res.status(422).json(err));
+  });
+
+  //route to mark a trade as complete
+  app.put("/api/completeTrade", (req, res) => {
+    console.log()
+    db.User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $pull: { pendingTrades: req.body.tradeId } }
+    )
+      .then(userData =>
+        db.User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $push: { completedTrades: req.body.tradeId } },
+          { new: true })
+          .then(userData => res.json(userData))
+          .catch(err => res.status(422).json(err)));
+  });
+  app.put("/api/removePendingTrade", (req, res) => {
+    console.log()
+    db.User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $pull: { pendingTrades: req.body.tradeId } }
+    )
+      .then(userData => res.json(userData))
+      .catch(err => res.status(422).json(err));
+  });
+
+
+  // route to get favorite trades by user id
+  app.get("/api/getFavoriteTrades/:userId", (req, res) => {
+    console.log()
+    db.User.findOne({ _id: mongoose.Types.ObjectId(req.params.userId) })
+      .populate("favoriteTrades")
+      .then(userData => {
+        console.log("user data is ", userData.favoriteTrades);
+        res.json(userData.favoriteTrades)
+      })
+      .catch(err => res.status(422).json(err));
+  });
 };

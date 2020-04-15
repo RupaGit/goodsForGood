@@ -48,7 +48,15 @@ io.on("connection", socket => {
   socket.on("new message", data => {
     console.log(db);
     db.Messages.create(data)
-      .then(dbMessage => console.log(dbMessage))
+      .then(dbMessage => {
+        console.log(dbMessage)
+        db.User.findOneAndUpdate(
+          { _id: data.sender },
+          { $push: { pendingTrades: data.tradeId } },
+          { new: true })
+          .then(userData => { return userData })
+          .catch(err => { throw err })
+      })
       .catch(err => console.log(err));
   })
 });

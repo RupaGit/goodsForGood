@@ -17,6 +17,11 @@ var MessageSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
+    },
+    tradeId: {
+        type: Schema.Types.ObjectId,
+        ref: "Trade",
+        required: true
     }
 });
 

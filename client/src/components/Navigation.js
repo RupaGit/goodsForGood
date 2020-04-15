@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import {
    Container,
    Menu,
+   Button,
+   Icon,
+   Transition,
    Responsive,
    Visibility,
    Dropdown
@@ -12,18 +15,24 @@ import GFGMenu from "./GFGMenu";
 
 var socket;
 
-class Navigation extends Component {
-   constructor() {
-      super();
-      this.state = {
-         endpoint: ''
-      }
-      socket = socketIOClient("http://localhost:4000/", { transports: ['polling', 'websocket'] });
-   }
-   // hideFixedMenu = () => this.setState({ fixed: false });
-   // showFixedMenu = () => this.setState({ fixed: true });
-   // handleSidebarHide = () => this.setState({ sidebarOpened: false });
-   // handleToggle = () => this.setState({ sidebarOpened: true });
+// class Navigation extends Component {
+//    constructor() {
+//       super();
+//       this.state = {
+//          endpoint: ''
+//       }
+//       socket = socketIOClient("http://localhost:4000/", { transports: ['polling', 'websocket'] });
+//    }
+//    // hideFixedMenu = () => this.setState({ fixed: false });
+//    // showFixedMenu = () => this.setState({ fixed: true });
+//    // handleSidebarHide = () => this.setState({ sidebarOpened: false });
+//    // handleToggle = () => this.setState({ sidebarOpened: true });
+export default class Navigation extends Component {
+   state = {}
+   handleChange = (e, { name, value }) => this.setState({ [name]: value })
+   toggleVisibility = () =>
+      this.setState((prevState) => ({ visible: !prevState.visible }))
+
    render() {
       const getWidth = () => {
          const isSSR = typeof window === "undefined";
@@ -33,11 +42,6 @@ class Navigation extends Component {
       const { fixed } = this.state;
       return (
          <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-            {/* <Visibility
-          once={false}
-          onBottomPassed={this.showFixedMenu}
-          onBottomPassedReverse={this.hideFixedMenu}
-        > */}
             <Menu
                fixed={fixed ? "top" : null}
                pointing={!fixed}
@@ -52,36 +56,22 @@ class Navigation extends Component {
                         content="Home"
                         primary={fixed}
                         style={{ marginLeft: "0.5em" }}
+                        visible
                      >
-                        Home
-                </Menu.Item>
+                     </Menu.Item >
                      <Menu.Item
                         as={Link}
                         to="/communityFeed"
                         content="communityFeed"
                         primary={fixed}
                         style={{ marginLeft: "0.5em" }}
+                        onClick={this.toggleVisibility}
                      >
                         Community Feed
                 </Menu.Item>
                   </Menu.Item>
                   <Menu.Item position="right">
                      {this.props.isLoggedIn ? (
-                        // <Dropdown.Item
-                        //    as={Link}
-                        //    to={this.props.isLoggedIn ? "/userDashboard" : ""}
-                        //    content="userDashboard"
-                        //    primary={fixed}
-                        //    style={{ marginLeft: "0.5em" }}
-                        //    item
-                        // >
-                        //    Dashboard
-                        //    <Dropdown.Menu>
-                        //       <Dropdown.Item>Electronics</Dropdown.Item>
-                        //       <Dropdown.Item>Automotive</Dropdown.Item>
-                        //       <Dropdown.Item>Home</Dropdown.Item>
-                        //    </Dropdown.Menu>
-                        // </Dropdown.Item>
                         <Dropdown item text="Dashboard">
                            <Dropdown.Menu>
                               <Dropdown.Item as={Link} to={"/myTrades"}> My Trades </Dropdown.Item>
@@ -96,6 +86,7 @@ class Navigation extends Component {
                         to={"/viewTrades"}
                         content="viewTrades"
                         primary={fixed}
+                        onClick={this.toggleVisibility}
                         style={{ marginLeft: "0.5em" }}>
                         View Trades
                      </Menu.Item>
@@ -103,6 +94,7 @@ class Navigation extends Component {
                      {/* Example for Guy: {this.props.path} */}
                      <Menu.Item
                         as={Link}
+                        onClick={this.toggleVisibility}
                         to={this.props.isLoggedIn ? "/logout" : "/login"}
                         content="login"
                         primary={fixed}
@@ -114,7 +106,6 @@ class Navigation extends Component {
                   </Menu.Item>
                </Container>
             </Menu>
-            {/* </Visibility> */}
             {children}
          </Responsive>
       );

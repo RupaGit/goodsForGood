@@ -4,6 +4,9 @@ import {
   Segment,
 } from 'semantic-ui-react'
 import HomepageHeading from '../components/GFGHomePage/index'
+
+// import SliderComponant from '../components/GFG-slider/index'
+
 import Footer from '../components/GFGFooter/index'
 
 class DesktopContainer extends Component {
@@ -14,7 +17,7 @@ class DesktopContainer extends Component {
       <Segment
         inverted
         textAlign='center'
-        style={{ minHeight: 700, padding: '1em 0em' }}
+        style={{ minHeight: 700, padding: '0em 0em' }}
         vertical>
       <HomepageHeading isLoggedIn={this.props.isLoggedIn}/>
         <Footer></Footer>
