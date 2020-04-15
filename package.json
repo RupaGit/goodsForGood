@@ -39,7 +39,8 @@
     "passport-local": "^1.0.0",
     "react-animated-slider": "^1.1.4",
     "react-router-dom": "^5.1.2",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

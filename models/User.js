@@ -15,6 +15,22 @@ const UserSchema = new Schema({
       // The ObjectIds will refer to the ids in the Trade model
       ref: "Trade"
     }
+  ],
+  pendingTrades: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the Trade model
+      ref: "Trade"
+    }
+  ],
+  completedTrades: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the Trade model
+      ref: "Trade"
+    }
   ]
 });
 

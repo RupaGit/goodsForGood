@@ -19,6 +19,11 @@ export function GFGCardGroup(props) {
   return <Card.Group {...props} />;
 }
 
+export function GFGCardContent(props) {
+  return <Card.Content {...props} >{props.children} </Card.Content>;
+}
+
+
 export function GFGImage(props) {
   return <Image {...props} />;
 }

@@ -7,13 +7,31 @@ import {
    Icon,
    Transition,
    Responsive,
-   Visibility
+   Visibility,
+   Dropdown
 } from "semantic-ui-react";
+import socketIOClient from "socket.io-client";
+import GFGMenu from "./GFGMenu";
+
+var socket;
+
+// class Navigation extends Component {
+//    constructor() {
+//       super();
+//       this.state = {
+//          endpoint: ''
+//       }
+//       socket = socketIOClient("http://localhost:4000/", { transports: ['polling', 'websocket'] });
+//    }
+//    // hideFixedMenu = () => this.setState({ fixed: false });
+//    // showFixedMenu = () => this.setState({ fixed: true });
+//    // handleSidebarHide = () => this.setState({ sidebarOpened: false });
+//    // handleToggle = () => this.setState({ sidebarOpened: true });
 export default class Navigation extends Component {
    state = {}
    handleChange = (e, { name, value }) => this.setState({ [name]: value })
-  toggleVisibility = () =>
-    this.setState((prevState) => ({ visible: !prevState.visible }))
+   toggleVisibility = () =>
+      this.setState((prevState) => ({ visible: !prevState.visible }))
 
    render() {
       const getWidth = () => {
@@ -24,7 +42,7 @@ export default class Navigation extends Component {
       const { fixed } = this.state;
       return (
          <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-                   <Menu
+            <Menu
                fixed={fixed ? "top" : null}
                pointing={!fixed}
                secondary={!fixed}
@@ -39,8 +57,8 @@ export default class Navigation extends Component {
                         primary={fixed}
                         style={{ marginLeft: "0.5em" }}
                         visible
-                        >
-                </Menu.Item >
+                     >
+                     </Menu.Item >
                      <Menu.Item
                         as={Link}
                         to="/communityFeed"
@@ -53,16 +71,16 @@ export default class Navigation extends Component {
                 </Menu.Item>
                   </Menu.Item>
                   <Menu.Item position="right">
-                     {this.props.isLoggedIn ? (<Menu.Item
-                        as={Link}
-                        to={this.props.isLoggedIn ? "/userDashboard" : ""}
-                        content="userDashboard"
-                        primary={fixed}
-                        style={{ marginLeft: "0.5em" }}
-                        onClick={this.toggleVisibility}
-                     >
-                        Dashboard
-                     </Menu.Item>) : null}
+                     {this.props.isLoggedIn ? (
+                        <Dropdown item text="Dashboard">
+                           <Dropdown.Menu>
+                              <Dropdown.Item as={Link} to={"/myTrades"}> My Trades </Dropdown.Item>
+                              <Dropdown.Item as={Link} to={"/pendingTrades"}> Pending Trades </Dropdown.Item>
+                              <Dropdown.Item as={Link} to={"/favoriteTrades"}> Favorite Trades </Dropdown.Item>
+                              <Dropdown.Item as={Link} to={"/messages"}> Messages </Dropdown.Item>
+                           </Dropdown.Menu>
+                        </Dropdown>
+                     ) : null}
                      <Menu.Item
                         as={Link}
                         to={"/viewTrades"}
@@ -93,3 +111,5 @@ export default class Navigation extends Component {
       );
    }
 }
+
+export { Navigation, socket };

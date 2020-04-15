@@ -1,4 +1,4 @@
-var db = require("../models");
+// var db = require("../models");
 var bcrypt = require("bcrypt");
 var passport = require("../config/passport");
 var path = require("path");
@@ -28,7 +28,7 @@ transporter.verify((error, success) => {
   }
 });
 
-module.exports = function (app) {
+module.exports = function (app, db) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
@@ -143,22 +143,22 @@ module.exports = function (app) {
 
 
   app.put("/api/deleteTrades/:tradeId", function (req, res) {
-    db.Trade.findOneAndUpdate({ _id: req.params.tradeId },{ isDeleted: true })
+    db.Trade.findOneAndUpdate({ _id: req.params.tradeId }, { isDeleted: true })
       .then(tradeData => res.json(tradeData))
       .catch(err => res.status(422).json(err));
   });
-  
+
   // making a edit api
-  app.put("/api/editTrades/:newTradeId",function (req, res) {
+  app.put("/api/editTrades/:newTradeId", function (req, res) {
     // console.log(newTrade,req.params.userId)
-    db.Trade.findOneAndUpdate({ _id: req.params.newTradeId},{
+    db.Trade.findOneAndUpdate({ _id: req.params.newTradeId }, {
       reqItem: req.body.reqItem,
       reqItemQty: req.body.reqItemQty,
       availItem: req.body.availItem,
       availItemQty: req.body.availItemQty
     })
-    .then(tradeData => {console.log("Trade data is ", tradeData); res.json(tradeData)})
-    .catch(err => res.status(422).json(err));
+      .then(tradeData => { console.log("Trade data is ", tradeData); res.json(tradeData) })
+      .catch(err => res.status(422).json(err));
   })
 
   //API call to get all trades matching the browser's location
@@ -187,5 +187,55 @@ module.exports = function (app) {
       { new: true })
       .then(userData => res.json(userData))
       .catch(err => res.status(422).json(err));
-  })
+  });
+
+  //Route to get pending trades by user id
+  app.get("/api/getPendingTrades/:userId", (req, res) => {
+    console.log()
+    db.User.findOne({ _id: mongoose.Types.ObjectId(req.params.userId) })
+      .populate("pendingTrades")
+      .then(userData => {
+        console.log("user data is ", userData.pendingTrades);
+        res.json(userData.pendingTrades)
+      })
+      .catch(err => res.status(422).json(err));
+  });
+
+  //route to mark a trade as complete
+  app.put("/api/completeTrade", (req, res) => {
+    console.log()
+    db.User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $pull: { pendingTrades: req.body.tradeId } }
+    )
+      .then(userData =>
+        db.User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $push: { completedTrades: req.body.tradeId } },
+          { new: true })
+          .then(userData => res.json(userData))
+          .catch(err => res.status(422).json(err)));
+  });
+  app.put("/api/removePendingTrade", (req, res) => {
+    console.log()
+    db.User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $pull: { pendingTrades: req.body.tradeId } }
+    )
+      .then(userData => res.json(userData))
+      .catch(err => res.status(422).json(err));
+  });
+
+
+  // route to get favorite trades by user id
+  app.get("/api/getFavoriteTrades/:userId", (req, res) => {
+    console.log()
+    db.User.findOne({ _id: mongoose.Types.ObjectId(req.params.userId) })
+      .populate("favoriteTrades")
+      .then(userData => {
+        console.log("user data is ", userData.favoriteTrades);
+        res.json(userData.favoriteTrades)
+      })
+      .catch(err => res.status(422).json(err));
+  });
 };

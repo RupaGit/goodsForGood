@@ -17,7 +17,7 @@ export default {
   logout: function () {
     return axios.get("api/logout");
   },
-    emailuser: function (userid) {
+  emailuser: function (userid) {
     return axios.post("/api/emailUser" + userid);
   },
   noderMailer: function (userData) {
@@ -35,13 +35,13 @@ export default {
     console.log(userId);
     return axios.get("/api/getTrades/" + userId);
   },
-  
+
   deleteTradeByID: function (tradeID) {
     console.log("this is the  Delet userid", tradeID);
     return axios.put("/api/deleteTrades/" + tradeID);
   },
-  
-  editUserTradeByID: function ( tradeData, tradeID) {
+
+  editUserTradeByID: function (tradeData, tradeID) {
     console.log("this is the  Delet tradeID", tradeID);
     return axios.put("/api/editTrades/" + tradeID, tradeData);
   },
@@ -59,6 +59,19 @@ export default {
   addToFavorites: function (data) {
     console.log(data);
     return axios.put("/api/addToFavorites", data);
+  },
+  getPendingTrades: function (userId) {
+    console.log("I am in api pending trades");
+    return axios.get("/api/getPendingTrades/" + userId);
+  },
+  completeTrade: function (data) {
+    return axios.put("api/completeTrade", data);
+  },
+  removePendingTrade: function (data) {
+    return axios.put("api/removePendingTrade", data);
+  },
+  getFavoriteTrades: function (userId) {
+    return axios.get("/api/getFavoriteTrades/" + userId);
   }
 };
 
