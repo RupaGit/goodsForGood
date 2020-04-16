@@ -62,8 +62,10 @@ class App extends React.Component {
 
   onUserLogin = (data) => {
     // this.setState({ isLoggedIn: data });
+    this.setState({ isLoggedIn: data });
+
     API.getUserData()
-      .then(res => this.setState({ isLoggedIn: data, email: res.data.email, username: res.data.name, userId: res.data.id, zipCode: res.data.zipCode }))
+      .then(res => this.setState({ email: res.data.email, username: res.data.name, userId: res.data.id, zipCode: res.data.zipCode }))
       .catch(err => console.log(err))
   }
 
@@ -80,7 +82,8 @@ class App extends React.Component {
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
           <Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
-            <Route path="/login" component={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
+            {/* //Rupa to look into login and try to update states not based on callback */}
+            <Route path="/login" render={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
             <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
             <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
             <Route path="/userDashboard" render={() => <Dashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />

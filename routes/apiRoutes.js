@@ -108,6 +108,7 @@ module.exports = function (app, db) {
   //
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
+    console.log("Is authenticated", this.isAuthenticated);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -125,6 +126,8 @@ module.exports = function (app, db) {
         });
     }
   });
+
+
   //Create a trade
   app.post("/api/createTrade", (req, res, next) => {
     db.Trade
