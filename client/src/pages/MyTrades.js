@@ -16,6 +16,8 @@ import API from "../utils/API";
 import Login from "./Login";
 import GFGMenu from "../components/GFGMenu"
 import GFGEditTradeModal from "../components/GFGEditTradeModal";
+import "../components/GFGContainer/style.css";
+
 
 
 class MyTrades extends Component {
@@ -59,8 +61,7 @@ class MyTrades extends Component {
             return <Redirect to="./Login" />
         }
         return (
-            <GFGContainer>
-
+            <GFGContainer id="Shadobox">
                 <MyTradeModal userId={userId} email={email} zipCode={zipCode}>
                     <Grid>
                         <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>

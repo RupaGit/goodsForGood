@@ -12,7 +12,9 @@ import { Row, Header, Button, Icon } from 'semantic-ui-react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
 import API from "../utils/API";
 import { GFGModalHeader, GFGModalContent, GFGModalDesc } from "../components/GFGModal";
-import { socket } from "../components/Navigation";
+import { socket } from "../components/GFGNavbar";
+import "../components/GFGContainer/style.css";
+
 
 
 class ViewTrades extends Component {
@@ -113,7 +115,7 @@ class ViewTrades extends Component {
         const { isLoggedIn, userId, email, zipCode } = this.props;
         console.log(this.props);
         return (
-            <GFGContainer>
+            <GFGContainer id="Shadobox">
                 <Grid >
                     {/* ui centered grid */}
                     <Header textAlign='center' color="teal" size='huge'>All Trades in my neighborhood</Header>
@@ -121,7 +123,7 @@ class ViewTrades extends Component {
                     <Grid.Row>
 
                         {this.state.trades.map(newTrade =>
-                            <Card fluid key={newTrade._id} >
+                            <Card fluid key={newTrade._id} id="Shadobox" >
                                 <Card.Content>
                                     <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
                                     <GFGCardHeader> Requested Item Qty: {newTrade.reqItemQty} </GFGCardHeader>

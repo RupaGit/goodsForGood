@@ -5,7 +5,6 @@ body {
   box-sizing: border-box;
   padding-top: 75px;
 }
-
 header {
   position: fixed;
   top: 0;
@@ -15,7 +14,6 @@ header {
   background: #000000;
   z-index: 10;
 }
-
 header section {
   max-width: 1300px;
   margin: auto;
