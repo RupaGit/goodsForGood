@@ -14,14 +14,12 @@ class DesktopContainer extends Component {
   
   render() {
     return (
-      <Segment
-        inverted
-        textAlign='center'
-        style={{ minHeight: 700, padding: '0em 0em' }}
-        vertical>
+      <div>
+       {/* <Segment  inverted textAlign='center'style={{ minHeight: 700, padding: '0em 0em' }} vertical> */}
       <HomepageHeading isLoggedIn={this.props.isLoggedIn}/>
-        <Footer></Footer>
-      </Segment>
+        {/* <Footer></Footer> */}
+       {/* </Segment> */}
+      </div>
     )
   }
 }

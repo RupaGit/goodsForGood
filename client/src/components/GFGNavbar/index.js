@@ -11,7 +11,9 @@ import {
    Dropdown
 } from "semantic-ui-react";
 import socketIOClient from "socket.io-client";
-import GFGMenu from "./GFGMenu";
+import GFGMenu from "../GFGMenu";
+import './style.css';
+
 
 var socket;
 
@@ -41,7 +43,7 @@ export default class Navigation extends Component {
       const { children } = this.props;
       const { fixed } = this.state;
       return (
-         <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+         <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} className="navigatonstyle">
             <Menu
                fixed={fixed ? "top" : null}
                pointing={!fixed}

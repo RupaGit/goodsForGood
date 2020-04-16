@@ -12,7 +12,7 @@ import { Row, Header, Button, Icon } from 'semantic-ui-react'
 import { Divider, Grid, Image } from 'semantic-ui-react'
 import API from "../utils/API";
 import { GFGModalHeader, GFGModalContent, GFGModalDesc } from "../components/GFGModal";
-import { socket } from "../components/Navigation";
+import { socket } from "../components/GFGNavbar";
 
 
 class ViewTrades extends Component {

@@ -18,44 +18,14 @@ class Footer extends Component {
   render() {
     const { mobile, isLoggedIn } = this.props;
     return (
-      <Segment inverted vertical style={{margin: '1em 0em 0em', padding: '0em 0em'}}>
-                <Divider inverted  />
+      <div className="footer">
+       <Divider inverted  />
       <Container textAlign='center'>
         <Grid divided inverted stackable>
-          <Grid.Column width={3}>
-            <Header inverted as='h4' content='Group 1' />
-            <List  link inverted >
-              <List.Item as='a'>Link One</List.Item>
-              <List.Item as='a'>Link Two</List.Item>
-              <List.Item as='a'>Link Three</List.Item>
-              <List.Item as='a'>Link Four</List.Item>
-            </List>
-          </Grid.Column>
-          <Grid.Column width={3}>
-            <Header inverted as='h4' content='Group 2' />
-            <List link inverted>
-              <List.Item as='a'>Link One</List.Item>
-              <List.Item as='a'>Link Two</List.Item>
-              <List.Item as='a'>Link Three</List.Item>
-            </List>
-          </Grid.Column>
-          <Grid.Column width={3}>
-            <Header inverted as='h4'  content='Group 3' />
-            <List link inverted>
-              <List.Item as='a'>Link One</List.Item>
-              <List.Item as='a'>Link Two</List.Item>
-              <List.Item as='a'>Link Three</List.Item>
-            </List>
-          </Grid.Column>
-          <Grid.Column width={7}>
-            <Header inverted as='h4' content='Footer Header' />
-            <p>
-              Extra space for a call to action inside the footer that could help re-engage users.
-            </p>
-          </Grid.Column>
+            <Grid.Column width={7}>
+                 </Grid.Column>
         </Grid>
-        <Divider inverted section/>
-        <Image centered size='mini' src='/logo.png' />
+        <Image centered size='mini' src=' favicon.ico' />
         <List  horizontal inverted divided link size='small'>
           <List.Item  as='a' href='#'>
             Site Map
@@ -71,7 +41,7 @@ class Footer extends Component {
           </List.Item>
         </List>
       </Container>
-    </Segment>
+      </div>
     )
   }
 }
