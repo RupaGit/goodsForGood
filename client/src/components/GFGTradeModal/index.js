@@ -42,7 +42,6 @@ class MyTradeModal extends React.Component {
                 onOpen={this.open}
                 onClose={this.close}
                 trigger={this.props.children}
-
             >
                 <Modal.Content >
                     <Form>

@@ -78,7 +78,7 @@ class App extends React.Component {
     const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
       <BrowserRouter>
-        <div>
+        <div style={{display:"flex", flexDirection:"column", justifyContent: "space-between", height:"100vh"}}>
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
           <Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Children } from "react";
 import "./style.css";
 import ParticlesBg from 'particles-bg'
 
 
-export default function GFGanimationContainer() {
+export default function GFGanimationContainer(props) {
   let config = {
     num: [4, 7],
     rps: 0.1,
@@ -37,6 +37,8 @@ export default function GFGanimationContainer() {
     });
   }
   return (
-     <ParticlesBg type="cobweb" bg={true} />
+     <ParticlesBg className="animaon" type="cobweb" bg={true}/>
+     
+   
   );
 }

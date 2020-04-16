@@ -1,11 +1,14 @@
-.gfgContainer {
+.animaon {
     margin-top: 50px;
     padding: 1rem;
     background-color: white;
     border-style:solid;
     border-radius: 15px;
     border-color: black;
-    z-index: 2;
+    z-index: -1;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
   }
   h1, p {
     font-family: 'Lato';
