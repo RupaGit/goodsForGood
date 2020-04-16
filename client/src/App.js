@@ -6,7 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import API from "./utils/API";
-import { Navigation } from "./components/Navigation";
+import { Navigation } from "./components/GFGNavbar";
 import SignUp from "./pages/SignUp";
 import Logout from "./pages/Logout";
 import UserDashboard from "./pages/userDashboard";
@@ -20,7 +20,7 @@ import PendingTrades from "./pages/PendingTrades"
 import FavoriteTrades from "./pages/FavoriteTrades";
 import Messages from "./pages/Messages";
 
-
+import Footer from './components/GFGFooter'
 
 class App extends React.Component {
 
@@ -92,7 +92,8 @@ class App extends React.Component {
             <Route exact path="/favoriteTrades" render={() => <FavoriteTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route exact path="/messages" component={Messages} />
           </Switch>
-        </div>
+          <Footer></Footer>
+        </div>  
       </BrowserRouter>
     );
   }

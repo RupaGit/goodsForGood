@@ -1,4 +1,36 @@
-/* .ui.inverted.segment .segment{ */
-    /* background-color: rgb(255, 255, 255); */
-    /* background-color: white; */
-/* } */
+.ui.divided.horizontal.list{
+    font-family:monospace;
+    text-transform: none;
+    color: rgba(0,0,0,.87);
+    font-weight: 400;
+
+}
+.ui[class*="center aligned"].container {
+    text-align: center;
+    background-color: white;
+    text-transform: none;
+    color: rgba(0,0,0,.87);
+    font-weight: 400;
+
+}
+.footer{
+    background-color: white;
+    text-transform: none;
+    color: rgba(0,0,0,.87);
+    font-weight: 400;
+
+}
+.ui.vertical.segment:last-child{
+    background-color: white;
+    text-transform: none;
+    color: rgba(0,0,0,.87);
+    font-weight: 400;
+}
+.ui.vertical.segment:last-child{
+    color: rgba(0,0,0,.87);
+
+}
+.ui.divided.inverted.horizontal.list>.item, .ui.divided.inverted.list>.item, .ui.divided.inverted.list>.list{
+    color: rgba(0,0,0,.87);
+    font-size: 17px;
+}

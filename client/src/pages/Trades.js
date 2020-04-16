@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MyTradeCard from "../components/GFGTradeCard/index"
 import { Card, Container } from "semantic-ui-react";
+import "../components/GFGContainer/style.css";
 
 
 export default class Trades extends Component {
@@ -14,7 +15,7 @@ export default class Trades extends Component {
             { myname: 'anna', item1: 'pickles', qty1: 5, item2: 'spoons', qty2: 12 }
         ]
         return (
-            <Container style={{ marginTop: '25px' }}>
+            <Container style={{ marginTop: '25px' }} id="Shadobox">
                 <Card.Group centered>
                     {testTrades.map((newTrade) =>
                         <MyTradeCard

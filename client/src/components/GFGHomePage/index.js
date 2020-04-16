@@ -19,8 +19,7 @@ import './slider-animations.css';
 import './style.css';
 import GFGContainer from "../GFGContainer/index";
 
- 
- 
+
 class HomepageHeading extends Component {
 
     render() {
@@ -31,7 +30,7 @@ class HomepageHeading extends Component {
               description:
                   'Trade The Goods You Need With Your Local Community',
               button: 'Read More',
-              image: 'https://i.imgur.com/ZXBtVw7.jpg',
+              image: 'https://images.unsplash.com/photo-1550505393-2c5dbec5de87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
               user: 'GoodsforGood',
               userProfile: 'favicon.ico'
           },
@@ -41,17 +40,17 @@ class HomepageHeading extends Component {
                   'Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui.',
               button: 'Discover',
               image: 'https://i.imgur.com/DCdBXcq.jpg',
-              user: 'Erich Behrens',
-              userProfile: 'https://i.imgur.com/0Clfnu7.png'
+              user: 'GoodsforGood',
+              userProfile: 'favicon.ico'
           },
           {
-              title: 'Phasellus volutpat metus',
-              description:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.',
-              button: 'Buy now',
+              title: 'Meet The Team',
+              names:'Swarupa Popuri, Guy Yaffe Ermoza, and Javits Arias',
+                description:'are graduates of the Columbia Engineering Full Stack Software Engineering Bootcamp. They come from different backgrounds but wanted to create an app that will bring people together to help each other in difficult times.',
+              button: 'Add them on LinkedIn to learn more!',
               image: 'https://i.imgur.com/DvmN8Hx.jpg',
-              user: 'Bruno Vizovskyy',
-              userProfile: 'https://i.imgur.com/4KeKvtH.png'
+              user: 'GoodsforGood',
+              userProfile: 'favicon.ico'
           }   
             ];
       return (
@@ -64,6 +63,7 @@ class HomepageHeading extends Component {
             >
                 <div className="inner">
                     <h1>{item.title}</h1>
+                    <p>{item.names}</p>
                     <p>{item.description}</p>
                     <button>{item.button}</button>
                 </div>

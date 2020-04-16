@@ -6,6 +6,7 @@ import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import UserDashboard from "./userDashboard";
+import "../components/GFGContainer/style.css";
 
 
 class Login extends Component {
@@ -50,7 +51,7 @@ class Login extends Component {
       return <Redirect to="./" />
     }
     return (
-      <GFGContainer>
+      <GFGContainer id="Shadobox">
         <Form>
           <Form.Field>
             <GFGLabel>Email address</GFGLabel>
