@@ -50,6 +50,7 @@ class PendingTrades extends Component {
         API.completeTrade(data)
             .then((res) => {
                 console.log('trade marked as completed.')
+                this.loadPendingTrades()
             }).catch((error) => {
                 console.log(error)
             })
@@ -60,6 +61,7 @@ class PendingTrades extends Component {
         API.removePendingTrade(data)
             .then((res) => {
                 console.log('trade marked as completed.')
+                this.loadPendingTrades()
             }).catch((error) => {
                 console.log(error)
             })
