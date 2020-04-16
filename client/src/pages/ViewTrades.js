@@ -78,18 +78,10 @@ class ViewTrades extends Component {
             .catch(err => console.log(err))
     }
 
-    // transmitMessage = (message, sender, receiver) => {
-    //     // const { socket } = this.props
-    //     // socket.broadcast.to(receiver).emit('message', message);
-    //     socket.emit("new message", {
-    //         message, sender, receiver
-    //     })
-    // }
-
     sendMessage = (messageReceiverId, tradeId) => {
         console.log(this.state.message);
         const messageSenderId = this.props.userId;
-        console.log("Receiver id", messageReceiverId, "Sender id is", messageSenderId);
+        console.log("Receiver id", messageReceiverId, "Sender id is", messageSenderId, "trade Id is", tradeId);
         if (!this.props.userId) return;
         // socket.on("message", (messageSenderId, messageReceiverId) => {
         // this.transmitMessage(this.state.message, messageSenderId, messageReceiverId)
@@ -100,15 +92,7 @@ class ViewTrades extends Component {
             receiver: messageReceiverId,
             tradeId: tradeId
         })
-        this.handleClose();
-        // })
-        // socket.emit("send message", this.state.message, function() {
-        //     console.log("Message sent")
-        //     // socket.broadcast.to(socketid).emit('message', 'for your eyes only');
-
-
-        //   });
-
+        this.loadUserTrades();
     }
 
     render() {
@@ -129,28 +113,15 @@ class ViewTrades extends Component {
                                     <GFGCardHeader> Requested Item Qty: {newTrade.reqItemQty} </GFGCardHeader>
                                     <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
                                     <GFGCardHeader> Available Item Qty: {newTrade.availItemQty} </GFGCardHeader>
+                                    {(isLoggedIn) ? (<Form reply>
+                                        <Form.TextArea value={this.state.message}
+                                            placeholder="Enter a message and click send Message to contact owner"
+                                            onChange={this.handleInputChange}
+                                            name="message" />
+                                    </Form>) : null}
                                 </Card.Content>
                                 {(isLoggedIn) ? (<Card.Content extra>
-                                    {/* //We have to implement socket.io for contact trade owner button */}
-                                    <Modal trigger={<GFGButton color='teal' onClick={this.handleOpen}>Contact Trade Owner</GFGButton>}
-                                        open={this.state.modalOpen}
-                                        onClose={this.handleClose}>
-                                        <GFGModalHeader color="teal"> Please enter your message to the trade owner </GFGModalHeader>
-                                        <GFGModalContent color="teal">
-                                            <Form>
-                                                <Form.Field>
-                                                    <GFGTextArea
-                                                        value={this.state.message}
-                                                        onChange={this.handleInputChange}
-                                                        name="message"
-                                                        placeholder="Enter your message to the owner"
-                                                    />
-                                                </Form.Field>
-                                                <GFGButton color='teal' onClick={() => this.sendMessage(newTrade.userId, newTrade._id)}>Send Message</GFGButton>
-                                            </Form>
-                                        </GFGModalContent>
-
-                                    </Modal>
+                                    <GFGButton color='teal' onClick={() => this.sendMessage(newTrade.userId, newTrade._id)}>Send Message</GFGButton>
                                     <GFGButton color='green' onClick={() => this.addFav(newTrade._id)}>Add to Favorites </GFGButton>
 
                                 </Card.Content>) : null}

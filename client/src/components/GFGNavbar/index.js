@@ -30,7 +30,13 @@ var socket;
 //    // handleSidebarHide = () => this.setState({ sidebarOpened: false });
 //    // handleToggle = () => this.setState({ sidebarOpened: true });
 export default class Navigation extends Component {
-   state = {}
+   constructor() {
+      super();
+      this.state = {
+         endpoint: ''
+      }
+      socket = socketIOClient("http://localhost:4000/", { transports: ['polling', 'websocket'] });
+   }
    handleChange = (e, { name, value }) => this.setState({ [name]: value })
    toggleVisibility = () =>
       this.setState((prevState) => ({ visible: !prevState.visible }))

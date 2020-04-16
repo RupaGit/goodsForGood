@@ -62,7 +62,7 @@ class MyTrades extends Component {
         }
         return (
             <GFGContainer id="Shadobox">
-                <MyTradeModal userId={userId} email={email} zipCode={zipCode}>
+                <MyTradeModal userId={userId} email={email} zipCode={zipCode} loadUserTrades={this.loadUserTrades}>
                     <Grid>
                         <Grid.Column textAlign="center" style={{ marginTop: '25px' }}>
                             {isLoggedIn ? (<Button color="teal" size='huge'>

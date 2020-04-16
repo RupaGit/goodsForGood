@@ -15,7 +15,7 @@ class MyTradeModal extends React.Component {
         });
         // console.log(this.state);
     };
-    
+
     onClick = (event) => {
         const trade = {
             reqItem: this.state.reqItem,
@@ -26,7 +26,11 @@ class MyTradeModal extends React.Component {
             userId: this.props.userId
         }
         API.createTrade(trade)
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data)
+                this.props.loadUserTrades()
+                this.close()
+            })
             .catch(err => console.log(err))
     }
     render() {
