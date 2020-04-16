@@ -72,6 +72,9 @@ export default {
   },
   getFavoriteTrades: function (userId) {
     return axios.get("/api/getFavoriteTrades/" + userId);
+  },
+  getMessages: function (userId) {
+    return axios.get("/api/getMessages/" + userId);
   }
 };
 

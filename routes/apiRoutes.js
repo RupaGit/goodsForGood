@@ -108,7 +108,6 @@ module.exports = function (app, db) {
   //
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
-    console.log("Is authenticated", this.isAuthenticated);
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -117,6 +116,7 @@ module.exports = function (app, db) {
       // Sending back a password, even a hashed password, isn't a good idea
       db.User.findOne({ email: req.user.email }).
         then(user => {
+          console.log("User info in user_data is", user);
           res.json({
             name: user.name,
             email: user.email,
@@ -219,6 +219,7 @@ module.exports = function (app, db) {
           .then(userData => res.json(userData))
           .catch(err => res.status(422).json(err)));
   });
+
   app.put("/api/removePendingTrade", (req, res) => {
     console.log()
     db.User.findOneAndUpdate(
@@ -241,4 +242,15 @@ module.exports = function (app, db) {
       })
       .catch(err => res.status(422).json(err));
   });
+
+  //To get sent messages by a user
+  app.get("/api/getMessages/:id", (req, res) => {
+    db.Messages.find({ $or: [{ receiver: mongoose.Types.ObjectId(req.params.id) }, { sender: mongoose.Types.ObjectId(req.params.id) }] })
+      .then(receivedMessages => {
+        console.log("messages received by user are", receivedMessages);
+        res.json(receivedMessages)
+      })
+      .catch(err => res.status(422).json(err));
+  });
+
 };

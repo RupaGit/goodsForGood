@@ -13,6 +13,10 @@ var MessageSchema = new Schema({
         ref: "User",
         required: true
     },
+    senderName: {
+        type: String,
+        required: true
+    },
     receiver: {
         type: Schema.Types.ObjectId,
         ref: "User",
@@ -22,7 +26,27 @@ var MessageSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Trade",
         required: true
-    }
+    },
+    responses: [{
+        responseSender: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        },
+        responseSenderName: {
+            type: String,
+            required: true
+        },
+        responseReceiver: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        },
+        responseMessage: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
 var Messages = mongoose.model("Messages", MessageSchema);

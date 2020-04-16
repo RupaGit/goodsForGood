@@ -81,6 +81,8 @@ class ViewTrades extends Component {
     sendMessage = (messageReceiverId, tradeId) => {
         console.log(this.state.message);
         const messageSenderId = this.props.userId;
+        const senderName = this.props.username;
+        console.log("senderName", senderName);
         console.log("Receiver id", messageReceiverId, "Sender id is", messageSenderId, "trade Id is", tradeId);
         if (!this.props.userId) return;
         // socket.on("message", (messageSenderId, messageReceiverId) => {
@@ -89,6 +91,7 @@ class ViewTrades extends Component {
         socket.emit("new message", {
             message: this.state.message,
             sender: messageSenderId,
+            senderName: senderName,
             receiver: messageReceiverId,
             tradeId: tradeId
         })
@@ -96,8 +99,8 @@ class ViewTrades extends Component {
     }
 
     render() {
-        const { isLoggedIn, userId, email, zipCode } = this.props;
-        console.log(this.props);
+        const { isLoggedIn, username, userId, email, zipCode } = this.props;
+        console.log("Props in view trades", this.props);
         return (
             <GFGContainer id="Shadobox">
                 <Grid >
