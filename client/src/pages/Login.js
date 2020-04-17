@@ -7,6 +7,8 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import UserDashboard from "./userDashboard";
 import "../components/GFGContainer/style.css";
+import GFGanimationContainer from "../components/GFGanimationContainer";
+
 
 
 class Login extends Component {
@@ -51,8 +53,11 @@ class Login extends Component {
       return <Redirect to="./" />
     }
     return (
+      <div style={{height:"100%", width:"100%"}}>
+      <GFGanimationContainer/>
       <GFGContainer id="Shadobox">
-        <Form>
+    
+        <Form style={{zIndex:2}}>
           <Form.Field>
             <GFGLabel>Email address</GFGLabel>
             <GFGInput
@@ -89,7 +94,9 @@ class Login extends Component {
             Sign Up to Goods For Good
           </GFGButton>
         </Form>
+      
       </GFGContainer>
+      </div>
     );
   }
 }
