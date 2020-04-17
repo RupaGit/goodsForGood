@@ -1,69 +1,49 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
-import { Form, Divider, Grid, Header } from "semantic-ui-react";
+import { Form, Divider, Feed, Icon } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 import AddFeed from "./AddFeed";
+import Moment from 'react-moment';
 
 class CommunityFeed extends Component {
     constructor(props) {
         super(props);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.loadUserData = this.loadUserData.bind(this);
-        // this.getZipCode = this.getZipCode.bind(this);
-
+        this.loadCommunityFeed = this.loadCommunityFeed.bind(this);
         this.state = {
             zipCode: "",
-            userId: "",
             redirect: null,
             feeds: [],
         }
     }
 
     componentDidMount() {
-        this.loadUserData();
+        this.setState({ zipCode: this.props.zipCode })
+        if (this.props.zipCode) {
+            this.loadCommunityFeed(this.props.zipCode)
+        }
     }
 
-    loadUserData = () => {
-        API.getUserData()
-            .then(res => {
-                this.setState({ userId: res.data.id });
-                // this.getZipCode();
-            })
-            .catch(err => console.log(err))
+    loadCommunityFeed = (zipCode) => {
+        console.log(this.state.zipCode);
+        API.getCommunityFeed(zipCode)
+            .then(res => this.setState({ feeds: res.data }))
+            .catch(err => console.log(err));
     }
-
-    // getZipCode = () => {
-    //     var lat, lng;
-    //     let currentComponent = this;
-    //     navigator.geolocation.getCurrentPosition(function (position) {
-    //         lat = position.coords.latitude;
-    //         lng = position.coords.longitude;
-    //         var coords = { lat: lat, lng: lng };
-    //         console.log("coordinates are ", coords);
-    //         API.zipLocation(coords)
-    //             .then(res => {
-    //                 currentComponent.setState({ zipCode: res.data.results[0].components.postcode });
-    //                 console.log(res.data.results[0].components.postcode);
-
-    //             })
-    //             .catch(err => console.log(err))
-    //     });
-    // }
-
-
 
     handleInputChange = (event) => {
         const { name, value, } = event.target;
         this.setState({
             [name]: value,
         });
+        console.log(this.state.zipCode)
     };
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
+        this.loadCommunityFeed(this.state.zipCode);
     };
 
     addNewFeed = (event) => {
@@ -71,16 +51,23 @@ class CommunityFeed extends Component {
         this.setState({ redirect: "/addNewFeed" })
 
     }
-
+    increaseLikes = (feedId) => {
+        API.increaseLikes(feedId)
+            .then(res => this.loadCommunityFeed(this.props.zipCode))
+            .catch(err => console.log(err));
+    }
+    increaseDislikes = (feedId) => {
+        API.increaseDislikes(feedId)
+            .then(res => this.loadCommunityFeed(this.props.zipCode))
+            .catch(err => console.log(err));
+    }
     render() {
         if (this.state.redirect) {
-            return <Redirect to={this.state.redirect} userId={this.state.userId} zipCode={this.state.zipCode} />
+            return <Redirect to={this.state.redirect} username={this.props.username} zipCode={this.state.zipCode} />
         }
         return (
             <GFGContainer>
-                {this.state.userId ? (<div><GFGButton color="teal" onClick={this.addNewFeed}> Add a new Feed </GFGButton>  <Divider horizontal>Or search for Feeds in your area </Divider> </div>) : (null)}
-
-                <Form>
+                {!this.props.zipCode ? (<Form>
                     <Form.Field>
                         <GFGLabel>Zip Code</GFGLabel>
                         <GFGInput
@@ -97,8 +84,39 @@ class CommunityFeed extends Component {
                     >
                         Search
                                 </GFGButton>
-                </Form>
+                </Form>) : null}
+                {(this.props.zipCode || this.state.zipCode) ? (<GFGButton color="teal" onClick={this.addNewFeed}> Add a new Feed </GFGButton>) : null}
 
+                <Divider horizontal> Store Feed in my neighborhood </Divider>
+
+                {this.state.feeds.map(feed =>
+                    <Feed key={feed._id}>
+                        <Feed.Event>
+                            <Feed.Content>
+                                <Feed.Summary>
+                                    <a>{feed.createdBy}</a> posted on
+                                    <Feed.Date>
+                                        <Moment format="MM-DD-YYYY  -  HH:mm" date={feed.created} />
+                                    </Feed.Date>
+                                </Feed.Summary>
+                                <Feed.Extra text>
+                                    Items found: {feed.message}
+                                </Feed.Extra>
+                                <Feed.Extra text>
+                                    Store Name: {feed.storeName}
+                                </Feed.Extra>
+                                <Feed.Meta>
+                                    <Feed.Like>
+                                        <Icon name='thumbs up' onClick={() => this.increaseLikes(feed._id)} />{feed.likes}
+                                    </Feed.Like>
+                                    <Feed.Like>
+                                        <Icon name='thumbs down' onClick={() => this.increaseDislikes(feed._id)} />{feed.dislikes}
+                                    </Feed.Like>
+                                </Feed.Meta>
+                            </Feed.Content>
+                        </Feed.Event>
+                    </Feed>
+                )}
             </GFGContainer>
         );
     }

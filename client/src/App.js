@@ -70,7 +70,7 @@ class App extends React.Component {
   }
 
   onUserLogout = (data) => {
-    this.setState({ isLoggedIn: data });
+    this.setState({ isLoggedIn: data, email: null, username: null, userId: null, zipCode: null });
   }
 
   render() {
@@ -78,7 +78,7 @@ class App extends React.Component {
     const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
       <BrowserRouter>
-        <div style={{display:"flex", flexDirection:"column", justifyContent: "space-between", height:"100vh"}}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100vh" }}>
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
           <Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
@@ -87,8 +87,8 @@ class App extends React.Component {
             <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
             <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
             <Route path="/userDashboard" render={() => <Dashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/myTrades" render={() => <MyTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route exact path="/pendingTrades" render={() => <PendingTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
