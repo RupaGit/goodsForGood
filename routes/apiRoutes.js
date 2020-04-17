@@ -253,4 +253,37 @@ module.exports = function (app, db) {
       .catch(err => res.status(422).json(err));
   });
 
+  app.post("/api/addFeed", (req, res) => {
+    db.Feeds
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  });
+
+  //To get community Feed by zip code
+  app.get("/api/getCommunityFeed/:zipCode", (req, res) => {
+    db.Feeds.find({ zipCode: req.params.zipCode })
+      .then(feedData => {
+        console.log("Feeds are", feedData);
+        res.json(feedData)
+      })
+      .catch(err => res.status(422).json(err));
+  });
+
+  app.put("/api/increaseLikes/:feedId", (req, res) => {
+    db.Feeds.findOneAndUpdate({ _id: req.params.feedId }, { $inc: { likes: 1 } }, { new: true })
+      .then(response => {
+        res.json(response)
+      })
+      .catch(err => res.status(422).json(err));
+  });
+  app.put("/api/increaseDislikes/:feedId", (req, res) => {
+    db.Feeds.findOneAndUpdate({ _id: req.params.feedId }, { $inc: { dislikes: 1 } }, { new: true })
+      .then(response => {
+        res.json(response)
+      })
+      .catch(err => res.status(422).json(err));
+  });
+
+
 };
