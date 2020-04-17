@@ -2,7 +2,7 @@
     z-index: -1;
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
   }
   h1, p {
     font-family: 'Lato';

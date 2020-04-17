@@ -19,9 +19,9 @@ class Footer extends Component {
     const { mobile, isLoggedIn } = this.props;
     return (
       <div className="footer" >
-        <div class="ui sticky">
-       <Divider inverted  />
-      <Container textAlign='center'>
+        <div class="ui fixed bottom sticky" style={{width:"100vw",background:"white"}} id="footerShadow">
+       {/* <Divider inverted /> */}
+      <Container textAlign='center' style={{paddingTop:'15px'}}>
         <Grid divided inverted stackable>
             <Grid.Column width={7}>
                  </Grid.Column>
