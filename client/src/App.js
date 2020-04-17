@@ -80,7 +80,7 @@ class App extends React.Component {
     return (
       <BrowserRouter >
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
-          <Route path="/login" component={GFGanimationContainer} />
+          <GFGanimationContainer/>
           <Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
             {/* //Rupa to look into login and try to update states not based on callback */}

@@ -54,7 +54,6 @@ class Login extends Component {
     }
     return (
       <div>
-      {/* <GFGanimationContainer/> */}
       <GFGContainer id="Shadobox">
         <Form style={{zIndex:2}}>
           <Form.Field>

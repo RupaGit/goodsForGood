@@ -54,7 +54,13 @@ class GFGanimationContainer extends React.Component {
   }
   componentDidMount() {
     this.vantaEffect = WAVES({
-      el: this.vantaRef.current,
+      el: this.vantaRef.current, mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x5da8ac,
       THREE: THREE // use a custom THREE when initializing
     })
   }
