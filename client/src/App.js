@@ -19,6 +19,7 @@ import MyTrades from "./pages/MyTrades";
 import PendingTrades from "./pages/PendingTrades"
 import FavoriteTrades from "./pages/FavoriteTrades";
 import Messages from "./pages/Messages";
+import GFGanimationContainer from "./components/GFGanimationContainer";
 
 import Footer from './components/GFGFooter'
 
@@ -77,9 +78,9 @@ class App extends React.Component {
     console.log("State of app js", this.state);
     const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
-      <BrowserRouter>
-        <div style={{display:"flex", flexDirection:"column", justifyContent: "space-between", height:"100vh"}}>
+      <BrowserRouter >
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
+          <Route path="/login" component={GFGanimationContainer} />
           <Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
             {/* //Rupa to look into login and try to update states not based on callback */}
@@ -96,7 +97,6 @@ class App extends React.Component {
             <Route exact path="/messages" component={Messages} />
           </Switch>
           <Footer></Footer>
-        </div>  
       </BrowserRouter>
     );
   }

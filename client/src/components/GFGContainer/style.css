@@ -6,6 +6,7 @@
   border-radius: 15px;
   border-color: black;
   z-index: 2;
+  height: 100%;
 }
 h1, p {
   font-family: 'Lato';

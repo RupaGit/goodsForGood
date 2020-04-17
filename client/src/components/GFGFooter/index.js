@@ -18,7 +18,8 @@ class Footer extends Component {
   render() {
     const { mobile, isLoggedIn } = this.props;
     return (
-      <div className="footer">
+      <div className="footer" >
+        <div class="ui sticky">
        <Divider inverted  />
       <Container textAlign='center'>
         <Grid divided inverted stackable>
@@ -41,6 +42,7 @@ class Footer extends Component {
           </List.Item>
         </List>
       </Container>
+      </div>
       </div>
     )
   }
