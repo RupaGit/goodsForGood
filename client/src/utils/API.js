@@ -75,6 +75,19 @@ export default {
   },
   getMessages: function (userId) {
     return axios.get("/api/getMessages/" + userId);
+  },
+  getCommunityFeed: function (zipCode) {
+    return axios.get("/api/getCommunityFeed/" + zipCode);
+  },
+  increaseLikes: function (feedId) {
+    return axios.put("/api/increaseLikes/" + feedId);
+  },
+  increaseDislikes: function (feedId) {
+    return axios.put("/api/increaseDislikes/" + feedId);
+  },
+  createFeed: function (feedData) {
+    console.log(feedData)
+    return axios.post("/api/addFeed", feedData);
   }
 };
 
