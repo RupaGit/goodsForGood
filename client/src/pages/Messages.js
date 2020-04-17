@@ -101,7 +101,7 @@ class Messages extends Component {
                                 <Comment.Group>
                                     <Comment>
                                         <Comment.Content>
-                                            <Comment.Author as='a'>{resMsg.responseSenderName}</Comment.Author>
+                                            <Comment.Author as='a'>{resMsg.responseSenderName}: </Comment.Author>
                                             <Comment.Text>{resMsg.responseMessage}</Comment.Text>
                                         </Comment.Content>
                                     </Comment>
@@ -129,15 +129,3 @@ class Messages extends Component {
 }
 
 export default Messages;
-
-
-    // <Card fluid centered key={message._id}>
-    //     <Card.Content>
-    //         <GFGCardHeader>Requested Item: {message.message}</GFGCardHeader>
-
-    //     </Card.Content>
-    //     <GFGCardContent extra>
-    //         <GFGButton color='teal' onClick={() => this.contactTradeOwner(message._id)}>Contact Trade owner</GFGButton>
-    //         <GFGButton color='teal' onClick={() => this.removePendingTrade(message._id)}>Remove</GFGButton>
-    //     </GFGCardContent>
-    // </Card>
