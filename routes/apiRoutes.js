@@ -230,6 +230,17 @@ module.exports = function (app, db) {
       .catch(err => res.status(422).json(err));
   });
 
+  app.put("/api/removeFavoriteTrade", (req, res) => {
+    console.log()
+    db.User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $pull: { favoriteTrades: req.body.tradeId } }
+    )
+      .then(userData => res.json(userData))
+      .catch(err => res.status(422).json(err));
+  });
+
+
 
   // route to get favorite trades by user id
   app.get("/api/getFavoriteTrades/:userId", (req, res) => {

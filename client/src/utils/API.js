@@ -73,6 +73,9 @@ export default {
   getFavoriteTrades: function (userId) {
     return axios.get("/api/getFavoriteTrades/" + userId);
   },
+  removeFavoriteTrade: function (data) {
+    return axios.put("api/removeFavoriteTrade", data);
+  },
   getMessages: function (userId) {
     return axios.get("/api/getMessages/" + userId);
   },
