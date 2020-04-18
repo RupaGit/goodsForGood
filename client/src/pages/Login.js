@@ -80,10 +80,8 @@ class Login extends Component {
       //       onClick={this.handleFormSubmit}
       //     >
       //       Login
-      <div style={{ height: "100%", width: "100%" }}>
-        <GFGanimationContainer />
-        <GFGContainer id="Shadobox">
-
+      <div >
+          <GFGContainer id="Shadobox">
           <Form style={{ zIndex: 2 }}>
             <Form.Field>
               <GFGLabel>Email address</GFGLabel>
