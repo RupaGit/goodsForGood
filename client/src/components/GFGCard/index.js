@@ -4,15 +4,15 @@ import "./style.css";
 
 
 export function GFGCardHeader(props) {
-  return <Card.Header {...props}> {props.children}</Card.Header>;
+  return <Card.Header className="maintainFonts" {...props}> {props.children}</Card.Header>;
 }
 
 export function GFGCardMeta(props) {
-  return <Card.Meta {...props} />;
+  return <Card.Meta className="maintainFonts" {...props} />;
 }
 
 export function GFGCardDes(props) {
-  return <Card.Description {...props} />;
+  return <Card.Description className="maintainFonts" {...props} />;
 }
 
 export function GFGCardGroup(props) {
@@ -20,7 +20,7 @@ export function GFGCardGroup(props) {
 }
 
 export function GFGCardContent(props) {
-  return <Card.Content {...props} >{props.children} </Card.Content>;
+  return <Card.Content className="maintainFonts" {...props} >{props.children} </Card.Content>;
 }
 
 
