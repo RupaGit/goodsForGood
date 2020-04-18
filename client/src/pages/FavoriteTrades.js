@@ -6,7 +6,7 @@ import {
     GFGImage,
     GFGCardContent
 } from "../components/GFGCard";
-import { Card, Segment, Container } from "semantic-ui-react";
+import { Card, Form } from "semantic-ui-react";
 import { Redirect } from 'react-router-dom';
 import GFGContainer from "../components/GFGContainer";
 import { GFGButton } from "../components/GFGForm";
@@ -16,6 +16,7 @@ import MyTradeModal from '../components/GFGTradeModal'
 import API from "../utils/API";
 import Login from "./Login";
 import GFGMenu from "../components/GFGMenu"
+import { socket } from "../components/GFGNavbar";
 import GFGEditTradeModal from "../components/GFGEditTradeModal";
 
 
@@ -24,7 +25,8 @@ class FavoriteTrades extends Component {
         super(props);
         this.loadFavoriteTrades = this.loadFavoriteTrades.bind(this);
         this.state = {
-            trades: []
+            trades: [],
+            userMessage: {}
         }
     }
 
@@ -45,6 +47,49 @@ class FavoriteTrades extends Component {
             });
     }
 
+    handleInputChange = (event) => {
+        const { name, value, } = event.target;
+        this.setState((prevState) => ({
+            ...prevState,
+            userMessage: {
+                ...prevState.userMessage,
+                [name]: value,
+            },
+        }));
+    };
+
+    contactTradeOwner = (messageReceiverId, tradeId, message) => {
+        console.log(this.state.message);
+        const messageSenderId = this.props.userId;
+        const senderName = this.props.username;
+        console.log("senderName", senderName);
+        console.log("Receiver id", messageReceiverId, "Sender id is", messageSenderId, "trade Id is", tradeId);
+        if (!this.props.userId) return;
+        // socket.on("message", (messageSenderId, messageReceiverId) => {
+        // this.transmitMessage(this.state.message, messageSenderId, messageReceiverId)
+
+        socket.emit("new message", {
+            message: message,
+            sender: messageSenderId,
+            senderName: senderName,
+            receiver: messageReceiverId,
+            tradeId: tradeId
+        })
+        this.removeFavoriteTrade(tradeId);
+    }
+
+    removeFavoriteTrade = (tradeId) => {
+        console.log("tradeId IS", tradeId);
+        var data = { tradeId: tradeId, userId: this.props.userId }
+        API.removeFavoriteTrade(data)
+            .then((res) => {
+                console.log('trade marked as completed.')
+                this.loadFavoriteTrades()
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
+
     render() {
         const { isLoggedIn, username, userId, email, zipCode } = this.props;
         console.log("props in user dashboard", this.props);
@@ -62,10 +107,16 @@ class FavoriteTrades extends Component {
                             <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
                             <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
                             <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
+                            <Form reply>
+                                <Form.TextArea value={this.state.userMessage[newTrade._id] || ""}
+                                    placeholder="Enter a message and click send Message to contact owner"
+                                    onChange={this.handleInputChange}
+                                    name={newTrade._id} />
+                            </Form>
                         </Card.Content>
                         <GFGCardContent extra>
-                            <GFGButton color='teal' onClick={() => this.contactTradeOwner(newTrade._id)}>Contact Trade owner</GFGButton>
-                            <GFGButton color='teal' onClick={() => this.removePendingTrade(newTrade._id)}>Remove</GFGButton>
+                            <GFGButton color='teal' onClick={() => this.contactTradeOwner(newTrade.userId, newTrade._id, this.state.userMessage[newTrade._id])}>Send Message</GFGButton>
+                            <GFGButton color='teal' onClick={() => this.removeFavoriteTrade(newTrade._id)}>Remove</GFGButton>
                         </GFGCardContent>
                     </Card>
                 )}

@@ -43,7 +43,7 @@ class AddFeed extends Component {
             userName = this.props.username
         }
         else {
-            userName = "Unanimous"
+            userName = "anonymous"
         }
         console.log(this.props.username);
 
