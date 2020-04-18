@@ -84,7 +84,7 @@ button:hover {
 
 .slider-wrapper {
   position: relative;
-  height: 70vh;
+  height: 100%;
   overflow: hidden;
 }
 

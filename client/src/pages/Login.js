@@ -53,11 +53,8 @@ class Login extends Component {
       return <Redirect to="./" />
     }
     return (
-
       <div >
-        <GFGanimationContainer />
-        <GFGContainer id="Shadobox">
-
+          <GFGContainer id="Shadobox">
           <Form style={{ zIndex: 2 }}>
             <Form.Field>
               <GFGLabel>Email address</GFGLabel>

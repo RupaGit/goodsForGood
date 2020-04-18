@@ -100,7 +100,7 @@ class App extends React.Component {
           </Switch>
       </BrowserRouter>
       <Footer/>
-      </div>
+       </div>
       </div>
     );
   }
