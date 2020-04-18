@@ -85,7 +85,6 @@ export default class Navigation extends Component {
                               <Dropdown.Item as={Link} to={"/myTrades"}> My Trades </Dropdown.Item>
                               <Dropdown.Item as={Link} to={"/pendingTrades"}> Pending Trades </Dropdown.Item>
                               <Dropdown.Item as={Link} to={"/favoriteTrades"}> Favorite Trades </Dropdown.Item>
-                              <Dropdown.Item as={Link} to={"/messages"}> Messages </Dropdown.Item>
                            </Dropdown.Menu>
                         </Dropdown>
                      ) : null}

@@ -72,6 +72,7 @@ class SignUp extends Component {
               onChange={this.handleInputChange}
               name="email"
               placeholder="Enter your email"
+              required
             />
           </Form.Field>
           <Form.Field>
@@ -81,6 +82,8 @@ class SignUp extends Component {
               onChange={this.handleInputChange}
               name="password"
               placeholder="Enter your password"
+              type='password'
+              required
             />
             {zipCode ? (<Form.Field>
               <GFGLabel>Password</GFGLabel>
@@ -88,6 +91,7 @@ class SignUp extends Component {
                 value={zipCode}
                 disabled
                 name="zipCode"
+                required
                 placeholder="Enter your password"></GFGInput> </Form.Field>
             ) : (<Form.Field>
               <GFGLabel>Zip Code</GFGLabel>

@@ -16,6 +16,7 @@ import API from "../utils/API";
 import Login from "./Login";
 import GFGMenu from "../components/GFGMenu"
 import GFGEditTradeModal from "../components/GFGEditTradeModal";
+import GFGMessages from "../components/GFGMessages";
 import "../components/GFGContainer/style.css";
 
 
@@ -32,6 +33,7 @@ class MyTrades extends Component {
     componentDidMount() {
         console.log("Props from component mount", this.props);
         this.loadUserTrades();
+
     }
 
     loadUserTrades = () => {
@@ -55,7 +57,7 @@ class MyTrades extends Component {
     }
 
     render() {
-        const { isLoggedIn, userId, email, zipCode } = this.props;
+        const { isLoggedIn, username, userId, email, zipCode } = this.props;
         console.log("props in user dashboard", this.props);
         if (!isLoggedIn) {
             return <Redirect to="./Login" />
@@ -80,8 +82,9 @@ class MyTrades extends Component {
                             <GFGCardDes> Requested Item Qty: {newTrade.reqItemQty} </GFGCardDes>
                             <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
                             <GFGCardDes> Available Item Qty: {newTrade.availItemQty} </GFGCardDes>
-                            <GFGEditTradeModal tradeToEdit={newTrade}><GFGButton color='teal'>Edit</GFGButton></GFGEditTradeModal>
-                            <GFGButton color='red' onClick={() => this.deleteUserTradeByID(newTrade._id)}>Delete</GFGButton>
+                            <GFGEditTradeModal tradeToEdit={newTrade}><GFGButton color='teal'><Icon name="edit" />Edit</GFGButton></GFGEditTradeModal>
+                            <GFGButton color='red' onClick={() => this.deleteUserTradeByID(newTrade._id)}><Icon name="delete" />Delete</GFGButton>
+                            <GFGMessages tradeId={newTrade._id} username={username} userId={userId} />
                         </Card.Content>
                     </Card>
                 )}

@@ -90,10 +90,9 @@ class App extends React.Component {
             <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/myTrades" render={() => <MyTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route exact path="/pendingTrades" render={() => <PendingTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route exact path="/favoriteTrades" render={() => <FavoriteTrades isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route exact path="/messages" render={() => <Messages isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route path="/myTrades" render={() => <MyTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route exact path="/pendingTrades" render={() => <PendingTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+            <Route exact path="/favoriteTrades" render={() => <FavoriteTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
           </Switch>
           <Footer></Footer>
         </div>
