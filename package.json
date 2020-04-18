@@ -40,7 +40,9 @@
     "react-animated-slider": "^1.1.4",
     "react-router-dom": "^5.1.2",
     "semantic-ui-react": "^0.88.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "three": "^0.115.0",
+    "vanta": "^0.5.14"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

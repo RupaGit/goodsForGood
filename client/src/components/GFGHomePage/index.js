@@ -35,9 +35,9 @@ class HomepageHeading extends Component {
               userProfile: 'favicon.ico'
           },
           {
-              title: 'Tortor Dapibus Commodo Aenean Quam',
+              title: 'Inspiration',
               description:
-                  'Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui.',
+                  'The global pandemic of 2020 that affected billions of people all over the world, created a situation where locating and purchasing essential items became difficult and dangerous. With Goods for Good, we wanted to create an app to make it easy and safe to find essential items in your local community and trade with others. Goods for Good uses your location to show you local trades and lets you create and post your own trades. We hope you enjoy it and find the goods you need!',
               button: 'Discover',
               image: 'https://i.imgur.com/DCdBXcq.jpg',
               user: 'GoodsforGood',

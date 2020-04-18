@@ -7,10 +7,15 @@
 }
 .ui[class*="center aligned"].container {
     text-align: center;
-    background-color: white;
+    /* background-color: white; */
     text-transform: none;
     color: rgba(0,0,0,.87);
     font-weight: 400;
+
+}
+
+#footerShadow{
+    box-shadow: 0 -5px 5px -5px #333;
 
 }
 .footer{
@@ -18,10 +23,12 @@
     text-transform: none;
     color: rgba(0,0,0,.87);
     font-weight: 400;
+    width: 100vw;
+    
 
 }
 .ui.vertical.segment:last-child{
-    background-color: white;
+    /* background-color: white; */
     text-transform: none;
     color: rgba(0,0,0,.87);
     font-weight: 400;

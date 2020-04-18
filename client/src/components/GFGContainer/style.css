@@ -6,6 +6,7 @@
   border-radius: 15px;
   border-color: black;
   z-index: 2;
+  height: 100%;
 }
 h1, p {
   font-family: 'Lato';
@@ -18,7 +19,6 @@ h1, p {
 #Shadobox{
      position: relative;
     box-shadow: 3px 4px 8px rgba(0, 0, 0, .5);
-    padding: 10px;
     background: white;
   }
   
@@ -38,7 +38,3 @@ h1, p {
     height: 100px;
     bottom: 0;
   }
-.main{
-  background-color: rgb(250, 255, 255, 0.625);
-  border-radius: 10px;
-}

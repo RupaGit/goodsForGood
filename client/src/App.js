@@ -19,6 +19,7 @@ import MyTrades from "./pages/MyTrades";
 import PendingTrades from "./pages/PendingTrades"
 import FavoriteTrades from "./pages/FavoriteTrades";
 import Messages from "./pages/Messages";
+import GFGanimationContainer from "./components/GFGanimationContainer";
 
 import Footer from './components/GFGFooter'
 
@@ -27,6 +28,7 @@ class App extends React.Component {
   // this.getZipCode = this.getZipCode.bind(this)
   state = {
     isLoggedIn: false,
+    isSticky: true,
     username: "",
     email: "",
     userId: "",
@@ -77,8 +79,10 @@ class App extends React.Component {
     console.log("State of app js", this.state);
     const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
-      <BrowserRouter>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100vh" }}>
+      <div id="app_body"  >
+      <GFGanimationContainer />
+      <div id="page_body" >
+      <BrowserRouter >
           <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
           <Switch>
             <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
@@ -94,9 +98,10 @@ class App extends React.Component {
             <Route exact path="/pendingTrades" render={() => <PendingTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
             <Route exact path="/favoriteTrades" render={() => <FavoriteTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
           </Switch>
-          <Footer></Footer>
-        </div>
       </BrowserRouter>
+      <Footer/>
+      </div>
+      </div>
     );
   }
 }

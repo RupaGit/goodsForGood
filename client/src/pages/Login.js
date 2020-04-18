@@ -53,6 +53,7 @@ class Login extends Component {
       return <Redirect to="./" />
     }
     return (
+
       <div style={{ height: "100%", width: "100%" }}>
         <GFGanimationContainer />
         <GFGContainer id="Shadobox">

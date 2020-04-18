@@ -1,20 +1,14 @@
 .animaon {
-    margin-top: 50px;
-    padding: 1rem;
-    background-color: white;
-    border-style:solid;
-    border-radius: 15px;
-    border-color: black;
     z-index: -1;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
   h1, p {
     font-family: 'Lato';
   }
-  
   .main{
     background-color: rgb(250, 255, 255, 0.625);
     border-radius: 10px;
   }
+ 
