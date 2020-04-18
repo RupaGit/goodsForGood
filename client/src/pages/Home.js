@@ -14,7 +14,7 @@ class DesktopContainer extends Component {
   
   render() {
     return (
-      <div>
+      <div style={{height:'100%'}}>
        {/* <Segment  inverted textAlign='center'style={{ minHeight: 700, padding: '0em 0em' }} vertical> */}
       <HomepageHeading isLoggedIn={this.props.isLoggedIn}/>
         {/* <Footer></Footer> */}
