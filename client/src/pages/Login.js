@@ -54,7 +54,7 @@ class Login extends Component {
     }
     return (
 
-      <div style={{ height: "100%", width: "100%" }}>
+      <div >
         <GFGanimationContainer />
         <GFGContainer id="Shadobox">
 
