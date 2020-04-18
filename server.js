@@ -59,6 +59,17 @@ io.on("connection", socket => {
       })
       .catch(err => console.log(err));
   })
+
+  socket.on("new response", data => {
+    console.log(db);
+    db.Messages.findOneAndUpdate(
+      { _id: data.messageId },
+      { $push: { responses: { responseSender: data.sender, responseSenderName: data.senderName, responseReceiver: data.receiver, responseMessage: data.responseMessage } } },
+      { new: true })
+      .then(messageData => { console.log(messageData); return messageData })
+      .catch(err => { throw err })
+  })
+
 });
 
 // require("./routes/htmlRoutes.js")(app);

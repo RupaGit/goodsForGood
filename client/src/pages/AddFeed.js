@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { GFGButton, GFGInput, GFGLabel, GFGTextArea, GFGDropdown } from "../components/GFGForm";
-import { Form, Divider, Grid, Header, Checkbox } from "semantic-ui-react";
+import { Form, Dropdown } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 
@@ -10,14 +10,19 @@ class AddFeed extends Component {
         super(props);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.state = {
-            zipCode: "",
+            zipCode: this.props.zipCode,
             storeName: "",
             description: "",
-            redirect: null,
-            fullStock: false
+            redirect: null
         }
     }
 
+    // componentDidMount() {
+    //     console.log(this.props.zipCode);
+    //     if (!this.props.zipCode) {
+    //         this.setState({ redirect: "/communityFeed" })
+    //     }
+    // }
 
 
 
@@ -33,9 +38,32 @@ class AddFeed extends Component {
     handleFormSubmit = (event) => {
         event.preventDefault();
         console.log(this.state);
+        var userName
+        if (this.props.username) {
+            userName = this.props.username
+        }
+        else {
+            userName = "Unanimous"
+        }
+        console.log(this.props.username);
+
+        console.log(userName);
+        var feedData = {
+            message: this.state.description,
+            zipCode: this.state.zipCode,
+            storeName: this.state.storeName,
+            createdBy: userName
+        }
+        API.createFeed(feedData)
+            .then(res => {
+                console.log(res);
+                this.setState({ redirect: "/communityFeed" })
+            })
+            .catch(err => console.log(err));
+
     };
 
-    handleSelectChange = (e, { value }) => this.setState({ fullStock: value })
+    handleSelectChange = (e, { value }) => this.setState({ value })
 
 
     render() {
@@ -43,6 +71,9 @@ class AddFeed extends Component {
             { key: "1", text: "Yes", value: "FULL" },
             { key: "2", text: "No", value: "NOT_FULL" }
         ];
+        const { zipCode } = this.props;
+
+        console.log(this.props.username);
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
         }
@@ -59,7 +90,7 @@ class AddFeed extends Component {
                         />
                     </Form.Field>
                     <Form.Field>
-                        <GFGLabel>Store Name</GFGLabel>
+                        <GFGLabel>Available Products</GFGLabel>
                         <GFGTextArea
                             value={this.state.description}
                             onChange={this.handleInputChange}
@@ -68,19 +99,21 @@ class AddFeed extends Component {
                         />
                     </Form.Field>
                     <Form.Field>
-                        <GFGLabel>Fully stocked shelves?</GFGLabel>
+                        <GFGLabel>Zip Code</GFGLabel>
                         {/* <Checkbox toggle /> */}
 
-                        <GFGDropdown
-                            value={this.state.fullStock}
-                            selection
-                            closeOnChange
-                            name="fullStock"
-                            placeholder="Select One"
-                            options={options}
-                            onChange={this.handleInputChange}
-
-                        />
+                        {zipCode ? (<Form.Field>
+                            <GFGInput
+                                value={zipCode}
+                                disabled
+                                name="zipCode"
+                                placeholder="Enter Store zip code"></GFGInput> </Form.Field>
+                        ) : (<Form.Field>
+                            <GFGInput
+                                value={this.state.zipCode}
+                                onChange={this.handleInputChange}
+                                name="zipCode"
+                                placeholder="Enter store Zip Code"></GFGInput> </Form.Field>)}
                     </Form.Field>
 
 

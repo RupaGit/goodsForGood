@@ -49,7 +49,7 @@ export default class Navigation extends Component {
       const { children } = this.props;
       const { fixed } = this.state;
       return (
-         <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} id="Shadobox">
+         <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} id="Shadobox" class="ui bound top sticky">
             <Menu
                fixed={fixed ? "top" : null}
                pointing={!fixed}

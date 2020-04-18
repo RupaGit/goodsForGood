@@ -13,6 +13,7 @@
     font-weight: 400;
 
 }
+
 #footerShadow{
     box-shadow: 0 -5px 5px -5px #333;
 
@@ -22,10 +23,12 @@
     text-transform: none;
     color: rgba(0,0,0,.87);
     font-weight: 400;
-    width: 100vw; 
+    width: 100vw;
+    
+
 }
 .ui.vertical.segment:last-child{
-    background-color: white;
+    /* background-color: white; */
     text-transform: none;
     color: rgba(0,0,0,.87);
     font-weight: 400;
