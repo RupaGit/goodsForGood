@@ -53,33 +53,6 @@ class Login extends Component {
       return <Redirect to="./" />
     }
     return (
-      // <div>
-      // <GFGContainer id="Shadobox">
-      //   <Form style={{zIndex:2}}>
-      //     <Form.Field>
-      //       <GFGLabel>Email address</GFGLabel>
-      //       <GFGInput
-      //         value={this.state.email}
-      //         onChange={this.handleInputChange}
-      //         name="email"
-      //         placeholder="Enter your email"
-      //       />
-      //     </Form.Field>
-      //     <Form.Field>
-      //       <GFGLabel>Password</GFGLabel>
-      //       <GFGInput
-      //         value={this.state.password}
-      //         onChange={this.handleInputChange}
-      //         name="password"
-      //         placeholder="Enter your password"
-      //       />
-      //     </Form.Field>
-      //     <GFGButton
-      //       color="teal"
-      //       disabled={!(this.state.email && this.state.password)}
-      //       onClick={this.handleFormSubmit}
-      //     >
-      //       Login
       <div >
           <GFGContainer id="Shadobox">
           <Form style={{ zIndex: 2 }}>
