@@ -186,7 +186,7 @@ module.exports = function (app, db) {
     console.log("request data in api routes", req.body);
     db.User.findOneAndUpdate(
       { _id: req.body.userId },
-      { $push: { favoriteTrades: req.body.tradeId } },
+      { $addToSet: { favoriteTrades: req.body.tradeId } },
       { new: true })
       .then(userData => res.json(userData))
       .catch(err => res.status(422).json(err));
@@ -214,7 +214,7 @@ module.exports = function (app, db) {
       .then(userData =>
         db.User.findOneAndUpdate(
           { _id: req.body.userId },
-          { $push: { completedTrades: req.body.tradeId } },
+          { $addToSet: { completedTrades: req.body.tradeId } },
           { new: true })
           .then(userData => res.json(userData))
           .catch(err => res.status(422).json(err)));
@@ -229,6 +229,17 @@ module.exports = function (app, db) {
       .then(userData => res.json(userData))
       .catch(err => res.status(422).json(err));
   });
+
+  app.put("/api/removeFavoriteTrade", (req, res) => {
+    console.log()
+    db.User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { $pull: { favoriteTrades: req.body.tradeId } }
+    )
+      .then(userData => res.json(userData))
+      .catch(err => res.status(422).json(err));
+  });
+
 
 
   // route to get favorite trades by user id
@@ -285,5 +296,13 @@ module.exports = function (app, db) {
       .catch(err => res.status(422).json(err));
   });
 
+  app.get("/api/getMessagesByTrade/:tradeId", (req, res) => {
+    db.Messages.find({ tradeId: mongoose.Types.ObjectId(req.params.tradeId) })
+      .then(feedData => {
+        console.log("Feeds are", feedData);
+        res.json(feedData)
+      })
+      .catch(err => res.status(422).json(err));
+  })
 
 };

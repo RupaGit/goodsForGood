@@ -73,6 +73,9 @@ export default {
   getFavoriteTrades: function (userId) {
     return axios.get("/api/getFavoriteTrades/" + userId);
   },
+  removeFavoriteTrade: function (data) {
+    return axios.put("api/removeFavoriteTrade", data);
+  },
   getMessages: function (userId) {
     return axios.get("/api/getMessages/" + userId);
   },
@@ -88,6 +91,9 @@ export default {
   createFeed: function (feedData) {
     console.log(feedData)
     return axios.post("/api/addFeed", feedData);
+  },
+  getMessagesByTrade: function (tradeId) {
+    return axios.get("/api/getMessagesByTrade/" + tradeId);
   }
 };
 

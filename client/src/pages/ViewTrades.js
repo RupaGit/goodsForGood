@@ -23,7 +23,7 @@ class ViewTrades extends Component {
         this.loadUserTrades = this.loadUserTrades.bind(this);
         this.state = {
             trades: [],
-            message: "",
+            userMessage: {},
             modalOpen: false
         }
     }
@@ -39,9 +39,13 @@ class ViewTrades extends Component {
 
     handleInputChange = (event) => {
         const { name, value, } = event.target;
-        this.setState({
-            [name]: value,
-        });
+        this.setState((prevState) => ({
+            ...prevState,
+            userMessage: {
+                ...prevState.userMessage,
+                [name]: value,
+            },
+        }));
     };
     loadUserTrades = () => {
         console.log("UserID IS", this.props.userId);
@@ -78,7 +82,7 @@ class ViewTrades extends Component {
             .catch(err => console.log(err))
     }
 
-    sendMessage = (messageReceiverId, tradeId) => {
+    sendMessage = (messageReceiverId, tradeId, message) => {
         console.log(this.state.message);
         const messageSenderId = this.props.userId;
         const senderName = this.props.username;
@@ -89,7 +93,7 @@ class ViewTrades extends Component {
         // this.transmitMessage(this.state.message, messageSenderId, messageReceiverId)
 
         socket.emit("new message", {
-            message: this.state.message,
+            message: message,
             sender: messageSenderId,
             senderName: senderName,
             receiver: messageReceiverId,
@@ -102,36 +106,32 @@ class ViewTrades extends Component {
         const { isLoggedIn, username, userId, email, zipCode } = this.props;
         console.log("Props in view trades", this.props);
         return (
-            <GFGContainer id="Shadobox">
-                <Grid >
-                    {/* ui centered grid */}
-                    <Header textAlign='center' color="teal" size='huge'>All Trades in my neighborhood</Header>
+            <GFGContainer>
+                {/* ui centered grid */}
+                <Header textAlign='center' color="teal" size='huge'>All Trades in my neighborhood</Header>
 
-                    <Grid.Row>
 
-                        {this.state.trades.map(newTrade =>
-                            <Card fluid key={newTrade._id} id="Shadobox" >
-                                <Card.Content>
-                                    <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
-                                    <GFGCardHeader> Requested Item Qty: {newTrade.reqItemQty} </GFGCardHeader>
-                                    <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
-                                    <GFGCardHeader> Available Item Qty: {newTrade.availItemQty} </GFGCardHeader>
-                                    {(isLoggedIn) ? (<Form reply>
-                                        <Form.TextArea value={this.state.message}
-                                            placeholder="Enter a message and click send Message to contact owner"
-                                            onChange={this.handleInputChange}
-                                            name="message" />
-                                    </Form>) : null}
-                                </Card.Content>
-                                {(isLoggedIn) ? (<Card.Content extra>
-                                    <GFGButton color='teal' onClick={() => this.sendMessage(newTrade.userId, newTrade._id)}>Send Message</GFGButton>
-                                    <GFGButton color='green' onClick={() => this.addFav(newTrade._id)}>Add to Favorites </GFGButton>
+                {this.state.trades.map(newTrade =>
+                    <Card fluid centered key={newTrade._id} >
+                        <Card.Content>
+                            <GFGCardHeader>Requested Item: {newTrade.reqItem}</GFGCardHeader>
+                            <GFGCardHeader> Requested Item Qty: {newTrade.reqItemQty} </GFGCardHeader>
+                            <GFGCardHeader>Available Item: {newTrade.availItem}</GFGCardHeader>
+                            <GFGCardHeader> Available Item Qty: {newTrade.availItemQty} </GFGCardHeader>
+                            {(isLoggedIn) ? (<Form reply>
+                                <Form.TextArea value={this.state.userMessage[newTrade._id] || ""}
+                                    placeholder="Enter a message and click send Message to contact owner"
+                                    onChange={this.handleInputChange}
+                                    name={newTrade._id} />
+                            </Form>) : null}
+                        </Card.Content>
+                        {(isLoggedIn) ? (<Card.Content extra>
+                            <GFGButton color='teal' onClick={() => this.sendMessage(newTrade.userId, newTrade._id, this.state.userMessage[newTrade._id])}>Send Message</GFGButton>
+                            <GFGButton color='green' onClick={() => this.addFav(newTrade._id)}>Add to Favorites </GFGButton>
 
-                                </Card.Content>) : null}
-                            </Card>
-                        )}
-                    </Grid.Row>
-                </Grid>
+                        </Card.Content>) : null}
+                    </Card>
+                )}
             </GFGContainer>
         );
     }

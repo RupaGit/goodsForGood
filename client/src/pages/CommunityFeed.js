@@ -67,6 +67,10 @@ class CommunityFeed extends Component {
         }
         return (
             <GFGContainer>
+                <GFGButton color="teal" onClick={this.addNewFeed}> Add a new Feed </GFGButton>
+
+                <Divider />
+
                 {!this.props.zipCode ? (<Form>
                     <Form.Field>
                         <GFGLabel>Zip Code</GFGLabel>
@@ -85,9 +89,8 @@ class CommunityFeed extends Component {
                         Search
                                 </GFGButton>
                 </Form>) : null}
-                {(this.props.zipCode || this.state.zipCode) ? (<GFGButton color="teal" onClick={this.addNewFeed}> Add a new Feed </GFGButton>) : null}
 
-                <Divider horizontal> Store Feed in my neighborhood </Divider>
+                <Divider />
 
                 {this.state.feeds.map(feed =>
                     <Feed key={feed._id}>

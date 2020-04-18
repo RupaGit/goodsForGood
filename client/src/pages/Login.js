@@ -53,47 +53,53 @@ class Login extends Component {
       return <Redirect to="./" />
     }
     return (
-      <div>
-      <GFGContainer id="Shadobox">
-        <Form style={{zIndex:2}}>
-          <Form.Field>
-            <GFGLabel>Email address</GFGLabel>
-            <GFGInput
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              name="email"
-              placeholder="Enter your email"
-            />
-          </Form.Field>
-          <Form.Field>
-            <GFGLabel>Password</GFGLabel>
-            <GFGInput
-              value={this.state.password}
-              onChange={this.handleInputChange}
-              name="password"
-              placeholder="Enter your password"
-            />
-          </Form.Field>
-          <GFGButton
-            color="teal"
-            disabled={!(this.state.email && this.state.password)}
-            onClick={this.handleFormSubmit}
-          >
-            Login
-          </GFGButton>
-          <Divider horizontal>New to Goods for Good?</Divider>
 
-          <GFGButton
-            color="grey"
-            onClick={this.handleClick}
-            as={Link}
-            to="/SignUp"
-          >
-            Sign Up to Goods For Good
+      <div style={{ height: "100%", width: "100%" }}>
+        <GFGanimationContainer />
+        <GFGContainer id="Shadobox">
+
+          <Form style={{ zIndex: 2 }}>
+            <Form.Field>
+              <GFGLabel>Email address</GFGLabel>
+              <GFGInput
+                value={this.state.email}
+                onChange={this.handleInputChange}
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </Form.Field>
+            <Form.Field>
+              <GFGLabel>Password</GFGLabel>
+              <GFGInput
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
+                placeholder="Enter your password"
+                type='password'
+                required
+              />
+            </Form.Field>
+            <GFGButton
+              color="teal"
+              disabled={!(this.state.email && this.state.password)}
+              onClick={this.handleFormSubmit}
+            >
+              Login
           </GFGButton>
-        </Form>
-      
-      </GFGContainer>
+            <Divider horizontal>New to Goods for Good?</Divider>
+
+            <GFGButton
+              color="grey"
+              onClick={this.handleClick}
+              as={Link}
+              to="/SignUp"
+            >
+              Sign Up to Goods For Good
+          </GFGButton>
+          </Form>
+
+        </GFGContainer>
       </div>
     );
   }
