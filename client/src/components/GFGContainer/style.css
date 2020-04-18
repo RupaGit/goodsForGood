@@ -1,12 +1,12 @@
 .gfgContainer {
-  margin-top: 50px;
+  margin: 50px auto;
   padding: 1rem;
   background-color: white;
   border-style:solid;
   border-radius: 15px;
   border-color: black;
   z-index: 2;
-  height: 100%;
+  height: auto;
 }
 h1, p {
   font-family: 'Lato';
