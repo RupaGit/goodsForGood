@@ -52,7 +52,7 @@ io.on("connection", socket => {
         console.log(dbMessage)
         db.User.findOneAndUpdate(
           { _id: data.sender },
-          { $push: { pendingTrades: data.tradeId } },
+          { $addToSet: { pendingTrades: data.tradeId } },
           { new: true })
           .then(userData => { return userData })
           .catch(err => { throw err })

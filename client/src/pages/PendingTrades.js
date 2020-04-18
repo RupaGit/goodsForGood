@@ -17,6 +17,8 @@ import API from "../utils/API";
 import Login from "./Login";
 import GFGMenu from "../components/GFGMenu"
 import GFGEditTradeModal from "../components/GFGEditTradeModal";
+import GFGMessages from "../components/GFGMessages";
+
 
 
 class PendingTrades extends Component {
@@ -68,7 +70,7 @@ class PendingTrades extends Component {
     }
 
     render() {
-        const { isLoggedIn, userId, email, zipCode } = this.props;
+        const { isLoggedIn, username, userId, email, zipCode } = this.props;
         console.log("props in user dashboard", this.props);
         if (!isLoggedIn) {
             return <Redirect to="./Login" />
@@ -87,7 +89,8 @@ class PendingTrades extends Component {
                         </Card.Content>
                         <GFGCardContent extra>
                             <GFGButton color='teal' onClick={() => this.completePendingTrade(newTrade._id)}>Mark as Complete</GFGButton>
-                            <GFGButton color='teal' onClick={() => this.removePendingTrade(newTrade._id)}>Remove</GFGButton>
+                            <GFGButton color='red' onClick={() => this.removePendingTrade(newTrade._id)}>Remove</GFGButton>
+                            <GFGMessages tradeId={newTrade._id} username={username} userId={userId} />
                         </GFGCardContent>
                     </Card>
                 )}

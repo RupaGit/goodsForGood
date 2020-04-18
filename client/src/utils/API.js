@@ -88,6 +88,9 @@ export default {
   createFeed: function (feedData) {
     console.log(feedData)
     return axios.post("/api/addFeed", feedData);
+  },
+  getMessagesByTrade: function (tradeId) {
+    return axios.get("/api/getMessagesByTrade/" + tradeId);
   }
 };
 

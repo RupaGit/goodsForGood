@@ -46,7 +46,7 @@ class FavoriteTrades extends Component {
     }
 
     render() {
-        const { isLoggedIn, userId, email, zipCode } = this.props;
+        const { isLoggedIn, username, userId, email, zipCode } = this.props;
         console.log("props in user dashboard", this.props);
         if (!isLoggedIn) {
             return <Redirect to="./Login" />
