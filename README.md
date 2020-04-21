@@ -1,16 +1,9 @@
 # goodsForGood
-This is an application which will help communities with finding all essentials during an epidemic
-# simpList (List Sharing App)
+A community trading application that will help you get the goods you need when local stores have been wiped out.
 
 ## Description
-This MERN stack application allows users to create and share lists with other users.
+The global pandemic of 2020 that affected billions of people all over the world created a situation where locating and purchasing essential items became difficult and dangerous. With Goods for Good, we wanted to create an environment where it is easy and safe to find essential items in your local community and trade with others. Goods for Good uses your location to show you local trades and lets you create and post your own trades. We hope you enjoy it and find the goods you need!
 
-## Hosted:
-Heroku: <https://frozen-basin-48164.herokuapp.com//>
-
-Test Username: test@test.com
-
-Test Password: test
 
 ## Technologies/Libraries Used:
 * Node.js <https://nodejs.org/en/>
@@ -19,28 +12,14 @@ Test Password: test
 * React.js <https://facebook.github.io/react/>
 * Auth0 <https://github.com/auth0/>
 * Axios <https://github.com/mzabriskie/axios/>
+* Sockt.iO <https://github.com/socketio/socket.io>
+* Semantic-UI <https://github.com/Semantic-Org/Semantic-UI>
+* Passport <https://www.npmjs.com/package/passport-github> <http://www.passportjs.org/>
+* Nodemailer <https://github.com/nodemailer/nodemailer> <https://nodemailer.com/about/>
+
 
 ## Project Members: 
-### Stephen Pino - <https://github.com/StephenPino/>
-### Jeff McMahan - <https://github.com/jjm552/>
-### Shawn Assour - <https://github.com/sassour525/>
-### Paul Viola - <https://github.com/Paulv2016/>
+### Guy Yaffe Ermoza - <https://github.com/guyyaffear>
+### Javits Arias - <https://github.com/jav1ts>
+### Swarupa Popuri - <https://github.com/RupaGit>
 
-## Task Breakdowns:
-### Stephen Pino: 
-* Front-end Routing (React-Router)
-* Front-end Design  (React)
-* User authentication (Auth0)
-* RESTful API routing (Express.js)
-### Jeff McMahan
-* Material UI
-* React Components (React)
-### Shawn Assour
-* React Components (React)
-* Initial Front-end Styling (Bootstrap)
-* Axios helper functions (Axios)
-### Paul Viola
-*
-*
-*
-*
