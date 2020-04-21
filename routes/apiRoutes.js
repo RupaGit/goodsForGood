@@ -40,7 +40,7 @@ module.exports = function (app, db) {
     var name = req.body.name
     var email = req.body.email
     // var message = req.body.message
-    var content = "HI GUY WE GOT THIS STUPID THING WORKING"//`name: ${name} \n email: ${email} \n message: ${content} `
+    var content = "Thank you for Sig up for GoodsforGood You can Now start your trades "//`name: ${name} \n email: ${email} \n message: ${content} `
     var mail = {
       from: systemEmail,
       to: email,  //Change to email address that you want to receive messages on
