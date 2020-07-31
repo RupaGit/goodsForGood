@@ -4,9 +4,6 @@ import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
 import { Form } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
-import Login from "./Login";
-
-
 
 class SignUp extends Component {
   state = {

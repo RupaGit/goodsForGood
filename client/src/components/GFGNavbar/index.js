@@ -3,15 +3,10 @@ import { Link } from "react-router-dom";
 import {
    Container,
    Menu,
-   Button,
-   Icon,
-   Transition,
    Responsive,
-   Visibility,
    Dropdown
 } from "semantic-ui-react";
 import socketIOClient from "socket.io-client";
-import GFGMenu from "../GFGMenu";
 import "./style.css"
 
 
@@ -57,7 +52,7 @@ export default class Navigation extends Component {
                size="huge"
             >
                <Container>
-                  <Menu.Item position="center">
+                  <Menu.Item position="left">
                      <Menu.Item
                         as={Link}
                         to="/"

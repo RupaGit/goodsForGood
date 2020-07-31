@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown } from 'semantic-ui-react';
-import { Redirect, Link } from 'react-router-dom';
-
-const menuItems = [
-    { name: 'myTrades', label: 'My Trades' },
-    { name: 'pendingTrades', label: 'Pending Trades' },
-    { name: 'favoriteTrades', label: 'Favorite Trade' },
-    { name: 'messages', label: 'Messages' }
-]
-
-
+import { Dropdown } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default class GFGMenu extends Component {
     state = { activeItem: 'myTrades', redirect: null, }
@@ -17,7 +8,6 @@ export default class GFGMenu extends Component {
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     // redirect: "/" + name
     render() {
-        const { activeItem } = this.state;
 
         // if (this.state.redirect) {
         //     return <Redirect to={this.state.redirect} />

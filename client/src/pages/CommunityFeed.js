@@ -4,7 +4,6 @@ import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
 import { Form, Divider, Feed, Icon } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
-import AddFeed from "./AddFeed";
 import Moment from 'react-moment';
 
 class CommunityFeed extends Component {
@@ -97,7 +96,7 @@ class CommunityFeed extends Component {
                         <Feed.Event>
                             <Feed.Content>
                                 <Feed.Summary>
-                                    <a>{feed.createdBy}</a> posted on
+                                    <p>{feed.createdBy}</p> posted on
                                     <Feed.Date>
                                         <Moment format="MM-DD-YYYY  -  HH:mm" date={feed.created} />
                                     </Feed.Date>

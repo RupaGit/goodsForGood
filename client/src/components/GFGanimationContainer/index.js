@@ -1,6 +1,5 @@
-import React, { Children,Component }  from "react";
+import React from "react";
 import "./style.css";
-import ParticlesBg from 'particles-bg'
 import WAVES from 'vanta/dist/vanta.waves.min'
 import * as THREE from 'three'
 

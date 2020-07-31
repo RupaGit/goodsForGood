@@ -5,11 +5,7 @@ import { Form, Divider } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import UserDashboard from "./userDashboard";
 import "../components/GFGContainer/style.css";
-import GFGanimationContainer from "../components/GFGanimationContainer";
-
-
 
 class Login extends Component {
   constructor(props) {

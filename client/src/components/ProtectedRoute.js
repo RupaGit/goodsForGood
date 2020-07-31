@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, Route } from "react-router-dom";
-import API from "../utils/API";
 
 class ProtectedRoute extends Component {
-    constructor(props) {
-        super(props);
-    }
     // state = {
     //     userName: "",
     //     userId: "",

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
-import { GFGButton, GFGInput, GFGLabel, GFGTextArea, GFGDropdown } from "../components/GFGForm";
-import { Form, Dropdown } from "semantic-ui-react";
+import { GFGButton, GFGInput, GFGLabel, GFGTextArea } from "../components/GFGForm";
+import { Form } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
 
@@ -67,10 +67,7 @@ class AddFeed extends Component {
 
 
     render() {
-        const options = [
-            { key: "1", text: "Yes", value: "FULL" },
-            { key: "2", text: "No", value: "NOT_FULL" }
-        ];
+
         const { zipCode } = this.props;
 
         console.log(this.props.username);
