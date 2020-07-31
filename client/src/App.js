@@ -1,24 +1,19 @@
 import React from "react";
 import "./App.css";
-// import { Button } from 'semantic-ui-react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import API from "./utils/API";
 import { Navigation } from "./components/GFGNavbar";
 import SignUp from "./pages/SignUp";
 import Logout from "./pages/Logout";
-import UserDashboard from "./pages/userDashboard";
 import Dashboard from "./pages/Dashboard";
-import Trades from "./pages/Trades";
 import CommunityFeed from "./pages/CommunityFeed";
 import AddFeed from "./pages/AddFeed";
 import ViewTrades from "./pages/ViewTrades";
 import MyTrades from "./pages/MyTrades";
 import PendingTrades from "./pages/PendingTrades"
 import FavoriteTrades from "./pages/FavoriteTrades";
-import Messages from "./pages/Messages";
 import GFGanimationContainer from "./components/GFGanimationContainer";
 
 import Footer from './components/GFGFooter'
@@ -80,27 +75,27 @@ class App extends React.Component {
     const { isLoggedIn, username, userId, email, zipCode } = this.state;
     return (
       <div id="app_body"  >
-      <GFGanimationContainer />
-      <div id="page_body" >
-      <BrowserRouter >
-          <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
-          <Switch>
-            <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
-            {/* //Rupa to look into login and try to update states not based on callback */}
-            <Route path="/login" render={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
-            <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
-            <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
-            <Route path="/userDashboard" render={() => <Dashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route path="/myTrades" render={() => <MyTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route exact path="/pendingTrades" render={() => <PendingTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
-            <Route exact path="/favoriteTrades" render={() => <FavoriteTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
-          </Switch>
-      </BrowserRouter>
-      <Footer/>
-       </div>
+        <GFGanimationContainer />
+        <div id="page_body" >
+          <BrowserRouter >
+            <Navigation isLoggedIn={isLoggedIn} logOut={this.logOut} />
+            <Switch>
+              <Route path="/" render={() => <Home isLoggedIn={isLoggedIn} />} exact />
+              {/* //Rupa to look into login and try to update states not based on callback */}
+              <Route path="/login" render={() => <Login isAuthed={true} onUserLogin={this.onUserLogin} />} />
+              <Route path="/signUp" render={() => <SignUp isLoggedIn={isLoggedIn} zipCode={zipCode} />} exact />
+              <Route path="/logout" component={() => <Logout isAuthed={true} onUserLogout={this.onUserLogout} />} />
+              <Route path="/userDashboard" render={() => <Dashboard isLoggedIn={isLoggedIn} userId={userId} email={email} zipCode={zipCode} />} exact />
+              <Route path="/communityFeed" render={() => <CommunityFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+              <Route path="/addNewFeed" render={() => <AddFeed isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+              <Route path="/viewTrades" render={() => <ViewTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+              <Route path="/myTrades" render={() => <MyTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} exact />
+              <Route exact path="/pendingTrades" render={() => <PendingTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} />
+              <Route exact path="/favoriteTrades" render={() => <FavoriteTrades isLoggedIn={isLoggedIn} username={username} userId={userId} email={email} zipCode={zipCode} />} />
+            </Switch>
+          </BrowserRouter>
+          <Footer />
+        </div>
       </div>
     );
   }

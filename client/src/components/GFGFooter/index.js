@@ -1,16 +1,9 @@
-import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import {
   Container,
-  Divider,
-  Dropdown,
   Grid,
-  Header,
   Image,
   List,
-  Menu,
-  Segment,
-  Rail,
   Ref,
   Sticky,
 } from 'semantic-ui-react'
@@ -19,8 +12,6 @@ import './style.css';
 
 class Footer extends Component {
   render() {
-    const { mobile, isLoggedIn } = this.props;
-    const contextRef = createRef()
     return (
       // <div className="footer" >
       // <div class="ui fixed bottom sticky" style={{width:"100vw" ,flexDirection:'column',background:"white"}} id="footerShadow">

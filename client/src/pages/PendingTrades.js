@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import {
     GFGCardHeader,
-    GFGCardMeta,
     GFGCardDes,
-    GFGImage,
     GFGCardContent,
 } from "../components/GFGCard";
-import { Card, Segment, Container } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 import { Redirect } from 'react-router-dom';
 import GFGContainer from "../components/GFGContainer";
 import { GFGButton } from "../components/GFGForm";
-import { Row, Header, Button, Icon } from 'semantic-ui-react'
-import { Divider, Grid, Image } from 'semantic-ui-react'
-import MyTradeModal from '../components/GFGTradeModal'
+import { Header } from 'semantic-ui-react'
 import API from "../utils/API";
-import Login from "./Login";
-import GFGMenu from "../components/GFGMenu"
-import GFGEditTradeModal from "../components/GFGEditTradeModal";
 import GFGMessages from "../components/GFGMessages";
 
 
@@ -70,7 +63,7 @@ class PendingTrades extends Component {
     }
 
     render() {
-        const { isLoggedIn, username, userId, email, zipCode } = this.props;
+        const { isLoggedIn, username, userId } = this.props;
         console.log("props in user dashboard", this.props);
         if (!isLoggedIn) {
             return <Redirect to="./Login" />

@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import {
     GFGCardHeader,
-    GFGCardMeta,
-    GFGCardDes,
-    GFGImage,
 } from "../components/GFGCard";
-import { Card, Segment, Container, Modal, Form } from "semantic-ui-react";
+import { Card, Form } from "semantic-ui-react";
 import GFGContainer from "../components/GFGContainer";
-import { GFGButton, GFGInput, GFGLabel, GFGTextArea } from "../components/GFGForm";
-import { Row, Header, Button, Icon } from 'semantic-ui-react'
-import { Divider, Grid, Image } from 'semantic-ui-react'
+import { GFGButton } from "../components/GFGForm";
+import { Header } from 'semantic-ui-react'
 import API from "../utils/API";
-import { GFGModalHeader, GFGModalContent, GFGModalDesc } from "../components/GFGModal";
 import { socket } from "../components/GFGNavbar";
 import "../components/GFGContainer/style.css";
 
@@ -103,7 +98,7 @@ class ViewTrades extends Component {
     }
 
     render() {
-        const { isLoggedIn, username, userId, email, zipCode } = this.props;
+        const { isLoggedIn } = this.props;
         console.log("Props in view trades", this.props);
         return (
             <GFGContainer>

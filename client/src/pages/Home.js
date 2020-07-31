@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import {
-  Responsive,
-  Segment,
-} from 'semantic-ui-react'
 import HomepageHeading from '../components/GFGHomePage/index'
 
 // import SliderComponant from '../components/GFG-slider/index'
 
-import Footer from '../components/GFGFooter/index'
 
 class DesktopContainer extends Component {
   state = {}

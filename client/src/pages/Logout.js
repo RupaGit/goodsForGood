@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
-import { GFGButton, GFGInput, GFGLabel } from "../components/GFGForm";
-import { Form, Divider } from "semantic-ui-react";
-import GFGContainer from "../components/GFGContainer";
 import API from "../utils/API";
-import Home from "./Home";
 
 class Logout extends Component {
     constructor(props) {
