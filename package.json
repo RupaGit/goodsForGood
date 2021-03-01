@@ -41,7 +41,7 @@
     "react-router-dom": "^5.1.2",
     "semantic-ui-react": "^0.88.2",
     "socket.io": "^2.3.0",
-    "three": "^0.115.0",
+    "three": "^0.125.0",
     "vanta": "^0.5.14"
   },
   "devDependencies": {
